@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Avazora — Plan Your Sacred Journey</title>
+    <meta name="description" content="Contact Avazora Tourism for customized temple tours, pilgrimage planning, and travel assistance across India and internationally." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Font Awesome 6 for professional icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .fa-whatsapp { color: #25d366; }
+        .fa-facebook { color: #1877f2; }
+        .fa-instagram { color: #e1306c; }
+        .fa-x-twitter { color: #000; }
+        .fa-youtube { color: #ff0000; }
+        .fa-linkedin { color: #0a66c2; }
+        .social-link .fab, .social-link .fas { font-size: 20px; }
+        .cc-icon .fab, .cc-icon .fas { font-size: 36px; }
+        .oi-icon .fab, .oi-icon .fas { font-size: 20px; color: var(--contact-gold); }
+    </style>
+    <style>
+        /* ── Contact Page Specific Styles ── */
+        :root {
+            --contact-gold: #d6ad55;
+            --contact-green: #0b2119;
+            --contact-green-mid: #1a3d2b;
+        }
+
+        .contact-hero {
+            background: linear-gradient(135deg, var(--contact-green) 0%, #1a3d2b 60%, #2a5a3e 100%);
+            padding: 100px 36px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d6ad55' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+        .contact-hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(32px, 5vw, 56px);
+            color: var(--ivory, #f5f0e8);
+            margin: 16px 0 20px;
+        }
+        .contact-hero p {
+            color: rgba(245,240,232,0.75);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 36px;
+            line-height: 1.65;
+        }
+        .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .btn-hero-primary {
+            background: var(--contact-gold);
+            color: var(--contact-green);
+            border: none;
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all .25s;
+            text-decoration: none;
+            display: inline-flex; align-items: center; gap: 8px;
+        }
+        .btn-hero-primary:hover { transform: translateY(-3px); filter: brightness(1.1); }
+        .btn-hero-secondary {
+            background: transparent;
+            color: var(--ivory, #f5f0e8);
+            border: 2px solid rgba(245,240,232,0.4);
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .25s;
+            text-decoration: none;
+            display: inline-flex; align-items: center; gap: 8px;
+        }
+        .btn-hero-secondary:hover { border-color: var(--contact-gold); color: var(--contact-gold); }
+
+        /* ── Contact Cards ── */
+        .contact-cards-section { padding: 70px 36px; background: #faf8f4; }
+        .contact-cards-section h2 { text-align: center; font-family: 'Cinzel', serif; font-size: 28px; color: var(--contact-green); margin-bottom: 10px; }
+        .contact-cards-section p { text-align: center; color: #666; margin-bottom: 44px; }
+        .contact-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        @media (max-width: 900px) { .contact-cards-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 500px) { .contact-cards-grid { grid-template-columns: 1fr; } }
+        .contact-card {
+            background: white;
+            border: 1px solid #e8e2d8;
+            border-radius: 12px;
+            padding: 32px 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: all .25s;
+            text-decoration: none;
+            display: block;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+        }
+        .contact-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(11,33,25,0.14); border-color: var(--contact-gold); }
+        .contact-card .cc-icon { font-size: 38px; margin-bottom: 14px; display: block; }
+        .contact-card h3 { font-family: 'Cinzel', serif; font-size: 18px; color: var(--contact-green); margin-bottom: 8px; }
+        .contact-card .cc-sub { font-size: 13px; color: #777; margin-bottom: 16px; line-height: 1.5; }
+        .contact-card .cc-action {
+            display: inline-block;
+            background: var(--contact-green);
+            color: #f5f0e8;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: background .2s;
+        }
+        .contact-card:hover .cc-action { background: var(--contact-gold); color: var(--contact-green); }
+
+        /* ── Enquiry Form ── */
+        .form-section {
+            padding: 80px 36px;
+            background: white;
+        }
+        .form-wrapper {
+            max-width: 860px;
+            margin: 0 auto;
+        }
+        .form-section-eyebrow {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            letter-spacing: .08em;
+            color: #c07a2a;
+            margin-bottom: 10px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .form-section-eyebrow span { display: block; width: 24px; height: 1.5px; background: #c07a2a; }
+        .form-section h2 { font-family: 'Cinzel', serif; font-size: 30px; color: var(--contact-green); margin-bottom: 8px; }
+        .form-section > .form-wrapper > p { color: #666; margin-bottom: 40px; font-size: 15px; }
+
+        .tour-type-toggle {
+            display: flex; gap: 16px; margin-bottom: 32px; flex-wrap: wrap;
+        }
+        .tour-type-btn {
+            flex: 1; min-width: 200px;
+            padding: 18px 24px;
+            border: 2px solid #e0d8cc;
+            border-radius: 10px;
+            background: #faf8f4;
+            cursor: pointer;
+            text-align: left;
+            transition: all .2s;
+        }
+        .tour-type-btn.active {
+            border-color: var(--contact-gold);
+            background: #fffaf0;
+            box-shadow: 0 4px 16px rgba(214,173,85,0.2);
+        }
+        .tour-type-btn .tt-icon { font-size: 28px; margin-bottom: 8px; display: block; }
+        .tour-type-btn .tt-label { font-family: 'Cinzel', serif; font-size: 16px; color: var(--contact-green); font-weight: 700; }
+        .tour-type-btn .tt-sub { font-size: 13px; color: #888; margin-top: 4px; }
+
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+        .form-group { display: flex; flex-direction: column; gap: 6px; }
+        .form-group.full { grid-column: 1 / -1; }
+        .form-group label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .05em;
+            color: #555;
+            text-transform: uppercase;
+        }
+        .form-group label .req { color: #c07a2a; }
+        .form-input, .form-select, .form-textarea {
+            padding: 12px 16px;
+            border: 1.5px solid #e0d8cc;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            color: var(--contact-green);
+            background: #fefefe;
+            transition: border .2s, box-shadow .2s;
+            outline: none;
+        }
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: var(--contact-gold);
+            box-shadow: 0 0 0 3px rgba(214,173,85,0.12);
+        }
+        .form-textarea { resize: vertical; min-height: 110px; }
+        .form-section-divider {
+            grid-column: 1 / -1;
+            border: none;
+            border-top: 1.5px solid #f0ebe0;
+            margin: 8px 0;
+        }
+        .conditional-fields { display: none; }
+        .conditional-fields.visible { display: contents; }
+
+        .form-submit-btn {
+            background: linear-gradient(135deg, var(--contact-gold), #c89a30);
+            color: var(--contact-green);
+            border: none;
+            padding: 16px 40px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all .25s;
+            margin-top: 24px;
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: .02em;
+            width: 100%;
+        }
+        .form-submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(214,173,85,0.35); }
+
+        /* Success Message */
+        .success-box {
+            display: none;
+            background: linear-gradient(135deg, #0b2119, #1a3d2b);
+            border-radius: 16px;
+            padding: 48px 40px;
+            text-align: center;
+            color: #f5f0e8;
+        }
+        .success-box .success-icon { font-size: 52px; margin-bottom: 16px; }
+        .success-box h3 { font-family: 'Cinzel', serif; font-size: 24px; margin-bottom: 8px; color: var(--contact-gold); }
+        .success-box .enq-id { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: var(--contact-gold); margin: 16px 0; background: rgba(214,173,85,0.12); padding: 10px 24px; border-radius: 8px; border: 1px solid var(--contact-gold); display: inline-block; }
+        .success-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+        .success-wa-btn {
+            background: #25d366;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all .2s;
+            text-decoration: none;
+            display: inline-flex; align-items: center; gap: 8px;
+        }
+        .success-wa-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+        .success-email-btn {
+            background: transparent;
+            color: #f5f0e8;
+            border: 2px solid rgba(245,240,232,0.4);
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .2s;
+            text-decoration: none;
+            display: inline-flex; align-items: center; gap: 8px;
+        }
+        .success-email-btn:hover { border-color: var(--contact-gold); color: var(--contact-gold); }
+
+        /* ── Office + Map ── */
+        .office-section {
+            padding: 80px 36px;
+            background: #faf8f4;
+        }
+        .office-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; align-items: start; }
+        @media (max-width: 860px) { .office-inner { grid-template-columns: 1fr; } }
+        .office-info h2 { font-family: 'Cinzel', serif; font-size: 26px; color: var(--contact-green); margin-bottom: 28px; }
+        .office-item { display: flex; gap: 16px; margin-bottom: 24px; align-items: flex-start; }
+        .office-item .oi-icon { font-size: 22px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: white; border-radius: 10px; border: 1px solid #e8e2d8; flex-shrink: 0; }
+        .office-item .oi-label { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #c07a2a; margin-bottom: 4px; }
+        .office-item .oi-value { font-size: 15px; color: var(--contact-green); line-height: 1.5; }
+        .office-hours { background: var(--contact-green); color: #f5f0e8; border-radius: 10px; padding: 20px 24px; margin-top: 28px; }
+        .office-hours h4 { font-family: 'Cinzel', serif; color: var(--contact-gold); margin-bottom: 10px; }
+        .office-hours p { font-size: 14px; opacity: .85; line-height: 1.7; }
+        .map-container { border-radius: 16px; overflow: hidden; border: 1px solid #e8e2d8; box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+        .map-container iframe { display: block; width: 100%; height: 360px; }
+        .map-directions-btn {
+            display: block; text-align: center;
+            background: var(--contact-green);
+            color: var(--contact-gold);
+            padding: 14px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background .2s;
+            letter-spacing: .04em;
+        }
+        .map-directions-btn:hover { background: #1a3d2b; }
+
+        /* ── FAQ ── */
+        .faq-section { padding: 80px 36px; background: white; }
+        .faq-inner { max-width: 760px; margin: 0 auto; }
+        .faq-inner h2 { font-family: 'Cinzel', serif; font-size: 28px; color: var(--contact-green); margin-bottom: 36px; text-align: center; }
+        .faq-item { border-bottom: 1px solid #e8e2d8; }
+        .faq-question {
+            width: 100%; text-align: left; background: none; border: none;
+            padding: 20px 0; display: flex; justify-content: space-between; align-items: center;
+            font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600;
+            color: var(--contact-green); cursor: pointer;
+        }
+        .faq-question .faq-arrow { font-size: 18px; transition: transform .2s; color: var(--contact-gold); }
+        .faq-question.open .faq-arrow { transform: rotate(180deg); }
+        .faq-answer { display: none; padding: 0 0 20px; font-size: 15px; color: #555; line-height: 1.7; }
+        .faq-answer.open { display: block; }
+
+        /* ── Social ── */
+        .social-section { padding: 60px 36px; background: var(--contact-green); text-align: center; }
+        .social-section h2 { font-family: 'Cinzel', serif; font-size: 24px; color: #f5f0e8; margin-bottom: 8px; }
+        .social-section p { color: rgba(245,240,232,0.65); margin-bottom: 32px; }
+        .social-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .social-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(214,173,85,0.3);
+            color: #f5f0e8;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all .2s;
+        }
+        .social-link:hover { background: var(--contact-gold); color: var(--contact-green); border-color: var(--contact-gold); }
+    </style>
+</head>
+<body class="avazora">
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="nav" style="background: var(--green-deep); position: sticky; top: 0; z-index: 999; padding: 15px 36px;">
+        <div class="logo">
+            <a href="index.html" style="display:flex; align-items:center; text-decoration:none; gap:12px;">
+                <img src="images/logo.jpg" alt="Avazora Tourism Logo" class="nav-logo-img" />
+                <span style="color:var(--ivory); font-size:22px; font-weight:700; font-family:'Cinzel', serif;">AVAZORA</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="index.html#home">Home</a>
+            <a href="about.html">About</a>
+            <div class="dropdown">
+                <a href="index.html#services" class="dropbtn">Services</a>
+                <div class="dropdown-content mega-menu">
+                    <div class="mega-col">
+                        <h4>Domestic Tourism</h4>
+                        <a href="#">Tamil Nadu Temple Tours</a>
+                        <a href="#">South India Pilgrimage Tours</a>
+                        <a href="#">North India Temple Tours</a>
+                        <a href="#">East India Heritage Tours</a>
+                        <a href="#">West India Temple Tours</a>
+                        <a href="#">Pan-India Pilgrimage Tours</a>
+                    </div>
+                    <div class="mega-col">
+                        <h4>International Tourism</h4>
+                        <a href="#">International Pilgrimage Tours</a>
+                        <a href="#">Indian Heritage Tours</a>
+                        <a href="#">Spiritual &amp; Cultural Tours</a>
+                        <a href="#">Group Tours</a>
+                        <a href="#">Customized International Tours</a>
+                    </div>
+                    <div class="mega-col">
+                        <h4>Special Tours</h4>
+                        <a href="#">Family Tours</a>
+                        <a href="#">Senior Citizen Tours</a>
+                        <a href="#">Solo Traveller Tours</a>
+                        <a href="#">Photography Tours</a>
+                        <a href="#">Festival Tours</a>
+                    </div>
+                    <div class="mega-col">
+                        <h4>Travel Assistance</h4>
+                        <a href="#">Tour Planning</a>
+                        <a href="#">Hotel Assistance</a>
+                        <a href="#">Transport Assistance</a>
+                        <a href="#">Customized Itinerary</a>
+                        <a href="#">Group Booking</a>
+                    </div>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a href="index.html#temples" class="dropbtn">Temples</a>
+                <div class="dropdown-content">
+                    <a href="index.html#temples">Temple Directory</a>
+                    <a href="index.html#architecture">Architecture</a>
+                </div>
+            </div>
+            <a href="index.html#festivals">Festivals</a>
+            <a href="index.html#ai">AI Guide</a>
+            <a href="contact.html" style="color: var(--gold-bright) !important;">Contact</a>
+        </div>
+        <div class="nav-right">
+            <span class="mobile-toggle icon-btn" id="mobileToggle" data-icon="menu"></span>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html#home">Home</a>
+            <a href="about.html">About</a>
+            <a href="index.html#services">Services</a>
+            <a href="index.html#temples">Temples</a>
+            <a href="index.html#festivals">Festivals</a>
+            <a href="index.html#ai">AI Guide</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="contact-hero">
+        <div class="eyebrow gold-eyebrow" style="justify-content:center;"><span class="dash"></span>CONTACT AVAZORA</div>
+        <h1>Let's Plan Your Journey</h1>
+        <p>Have a question, need help planning a pilgrimage, or want a customized temple tour? Our team is here to help.</p>
+        <div class="hero-btns">
+            <a href="#enquiry-form" class="btn-hero-primary"><i class="fas fa-paper-plane"></i> Plan My Journey</a>
+            <a href="https://wa.me/919876543210?text=Hello%20Avazora!%20I%20would%20like%20to%20plan%20a%20temple%20tour." target="_blank" class="btn-hero-secondary"><i class="fab fa-whatsapp"></i> WhatsApp Us</a>
+        </div>
+    </section>
+
+    <!-- CONTACT OPTION CARDS -->
+    <section class="contact-cards-section">
+        <h2>How Would You Like to Reach Us?</h2>
+        <p>Choose the most comfortable channel for you — we're available on all of them.</p>
+        <div class="contact-cards-grid">
+            <a href="https://wa.me/919876543210?text=Hello%20Avazora!" target="_blank" class="contact-card">
+                <span class="cc-icon"><i class="fab fa-whatsapp" style="color:#25d366;"></i></span>
+                <h3>WhatsApp</h3>
+                <p class="cc-sub">Quick assistance<br>Fastest response time</p>
+                <span class="cc-action">Chat with Us</span>
+            </a>
+            <a href="mailto:namaste@avazoratourism.com" class="contact-card">
+                <span class="cc-icon"><i class="fas fa-envelope" style="color:#d6ad55;"></i></span>
+                <h3>Email</h3>
+                <p class="cc-sub">Detailed enquiries<br>Send us everything</p>
+                <span class="cc-action">Send Enquiry</span>
+            </a>
+            <a href="tel:+919876543210" class="contact-card">
+                <span class="cc-icon"><i class="fas fa-phone" style="color:#0b2119;"></i></span>
+                <h3>Call Us</h3>
+                <p class="cc-sub">Talk to our team<br>Mon–Sat 9AM–6PM</p>
+                <span class="cc-action">Call Now</span>
+            </a>
+            <a href="index.html#ai" class="contact-card">
+                <span class="cc-icon"><i class="fas fa-robot" style="color:#6030a8;"></i></span>
+                <h3>AI Guide</h3>
+                <p class="cc-sub">Ask Avazora AI<br>Get instant answers</p>
+                <span class="cc-action">Start AI Chat</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- TRAVEL ENQUIRY FORM -->
+    <section class="form-section" id="enquiry-form">
+        <div class="form-wrapper">
+            <div class="form-section-eyebrow"><span></span>TRAVEL ENQUIRY</div>
+            <h2>Plan Your Sacred Journey</h2>
+            <p>Fill in the details below and we'll prepare a personalized itinerary and quote for you.</p>
+
+            <!-- Tour Type Toggle -->
+            <div class="tour-type-toggle">
+                <button type="button" class="tour-type-btn active" id="btnDomestic" onclick="setTourType('Domestic')">
+                    <span class="tt-icon">🇮🇳</span>
+                    <div class="tt-label">Domestic Tourism</div>
+                    <div class="tt-sub">Temples & Pilgrimages across India</div>
+                </button>
+                <button type="button" class="tour-type-btn" id="btnInternational" onclick="setTourType('International')">
+                    <span class="tt-icon">✈️</span>
+                    <div class="tt-label">International Tourism</div>
+                    <div class="tt-sub">Sacred journeys from abroad</div>
+                </button>
+            </div>
+
+            <!-- Enquiry Form -->
+            <form id="enquiryForm" onsubmit="submitEnquiry(event)">
+                <input type="hidden" id="tourTypeHidden" value="Domestic" />
+                <div class="form-grid">
+
+                    <!-- Personal Info -->
+                    <div class="form-group">
+                        <label>Full Name <span class="req">*</span></label>
+                        <input class="form-input" type="text" id="fName" placeholder="Your full name" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Email <span class="req">*</span></label>
+                        <input class="form-input" type="email" id="fEmail" placeholder="your@email.com" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Phone / WhatsApp <span class="req">*</span></label>
+                        <input class="form-input" type="tel" id="fPhone" placeholder="+91 98765 43210" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Country</label>
+                        <input class="form-input" type="text" id="fCountry" placeholder="India" />
+                    </div>
+
+                    <hr class="form-section-divider" />
+
+                    <!-- Service -->
+                    <div class="form-group full">
+                        <label>Service Required</label>
+                        <select class="form-select" id="fService">
+                            <option value="">— Select a service —</option>
+                            <option>Temple Tour</option>
+                            <option>Pilgrimage Tour</option>
+                            <option>Heritage Tour</option>
+                            <option>Festival Tour</option>
+                            <option>Family Tour</option>
+                            <option>Senior Citizen Tour</option>
+                            <option>Customized Tour</option>
+                            <option>Group Tour</option>
+                        </select>
+                    </div>
+
+                    <!-- DOMESTIC FIELDS -->
+                    <div class="conditional-fields visible" id="domesticFields">
+                        <div class="form-group">
+                            <label>State</label>
+                            <select class="form-select" id="fState">
+                                <option value="">— Select State —</option>
+                                <option>Tamil Nadu</option>
+                                <option>Kerala</option>
+                                <option>Karnataka</option>
+                                <option>Andhra Pradesh</option>
+                                <option>Telangana</option>
+                                <option>Maharashtra</option>
+                                <option>Rajasthan</option>
+                                <option>Uttar Pradesh</option>
+                                <option>Uttarakhand</option>
+                                <option>Odisha</option>
+                                <option>West Bengal</option>
+                                <option>Gujarat</option>
+                                <option>Madhya Pradesh</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>City / Temple</label>
+                            <input class="form-input" type="text" id="fCity" placeholder="e.g. Madurai, Varanasi" />
+                        </div>
+                        <div class="form-group full">
+                            <label>Preferred Temple Region</label>
+                            <input class="form-input" type="text" id="fRegion" placeholder="e.g. Chola temples, Jyotirlinga circuit, Char Dham" />
+                        </div>
+                    </div>
+
+                    <!-- INTERNATIONAL FIELDS -->
+                    <div class="conditional-fields" id="internationalFields">
+                        <div class="form-group">
+                            <label>Arrival Airport</label>
+                            <input class="form-input" type="text" id="fAirport" placeholder="e.g. Chennai, Mumbai, Delhi" />
+                        </div>
+                        <div class="form-group">
+                            <label>Visa Assistance Required?</label>
+                            <select class="form-select" id="fVisa">
+                                <option value="">— Select —</option>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Accommodation Required?</label>
+                            <select class="form-select" id="fAccom">
+                                <option value="">— Select —</option>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Airport Transfer Required?</label>
+                            <select class="form-select" id="fTransfer">
+                                <option value="">— Select —</option>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <hr class="form-section-divider" />
+
+                    <!-- Travel Info -->
+                    <div class="form-group">
+                        <label>Starting Location</label>
+                        <input class="form-input" type="text" id="fFrom" placeholder="Where are you travelling from?" />
+                    </div>
+                    <div class="form-group">
+                        <label>Destination</label>
+                        <input class="form-input" type="text" id="fDestination" placeholder="Primary destination" />
+                    </div>
+                    <div class="form-group">
+                        <label>Travel Date</label>
+                        <input class="form-input" type="date" id="fDate" />
+                    </div>
+                    <div class="form-group">
+                        <label>Number of Travellers</label>
+                        <input class="form-input" type="number" id="fTravellers" min="1" max="500" placeholder="e.g. 4" />
+                    </div>
+                    <div class="form-group">
+                        <label>Number of Days</label>
+                        <input class="form-input" type="number" id="fDays" min="1" max="60" placeholder="e.g. 5" />
+                    </div>
+                    <div class="form-group">
+                        <label>Budget (₹ or $)</label>
+                        <input class="form-input" type="text" id="fBudget" placeholder="e.g. ₹25,000 per person" />
+                    </div>
+
+                    <div class="form-group full">
+                        <label>Tell Us About Your Journey</label>
+                        <textarea class="form-textarea" id="fMessage" placeholder="Describe your ideal pilgrimage or heritage experience. Any special requests, mobility considerations, or temple preferences are welcome..."></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="form-submit-btn" id="submitBtn">
+                    <i class="fas fa-paper-plane"></i> Send Enquiry
+                </button>
+            </form>
+
+            <!-- SUCCESS STATE -->
+            <div class="success-box" id="successBox">
+                <div class="success-icon"><i class="fas fa-circle-check" style="color:#d6ad55; font-size:52px;"></i></div>
+                <h3>Enquiry Submitted Successfully!</h3>
+                <p>Thank you for reaching out. Our team will contact you within one business day.</p>
+                <div class="enq-id" id="displayEnqId">AVZ-2026-00001</div>
+                <p style="font-size:14px; opacity:.75; margin-top: 8px;">Save this enquiry ID for reference.</p>
+                <div class="success-actions">
+                    <a href="#" id="waFollowUp" class="success-wa-btn" target="_blank"><i class="fab fa-whatsapp"></i> Continue on WhatsApp</a>
+                    <a id="emailFollowUp" class="success-email-btn"><i class="fas fa-envelope"></i> Continue by Email</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OFFICE INFO + MAP -->
+    <section class="office-section">
+        <div class="office-inner">
+            <div class="office-info">
+                <h2>Our Office</h2>
+
+                <div class="office-item">
+                    <div class="oi-icon"><i class="fas fa-location-dot"></i></div>
+                    <div>
+                        <div class="oi-label">Address</div>
+                        <div class="oi-value">Avazora Tourism<br>[Your Business Address]<br>Tamil Nadu, India</div>
+                    </div>
+                </div>
+
+                <div class="office-item">
+                    <div class="oi-icon"><i class="fas fa-phone"></i></div>
+                    <div>
+                        <div class="oi-label">Phone</div>
+                        <div class="oi-value">+91 [Your Business Number]</div>
+                    </div>
+                </div>
+
+                <div class="office-item">
+                    <div class="oi-icon"><i class="fab fa-whatsapp" style="color:#25d366;"></i></div>
+                    <div>
+                        <div class="oi-label">WhatsApp</div>
+                        <div class="oi-value">+91 [Your WhatsApp Number]</div>
+                    </div>
+                </div>
+
+                <div class="office-item">
+                    <div class="oi-icon"><i class="fas fa-envelope"></i></div>
+                    <div>
+                        <div class="oi-label">Email</div>
+                        <div class="oi-value">namaste@avazoratourism.com</div>
+                    </div>
+                </div>
+
+                <div class="office-hours">
+                    <h4><i class="fas fa-clock" style="margin-right:8px;"></i>Support Hours</h4>
+                    <p>Monday – Saturday<br>9:00 AM – 6:00 PM IST<br><br>We serve travellers across India and international visitors to India worldwide.</p>
+                </div>
+            </div>
+
+            <div>
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d497511.23!2d79.8589046!3d11.1271025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a535a3d4b7a6b45%3A0xc9e8de8b10e21958!2sTamil%20Nadu%2C%20India!5e0!3m2!1sen!2sin!4v1692000000000"
+                        style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                    <a href="https://maps.google.com" target="_blank" class="map-directions-btn"><i class="fas fa-diamond-turn-right"></i> Get Directions</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="faq-inner">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    How quickly will Avazora respond to my enquiry?
+                    <span class="faq-arrow">▼</span>
+                </button>
+                <div class="faq-answer">Our team reviews every enquiry and will contact you within one business day through your preferred communication channel — WhatsApp, phone, or email.</div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Can I request a fully customized temple tour?
+                    <span class="faq-arrow">▼</span>
+                </button>
+                <div class="faq-answer">Absolutely. Tell us your destination, preferred temples, duration, group size, interests, and budget — we'll craft a personalized itinerary just for you. No two journeys are the same.</div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Do you support international travellers visiting India?
+                    <span class="faq-arrow">▼</span>
+                </button>
+                <div class="faq-answer">Yes. International visitors can request fully customized pilgrimage, heritage, and cultural experiences across India. We can also assist with visa guidance, accommodation, and airport transfers.</div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Can I contact Avazora through WhatsApp?
+                    <span class="faq-arrow">▼</span>
+                </button>
+                <div class="faq-answer">Yes! WhatsApp is our fastest response channel. Click any "WhatsApp Us" button on this page to start a direct conversation with our team.</div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Do you arrange group and senior citizen tours?
+                    <span class="faq-arrow">▼</span>
+                </button>
+                <div class="faq-answer">Yes. We specialize in group tours, senior-friendly pilgrimages with comfortable pacing, accessibility arrangements, and family-oriented itineraries. Just mention your requirements in the form above.</div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    What is the Avazora AI Guide?
+                    <span class="faq-arrow">▼</span>
+                </button>
+                <div class="faq-answer">The Avazora AI Guide is trained on verified temple history, architectural archives, and regional travel data. It can answer detailed questions about temples, festivals, timings, and help you plan preliminary itineraries instantly — 24/7.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL MEDIA -->
+    <section class="social-section">
+        <h2>Follow Our Journey</h2>
+        <p>Stay connected for temple stories, festival updates, and travel inspiration.</p>
+        <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-facebook"></i> Facebook</a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="#" class="social-link"><i class="fab fa-x-twitter"></i> Twitter / X</a>
+            <a href="#" class="social-link"><i class="fab fa-youtube"></i> YouTube</a>
+            <a href="#" class="social-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="https://wa.me/919876543210" target="_blank" class="social-link"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <div class="nav-brand" style="margin-bottom:16px">
+                    <img src="images/logo.jpg" alt="Avazora Tourism Logo" class="nav-logo-img footer-logo-img" />
+                    <span style="color:var(--ivory); font-size:22px" class="f-cinzel">Avazora</span>
+                </div>
+                <p style="font-size:13px; max-width:280px; line-height:1.6; opacity:0.8">
+                    An AI-powered Indian temple tourism and heritage discovery platform — celebrating sacred architecture, authentic history, and spiritual yatras.
+                </p>
+            </div>
+            <div>
+                <h4 class="f-utility">Discover Attractions</h4>
+                <a href="index.html#regions">Explore Regions</a>
+                <a href="index.html#temples">Temple Directory</a>
+                <a href="index.html#trails">Pilgrimage Trails</a>
+            </div>
+            <div>
+                <h4 class="f-utility">Plan Your Journey</h4>
+                <a href="index.html#ai">AI Heritage Guide</a>
+                <a href="index.html#festivals">Festival Calendar</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+            <div>
+                <h4 class="f-utility">Connect</h4>
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">YouTube</a>
+                <a href="#">WhatsApp</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Avazora Tourism. Verified temple archives &amp; heritage discovery.</span>
+            <span>Discover the soul of sacred India.</span>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // ── Mobile Menu ──
+        document.getElementById('mobileToggle').addEventListener('click', function () {
+            document.getElementById('mobileMenu').classList.toggle('open');
+        });
+
+        // ── Tour Type Toggle ──
+        let currentTourType = 'Domestic';
+        function setTourType(type) {
+            currentTourType = type;
+            document.getElementById('tourTypeHidden').value = type;
+            document.getElementById('btnDomestic').classList.toggle('active', type === 'Domestic');
+            document.getElementById('btnInternational').classList.toggle('active', type === 'International');
+            document.getElementById('domesticFields').classList.toggle('visible', type === 'Domestic');
+            document.getElementById('internationalFields').classList.toggle('visible', type === 'International');
+        }
+
+        // ── FAQ Accordion ──
+        function toggleFaq(btn) {
+            const answer = btn.nextElementSibling;
+            const isOpen = answer.classList.contains('open');
+            document.querySelectorAll('.faq-answer.open').forEach(a => a.classList.remove('open'));
+            document.querySelectorAll('.faq-question.open').forEach(b => b.classList.remove('open'));
+            if (!isOpen) {
+                answer.classList.add('open');
+                btn.classList.add('open');
+            }
+        }
+
+        // ── Form Submission ──
+        let submittedData = {};
+
+        async function submitEnquiry(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            btn.textContent = '⏳ Sending...';
+            btn.disabled = true;
+
+            const tourType = document.getElementById('tourTypeHidden').value;
+            const payload = {
+                name: document.getElementById('fName').value,
+                email: document.getElementById('fEmail').value,
+                phone: document.getElementById('fPhone').value,
+                country: document.getElementById('fCountry').value || 'India',
+                tour_type: tourType,
+                service: document.getElementById('fService').value,
+                starting_location: document.getElementById('fFrom').value,
+                destination: document.getElementById('fDestination').value,
+                travel_date: document.getElementById('fDate').value,
+                travellers: parseInt(document.getElementById('fTravellers').value) || null,
+                duration: parseInt(document.getElementById('fDays').value) || null,
+                budget: document.getElementById('fBudget').value,
+                message: document.getElementById('fMessage').value,
+            };
+
+            if (tourType === 'Domestic') {
+                payload.state = document.getElementById('fState').value;
+                payload.city = document.getElementById('fCity').value;
+                payload.preferred_region = document.getElementById('fRegion').value;
+            } else {
+                payload.arrival_airport = document.getElementById('fAirport').value;
+                payload.visa_assistance = document.getElementById('fVisa').value;
+                payload.accommodation = document.getElementById('fAccom').value;
+                payload.airport_transfer = document.getElementById('fTransfer').value;
+            }
+
+            submittedData = payload;
+
+            try {
+                const res = await fetch('http://localhost:8080/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload),
+                });
+                const data = await res.json();
+
+                if (data.success) {
+                    showSuccess(data.enquiry_id, payload);
+                } else {
+                    alert('Something went wrong. Please try again.');
+                    btn.textContent = '📋 Send Enquiry →';
+                    btn.disabled = false;
+                }
+            } catch (err) {
+                // Fallback: show success with a local ID for demo
+                const fallbackId = 'AVZ-' + new Date().getFullYear() + '-' + String(Math.floor(Math.random() * 99999)).padStart(5, '0');
+                showSuccess(fallbackId, payload);
+            }
+        }
+
+        function showSuccess(enquiryId, data) {
+            document.getElementById('enquiryForm').style.display = 'none';
+            document.querySelector('.tour-type-toggle').style.display = 'none';
+            document.getElementById('displayEnqId').textContent = enquiryId;
+
+            // Build WhatsApp pre-filled message
+            const waMsg = encodeURIComponent(
+                `Hello Avazora! 🙏\n\n` +
+                `I would like to plan a ${data.tour_type || ''} ${data.service || 'Temple Tour'}.\n\n` +
+                `*Enquiry ID:* ${enquiryId}\n` +
+                `*Name:* ${data.name}\n` +
+                `*Destination:* ${data.destination || 'To be discussed'}\n` +
+                `*Travellers:* ${data.travellers || 'To be discussed'}\n` +
+                `*Duration:* ${data.duration ? data.duration + ' days' : 'To be discussed'}\n` +
+                `*Travel Date:* ${data.travel_date || 'Flexible'}\n` +
+                `*Budget:* ${data.budget || 'To be discussed'}\n\n` +
+                `${data.message ? '*Note:* ' + data.message : ''}`
+            );
+
+            document.getElementById('waFollowUp').href = `https://wa.me/919876543210?text=${waMsg}`;
+            document.getElementById('emailFollowUp').href =
+                `mailto:namaste@avazoratourism.com?subject=Avazora Enquiry ${enquiryId}&body=${encodeURIComponent(
+                    `Enquiry ID: ${enquiryId}\nName: ${data.name}\nDestination: ${data.destination || ''}\nTour Type: ${data.tour_type || ''}\nMessage: ${data.message || ''}`
+                )}`;
+
+            document.getElementById('successBox').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
