@@ -32,6 +32,15 @@ const FALLBACK_TEMPLES = [
   { name: "Kedarnath Temple", local: "केदारनाथ मंदिर", city: "Rudraprayag", state: "Uttarakhand", deity: "Shiva (Jyotirlinga)", style: "Himalayan Nagara", period: "8th century (Ancient Site)", badge: "Char Dham Circuit", image: "images/kedarnath.jpg" },
   { name: "Kandariya Mahadeva", local: "कंदारिया महादेव", city: "Khajuraho", state: "Madhya Pradesh", deity: "Shiva", style: "Nagara", period: "11th century · Chandela Dynasty", badge: "UNESCO World Heritage", image: "images/kandariya.jpg" },
   { name: "Lingaraj Temple", local: "ଲିଙ୍ଗରାଜ ମନ୍ଦିର", city: "Bhubaneswar", state: "Odisha", deity: "Harihara (Shiva/Vishnu)", style: "Kalinga", period: "11th century · Somavamshi Dynasty", badge: "Living Heritage Shrine", image: "images/lingaraj.jpg" },
+  { name: "Kapaleeshwarar Temple", local: "கபாலீஸ்வரர் கோயில்", city: "Chennai", state: "Tamil Nadu", deity: "Shiva", style: "Dravidian", period: "7th century · Pallava/Nayak", badge: "Living Heritage Shrine", image: "images/kapaleeshwarar.jpg" },
+  { name: "Thirupparankundram Murugan Temple", local: "திருப்பரங்குன்றம்", city: "Madurai", state: "Tamil Nadu", deity: "Murugan (Kartikeya)", style: "Dravidian", period: "Ancient · Pandya Dynasty", badge: "Arupadai Veedu", image: "images/thirupparankundram.jpg" },
+  { name: "Parthasarathy Temple", local: "பார்த்தசாரதி கோயில்", city: "Chennai", state: "Tamil Nadu", deity: "Vishnu (Krishna)", style: "Dravidian", period: "8th century · Pallava Dynasty", badge: "Divya Desam", image: "images/parthasarathy.jpg" },
+  { name: "Pazhamudircholai Murugan Temple", local: "பழமுதிர்ச்சோலை", city: "Madurai", state: "Tamil Nadu", deity: "Murugan (Kartikeya)", style: "Dravidian", period: "Ancient · Pandya Dynasty", badge: "Arupadai Veedu", image: "images/pazhamudircholai.jpg" },
+  { name: "Kottai Mariamman Temple", local: "கோட்டை மாரியம்மன்", city: "Dindigul", state: "Tamil Nadu", deity: "Mariamman (Durga)", style: "Dravidian", period: "18th century", badge: "Folk Heritage Shrine", image: "images/kottai_mariamman.jpg" },
+  { name: "Guruvayur Sri Krishna Temple", local: "ഗുരുവായൂർ ക്ഷേത്രം", city: "Guruvayur", state: "Kerala", deity: "Vishnu (Krishna)", style: "Kerala", period: "Ancient · Bhakti Period", badge: "Living Heritage Shrine", image: "images/guruvayur.jpg" },
+  { name: "Sree Padmanabhaswamy Temple", local: "ശ്രീ പദ്മനാഭസ്വാമി ക്ഷേത്രം", city: "Thiruvananthapuram", state: "Kerala", deity: "Vishnu (Padmanabha)", style: "Kerala-Dravidian", period: "8th century · Travancore Kingdom", badge: "UNESCO Tentative List", image: "images/padmanabhaswamy.jpg" },
+  { name: "Vadakkunnathan Temple", local: "വടക്കുംനാഥ ക്ഷേത്രം", city: "Thrissur", state: "Kerala", deity: "Shiva", style: "Kerala", period: "Ancient · Perumal Era", badge: "Living Heritage Shrine", image: "images/vadakkunnathan.jpg" },
+  { name: "Sabarimala Sree Dharma Sastha Temple", local: "ശബരിമല അയ്യപ്പൻ", city: "Pathanamthitta", state: "Kerala", deity: "Ayyappa (Dharma Sastha)", style: "Kerala", period: "Ancient · Pandalam Dynasty", badge: "Major Pilgrimage Site", image: "images/sabarimala.jpg" }
 ];
 
 const ARCH_PARTS = [
@@ -626,7 +635,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   renderFestivals();
   renderAI();
 
-  await loadLiveData();
-  renderTemples();
-  renderFestivals();
+  try {
+    await loadLiveData();
+    renderTemples();
+    renderFestivals();
+  } catch (e) {
+    console.warn("API failed to load, keeping fallback data");
+  }
 });
