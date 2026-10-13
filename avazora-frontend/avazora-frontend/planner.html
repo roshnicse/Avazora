@@ -1,0 +1,3805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bespoke Yatra & Trip Planner — Avazora Temple Tourism</title>
+    <meta name="description" content="Design your customized Hindu pilgrimage itinerary across South India, Char Dham, Kerala, and holy shrines with VIP darshan, sattvic dining, and sacred stays." />
+
+    <!-- Google Fonts: Cinzel & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome 6.5.1 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* ============================================================
+           AVAZORA TEMPLE TOURISM — THEME TOKENS
+        ============================================================ */
+        :root {
+            --green-deep:   #0B2119;
+            --green:        #12382B;
+            --green-mid:    #164434;
+            --green-light:  #1E4E3C;
+            --green-pale:   #EAF3EE;
+            --gold:         #C89741;
+            --gold-bright:  #E8BE78;
+            --gold-light:   #F5D99B;
+            --gold-tint:    rgba(200, 151, 65, 0.12);
+            --ivory:        #FBF8F1;
+            --ivory-dim:    #EFE7D5;
+            --ink:          #171512;
+            --white:        #FFFFFF;
+            --text-muted:   #57655F;
+            --border-gold:  rgba(200, 151, 65, 0.3);
+            --border-light: rgba(18, 56, 43, 0.12);
+            --shadow-sm:    0 4px 14px rgba(11, 33, 25, 0.06);
+            --shadow-md:    0 10px 30px rgba(11, 33, 25, 0.10);
+            --shadow-lg:    0 18px 46px rgba(11, 33, 25, 0.16);
+            --radius-sm:    6px;
+            --radius-md:    12px;
+            --radius-lg:    18px;
+            --transition:   all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--ink);
+            background-color: var(--ivory);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        button, input, select, textarea {
+            font-family: inherit;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Gold Ornamental Dividers */
+        .gold-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin: 18px auto 0;
+        }
+        .gold-divider::before,
+        .gold-divider::after {
+            content: '';
+            height: 1px;
+            width: 70px;
+            background: linear-gradient(to right, transparent, var(--gold));
+        }
+        .gold-divider::after {
+            background: linear-gradient(to left, transparent, var(--gold));
+        }
+        .gold-divider i {
+            color: var(--gold-bright);
+            font-size: 13px;
+        }
+
+        /* Section Headings */
+        .section-header {
+            text-align: center;
+            max-width: 760px;
+            margin: 0 auto 46px;
+        }
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gold);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(28px, 4vw, 38px);
+            font-weight: 700;
+            color: var(--green-deep);
+            line-height: 1.25;
+            margin-bottom: 12px;
+        }
+        .section-desc {
+            font-size: 15.5px;
+            color: var(--text-muted);
+            line-height: 1.65;
+        }
+
+        /* ============================================================
+           STICKY NAVBAR
+        ============================================================ */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(11, 33, 25, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(200, 151, 65, 0.25);
+            padding: 14px 0;
+            transition: background 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+        }
+        .navbar.solid {
+            background: var(--green-deep);
+            padding: 10px 0;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+            border-bottom-color: rgba(200, 151, 65, 0.4);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+        .nav-logo img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 12px rgba(200, 151, 65, 0.35);
+        }
+        .nav-logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .nav-logo-brand {
+            font-family: 'Cinzel', serif;
+            font-size: 21px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--ivory);
+            line-height: 1;
+        }
+        .nav-logo-sub {
+            font-size: 9.5px;
+            letter-spacing: 2.2px;
+            text-transform: uppercase;
+            color: var(--gold-bright);
+            font-weight: 500;
+            margin-top: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: rgba(251, 248, 241, 0.9);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 6px;
+            letter-spacing: 0.3px;
+        }
+        .nav-links a:hover {
+            color: var(--gold-bright);
+            background: rgba(200, 151, 65, 0.12);
+        }
+        .nav-links a.active {
+            color: var(--gold-bright);
+            font-weight: 700;
+            background: rgba(200, 151, 65, 0.18);
+            border: 1px solid rgba(200, 151, 65, 0.4);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .nav-login-btn {
+            background: transparent;
+            color: var(--gold-bright);
+            border: 1px solid rgba(200, 151, 65, 0.45);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .nav-login-btn:hover {
+            background: rgba(200, 151, 65, 0.18);
+            border-color: var(--gold);
+            color: var(--white);
+        }
+        .nav-cta-btn {
+            background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+            color: var(--green-deep);
+            padding: 9px 20px;
+            border-radius: 24px;
+            font-size: 13.5px;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            box-shadow: 0 4px 14px rgba(200, 151, 65, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+        .nav-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(200, 151, 65, 0.45);
+            filter: brightness(1.08);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: transparent;
+            color: var(--ivory);
+            font-size: 22px;
+            padding: 6px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: var(--green-deep);
+            border-top: 1px solid rgba(200, 151, 65, 0.25);
+            padding: 16px 24px 24px;
+        }
+        .mobile-menu.open {
+            display: block;
+        }
+        .mobile-menu a {
+            display: block;
+            padding: 12px 0;
+            color: var(--ivory);
+            font-size: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            font-weight: 500;
+        }
+        .mobile-menu a.active {
+            color: var(--gold-bright);
+            font-weight: 700;
+        }
+        .mobile-menu-actions {
+            margin-top: 16px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* ============================================================
+           1. HERO SECTION (COMPACT & ELEGANT)
+        ============================================================ */
+        .planner-hero {
+            background: radial-gradient(circle at 50% 30%, #164434 0%, #0B2119 100%);
+            color: var(--ivory);
+            padding: 68px 24px 54px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(200, 151, 65, 0.25);
+        }
+        .planner-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle, rgba(200, 151, 65, 0.09) 1px, transparent 1px);
+            background-size: 32px 32px;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        .planner-hero-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        .planner-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(200, 151, 65, 0.15);
+            border: 1px solid var(--gold);
+            padding: 6px 20px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--gold-bright);
+            margin-bottom: 18px;
+        }
+        .planner-hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--ivory);
+            margin-bottom: 14px;
+            line-height: 1.2;
+        }
+        .planner-hero p.hero-subtext {
+            font-size: clamp(15.5px, 2vw, 18px);
+            color: rgba(251, 248, 241, 0.88);
+            max-width: 720px;
+            margin: 0 auto;
+            line-height: 1.65;
+            font-weight: 300;
+        }
+
+        /* Trust Chips Under Hero */
+        .hero-trust-chips {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
+        .trust-chip {
+            background: rgba(18, 56, 43, 0.65);
+            border: 1px solid rgba(200, 151, 65, 0.35);
+            color: var(--ivory);
+            padding: 7px 16px;
+            border-radius: 20px;
+            font-size: 12.5px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(4px);
+        }
+        .trust-chip i {
+            color: var(--gold-bright);
+        }
+
+        /* ============================================================
+           2. INTERACTIVE MULTI-STEP PLANNER CONTAINER
+        ============================================================ */
+        .planner-section {
+            padding: 60px 0 80px;
+            position: relative;
+        }
+
+        .planner-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 16px 50px rgba(11, 33, 25, 0.08);
+            border: 1px solid rgba(200, 151, 65, 0.28);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Step Progress Header */
+        .step-progress-bar {
+            background: var(--green-deep);
+            padding: 24px 32px;
+            border-bottom: 2px solid var(--gold);
+        }
+        .steps-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            max-width: 980px;
+            margin: 0 auto;
+        }
+        .steps-nav::before {
+            content: '';
+            position: absolute;
+            top: 22px;
+            left: 5%;
+            right: 5%;
+            height: 2px;
+            background: rgba(200, 151, 65, 0.25);
+            z-index: 1;
+        }
+        .steps-progress-fill {
+            position: absolute;
+            top: 22px;
+            left: 5%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-bright));
+            z-index: 2;
+            transition: width 0.4s ease;
+            width: 0%;
+        }
+
+        .step-bubble {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            padding: 0;
+            color: rgba(251, 248, 241, 0.65);
+            transition: var(--transition);
+        }
+        .step-icon-circle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #163C2E;
+            border: 2px solid rgba(200, 151, 65, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            font-weight: 700;
+            color: rgba(251, 248, 241, 0.7);
+            margin-bottom: 8px;
+            transition: var(--transition);
+        }
+        .step-title {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+        }
+
+        /* Step States */
+        .step-bubble.active .step-icon-circle {
+            background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+            border-color: var(--white);
+            color: var(--green-deep);
+            box-shadow: 0 0 18px rgba(200, 151, 65, 0.6);
+            transform: scale(1.1);
+        }
+        .step-bubble.active .step-title {
+            color: var(--gold-bright);
+            font-weight: 700;
+        }
+        .step-bubble.completed .step-icon-circle {
+            background: var(--green-light);
+            border-color: var(--gold);
+            color: var(--gold-bright);
+        }
+        .step-bubble.completed .step-title {
+            color: rgba(251, 248, 241, 0.95);
+        }
+
+        /* Planner Content Area */
+        .planner-body {
+            padding: 44px 40px;
+        }
+
+        .step-panel {
+            display: none;
+            animation: fadeIn 0.35s ease;
+        }
+        .step-panel.active {
+            display: block;
+        }
+
+        .panel-heading-wrap {
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        .panel-subtitle {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--gold);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .panel-title {
+            font-family: 'Cinzel', serif;
+            font-size: 26px;
+            color: var(--green-deep);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .panel-desc {
+            font-size: 14.5px;
+            color: var(--text-muted);
+        }
+
+        /* Form elements */
+        .form-label {
+            display: block;
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--green-deep);
+            margin-bottom: 10px;
+            letter-spacing: 0.2px;
+        }
+        .form-label span.req {
+            color: #d9534f;
+            margin-left: 3px;
+        }
+
+        /* Step 1: Starting City & Region Cards */
+        .city-select-wrap {
+            position: relative;
+            margin-bottom: 34px;
+            max-width: 540px;
+        }
+        .city-select {
+            width: 100%;
+            padding: 14px 18px;
+            padding-right: 42px;
+            border-radius: var(--radius-sm);
+            border: 1.5px solid var(--border-gold);
+            background: var(--ivory);
+            font-size: 15px;
+            color: var(--ink);
+            font-weight: 500;
+            appearance: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+        }
+        .city-select:focus {
+            border-color: var(--gold);
+            background: var(--white);
+            box-shadow: 0 0 0 3px rgba(200, 151, 65, 0.2);
+        }
+        .city-select-arrow {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gold);
+            pointer-events: none;
+            font-size: 14px;
+        }
+        .custom-city-input {
+            display: none;
+            width: 100%;
+            margin-top: 10px;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            border: 1.5px solid var(--border-gold);
+            background: var(--white);
+            font-size: 14px;
+        }
+
+        /* Region Circuits Grid */
+        .circuits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .circuit-card {
+            background: var(--ivory);
+            border: 2px solid rgba(200, 151, 65, 0.25);
+            border-radius: var(--radius-md);
+            padding: 22px 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .circuit-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 24px rgba(11, 33, 25, 0.08);
+            background: var(--white);
+        }
+        .circuit-card.selected {
+            background: #FBF5E8;
+            border-color: var(--gold);
+            box-shadow: 0 8px 24px rgba(200, 151, 65, 0.25);
+        }
+        .circuit-card.selected::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: var(--green-deep);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        .circuit-icon-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--green-deep), var(--green-light));
+            color: var(--gold-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            border: 1px solid var(--gold);
+        }
+        .circuit-name {
+            font-family: 'Cinzel', serif;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--green-deep);
+            line-height: 1.3;
+        }
+        .circuit-subtitle {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+        .circuit-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 6px;
+        }
+        .circuit-chip {
+            font-size: 11px;
+            padding: 3px 8px;
+            background: rgba(18, 56, 43, 0.07);
+            border-radius: 4px;
+            color: var(--green-deep);
+            font-weight: 600;
+        }
+
+        /* Step 2: Travel Details */
+        .form-row-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .date-input-wrap {
+            position: relative;
+        }
+        .date-input {
+            width: 100%;
+            padding: 13px 16px;
+            border-radius: var(--radius-sm);
+            border: 1.5px solid var(--border-gold);
+            background: var(--ivory);
+            font-size: 14.5px;
+            color: var(--ink);
+            font-weight: 500;
+        }
+        .date-input:focus {
+            border-color: var(--gold);
+            background: var(--white);
+            box-shadow: 0 0 0 3px rgba(200, 151, 65, 0.2);
+        }
+
+        /* Duration pills */
+        .duration-pills-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 6px;
+        }
+        .duration-pill {
+            flex: 1;
+            min-width: 80px;
+            padding: 12px 14px;
+            border-radius: 8px;
+            border: 1.5px solid rgba(18, 56, 43, 0.15);
+            background: var(--ivory);
+            color: var(--green-deep);
+            font-size: 13.5px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .duration-pill:hover {
+            border-color: var(--gold);
+            background: var(--white);
+        }
+        .duration-pill.active {
+            background: var(--green-deep);
+            color: var(--gold-bright);
+            border-color: var(--gold);
+            box-shadow: 0 4px 14px rgba(11, 33, 25, 0.2);
+            font-weight: 700;
+        }
+
+        /* Pilgrim Counters */
+        .pilgrims-box {
+            background: var(--ivory);
+            border-radius: var(--radius-md);
+            padding: 20px 24px;
+            border: 1px solid rgba(200, 151, 65, 0.25);
+            margin-bottom: 30px;
+        }
+        .pilgrim-counter-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(18, 56, 43, 0.08);
+        }
+        .pilgrim-counter-row:last-child {
+            border-bottom: none;
+            padding-bottom: 4px;
+        }
+        .pilgrim-type-info h4 {
+            font-size: 14.5px;
+            font-weight: 700;
+            color: var(--green-deep);
+        }
+        .pilgrim-type-info p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .counter-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .counter-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 1.5px solid var(--border-gold);
+            background: var(--white);
+            color: var(--green-deep);
+            font-size: 16px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .counter-btn:hover {
+            background: var(--gold);
+            color: var(--white);
+            border-color: var(--gold);
+        }
+        .counter-val {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--green-deep);
+            width: 24px;
+            text-align: center;
+        }
+
+        /* Preferred Pace selection */
+        .pace-options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-bottom: 30px;
+        }
+        .pace-card {
+            background: var(--ivory);
+            border: 2px solid rgba(200, 151, 65, 0.25);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+        .pace-card:hover {
+            border-color: var(--gold);
+            background: var(--white);
+        }
+        .pace-card.selected {
+            border-color: var(--gold);
+            background: #FBF5E8;
+            box-shadow: 0 6px 18px rgba(200, 151, 65, 0.2);
+        }
+        .pace-icon {
+            font-size: 22px;
+            color: var(--gold);
+            margin-top: 2px;
+        }
+        .pace-info h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--green-deep);
+            margin-bottom: 4px;
+        }
+        .pace-info p {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Step 3: Sacred Preferences */
+        .stays-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .stay-card {
+            background: var(--ivory);
+            border: 2px solid rgba(200, 151, 65, 0.25);
+            border-radius: var(--radius-md);
+            padding: 18px 14px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        .stay-card:hover {
+            border-color: var(--gold);
+            background: var(--white);
+            transform: translateY(-3px);
+        }
+        .stay-card.selected {
+            border-color: var(--gold);
+            background: #FBF5E8;
+            box-shadow: 0 6px 18px rgba(200, 151, 65, 0.25);
+        }
+        .stay-icon {
+            font-size: 24px;
+            color: var(--green-deep);
+        }
+        .stay-card.selected .stay-icon {
+            color: var(--gold);
+        }
+        .stay-title {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--green-deep);
+        }
+        .stay-desc {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* Special Inclusions Checklist */
+        .inclusions-checklist {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 34px;
+        }
+        .inclusion-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--ivory);
+            border: 1.5px solid rgba(200, 151, 65, 0.22);
+            padding: 14px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .inclusion-label:hover {
+            background: var(--white);
+            border-color: var(--gold);
+        }
+        .inclusion-label input[type="checkbox"] {
+            width: 19px;
+            height: 19px;
+            accent-color: var(--gold);
+            cursor: pointer;
+        }
+        .inclusion-text {
+            font-size: 13.5px;
+            color: var(--green-deep);
+            font-weight: 600;
+        }
+
+        /* Contact Details Form */
+        .contact-fields-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+        .contact-input {
+            width: 100%;
+            padding: 13px 16px;
+            border-radius: var(--radius-sm);
+            border: 1.5px solid var(--border-gold);
+            background: var(--ivory);
+            font-size: 14px;
+            color: var(--ink);
+        }
+        .contact-input:focus {
+            border-color: var(--gold);
+            background: var(--white);
+            box-shadow: 0 0 0 3px rgba(200, 151, 65, 0.2);
+        }
+        .whatsapp-optin {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12.5px;
+            color: var(--green-deep);
+            font-weight: 500;
+            margin-bottom: 30px;
+        }
+        .whatsapp-optin input {
+            accent-color: #25D366;
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Step Action Buttons */
+        .step-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 26px;
+            border-top: 1px solid rgba(18, 56, 43, 0.1);
+            margin-top: 10px;
+        }
+        .btn-step-back {
+            background: transparent;
+            border: 1.5px solid rgba(18, 56, 43, 0.25);
+            color: var(--green-deep);
+            padding: 12px 26px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-step-back:hover {
+            background: rgba(18, 56, 43, 0.08);
+            border-color: var(--green-deep);
+        }
+        .btn-step-next {
+            background: var(--green-deep);
+            color: var(--gold-bright);
+            border: 1.5px solid var(--gold);
+            padding: 13px 30px;
+            border-radius: 30px;
+            font-size: 14.5px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 16px rgba(11, 33, 25, 0.2);
+        }
+        .btn-step-next:hover {
+            background: var(--green);
+            transform: translateX(2px);
+            box-shadow: 0 6px 20px rgba(11, 33, 25, 0.3);
+        }
+
+        /* Gold Generate Button with Shine Effect */
+        .btn-generate-itinerary {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+            color: var(--green-deep);
+            border: none;
+            padding: 16px 36px;
+            border-radius: 30px;
+            font-size: 15.5px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 24px rgba(200, 151, 65, 0.4);
+            transition: var(--transition);
+        }
+        .btn-generate-itinerary::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 40%;
+            height: 200%;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0) 100%);
+            transform: rotate(30deg);
+            animation: shineSweep 3.5s infinite;
+        }
+        @keyframes shineSweep {
+            0% { left: -60%; }
+            20% { left: 140%; }
+            100% { left: 140%; }
+        }
+        .btn-generate-itinerary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(200, 151, 65, 0.55);
+            filter: brightness(1.06);
+        }
+
+        /* ============================================================
+           3. LIVE GENERATED ITINERARY PREVIEW BOX (STEP 4)
+        ============================================================ */
+        .itinerary-result-box {
+            display: none;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            border: 2px solid var(--gold);
+            box-shadow: 0 20px 60px rgba(11, 33, 25, 0.12);
+            overflow: hidden;
+            margin-top: 40px;
+            animation: slideUpFade 0.5s ease;
+        }
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-header-banner {
+            background: linear-gradient(135deg, var(--green-deep) 0%, #164434 100%);
+            color: var(--ivory);
+            padding: 34px 36px;
+            border-bottom: 2px solid var(--gold);
+            position: relative;
+        }
+        .result-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(200, 151, 65, 0.18);
+            border: 1px solid var(--gold);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 11.5px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--gold-bright);
+            margin-bottom: 12px;
+        }
+        .result-header-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(24px, 3.5vw, 34px);
+            font-weight: 700;
+            color: var(--ivory);
+            margin-bottom: 8px;
+        }
+        .result-subline {
+            font-size: 14.5px;
+            color: rgba(251, 248, 241, 0.85);
+        }
+
+        /* Route flow banner */
+        .route-summary-bar {
+            background: #FBF4E6;
+            border-bottom: 1px solid rgba(200, 151, 65, 0.3);
+            padding: 18px 36px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .route-stops {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 14.5px;
+            font-weight: 700;
+            color: var(--green-deep);
+        }
+        .route-arrow {
+            color: var(--gold);
+            font-size: 13px;
+        }
+        .route-meta-pills {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .meta-pill {
+            background: var(--white);
+            border: 1px solid rgba(200, 151, 65, 0.4);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--green-deep);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .meta-pill i {
+            color: var(--gold);
+        }
+
+        /* Estimate cost breakdown */
+        .result-estimate-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1.8fr;
+            gap: 24px;
+            padding: 30px 36px;
+            background: var(--ivory);
+            border-bottom: 1px solid rgba(18, 56, 43, 0.08);
+        }
+        .estimate-card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            border: 1.5px solid var(--border-gold);
+            box-shadow: var(--shadow-sm);
+        }
+        .estimate-price-label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+        .estimate-price-value {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(26px, 3vw, 34px);
+            font-weight: 800;
+            color: var(--green-deep);
+            line-height: 1.1;
+            margin-bottom: 6px;
+        }
+        .estimate-price-value span.gold-txt {
+            color: var(--gold);
+        }
+        .estimate-total-note {
+            font-size: 13px;
+            color: var(--green-light);
+            font-weight: 600;
+        }
+        .included-tags-wrap {
+            margin-top: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .inc-tag {
+            font-size: 11.5px;
+            background: var(--green-pale);
+            color: var(--green-deep);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .inc-tag i {
+            color: var(--gold);
+        }
+
+        .quick-booking-prompt {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 12px;
+        }
+        .quick-prompt-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--green-deep);
+        }
+        .quick-prompt-desc {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Day-by-Day Timeline */
+        .timeline-container {
+            padding: 36px;
+        }
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .timeline-header h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
+            color: var(--green-deep);
+            font-weight: 700;
+        }
+
+        .timeline-items-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .timeline-card {
+            background: var(--ivory);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(200, 151, 65, 0.25);
+            border-left: 5px solid var(--gold);
+            padding: 22px 24px;
+            transition: var(--transition);
+        }
+        .timeline-card:hover {
+            background: var(--white);
+            box-shadow: 0 6px 20px rgba(11, 33, 25, 0.08);
+            border-color: var(--gold);
+        }
+        .day-badge-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .day-badge {
+            background: var(--green-deep);
+            color: var(--gold-bright);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+        }
+        .day-transit-chip {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .day-title {
+            font-family: 'Cinzel', serif;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--green-deep);
+            margin-bottom: 8px;
+        }
+        .day-desc {
+            font-size: 13.5px;
+            color: var(--ink);
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        .day-activities-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        .day-activity-item {
+            font-size: 12.5px;
+            color: var(--green);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 6px 10px;
+            border-radius: 4px;
+            border: 1px solid rgba(18, 56, 43, 0.06);
+        }
+        .day-activity-item i {
+            color: var(--gold);
+            font-size: 11px;
+        }
+
+        /* Result Actions Bar */
+        .result-actions-bar {
+            background: var(--green-deep);
+            padding: 24px 36px;
+            border-top: 2px solid var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .actions-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .btn-whatsapp {
+            background: #25D366;
+            color: #FFFFFF;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+        }
+        .btn-whatsapp:hover {
+            background: #20BD5A;
+            transform: translateY(-2px);
+        }
+        .btn-print {
+            background: transparent;
+            color: var(--ivory);
+            border: 1.5px solid rgba(251, 248, 241, 0.35);
+            padding: 11px 20px;
+            border-radius: 25px;
+            font-size: 13.5px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-print:hover {
+            border-color: var(--gold);
+            color: var(--gold-bright);
+            background: rgba(200, 151, 65, 0.1);
+        }
+        .btn-book-consultant {
+            background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+            color: var(--green-deep);
+            border: none;
+            padding: 13px 26px;
+            border-radius: 25px;
+            font-size: 14.5px;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 16px rgba(200, 151, 65, 0.4);
+        }
+        .btn-book-consultant:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.08);
+            box-shadow: 0 6px 22px rgba(200, 151, 65, 0.55);
+        }
+        .btn-edit-plan {
+            background: transparent;
+            border: none;
+            color: var(--gold-bright);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: underline;
+            padding: 6px;
+        }
+        .btn-edit-plan:hover {
+            color: var(--white);
+        }
+
+        /* ============================================================
+           4. SACRED TRAVEL GUARANTEES
+        ============================================================ */
+        .guarantees-section {
+            background: var(--white);
+            padding: 80px 0;
+            border-top: 1px solid rgba(18, 56, 43, 0.08);
+            border-bottom: 1px solid rgba(18, 56, 43, 0.08);
+        }
+        .guarantees-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        .guarantee-card {
+            background: var(--ivory);
+            border: 1px solid rgba(200, 151, 65, 0.25);
+            border-top: 4px solid var(--gold);
+            border-radius: var(--radius-md);
+            padding: 32px 24px;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+        }
+        .guarantee-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--gold);
+            background: var(--white);
+        }
+        .guarantee-icon-wrap {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--green-deep), var(--green-light));
+            color: var(--gold-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            border: 1.5px solid var(--gold);
+            margin-bottom: 20px;
+        }
+        .guarantee-title {
+            font-family: 'Cinzel', serif;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--green-deep);
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+        .guarantee-desc {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* ============================================================
+           5. POPULAR PRE-CRAFTED CIRCUITS
+        ============================================================ */
+        .circuits-showcase-section {
+            padding: 80px 0;
+            background: var(--ivory);
+        }
+        .pre-circuits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+        .pre-circuit-card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid rgba(200, 151, 65, 0.25);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+        .pre-circuit-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--gold);
+        }
+        .pre-card-img-wrap {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+        .pre-card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .pre-circuit-card:hover .pre-card-img {
+            transform: scale(1.06);
+        }
+        .pre-duration-badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: rgba(11, 33, 25, 0.88);
+            border: 1px solid var(--gold);
+            color: var(--gold-bright);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 11.5px;
+            font-weight: 700;
+            backdrop-filter: blur(4px);
+        }
+        .pre-card-content {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        .pre-card-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--green-deep);
+            margin-bottom: 8px;
+        }
+        .pre-card-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.55;
+            margin-bottom: 16px;
+        }
+        .pre-card-price {
+            font-family: 'Cinzel', serif;
+            font-size: 15px;
+            color: var(--gold);
+            font-weight: 700;
+            margin-top: auto;
+            margin-bottom: 18px;
+        }
+        .pre-card-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .btn-load-circuit {
+            flex: 1;
+            background: var(--green-deep);
+            color: var(--gold-bright);
+            border: 1px solid var(--gold);
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 12.5px;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+        }
+        .btn-load-circuit:hover {
+            background: var(--green);
+            color: var(--white);
+        }
+        .btn-view-pkg {
+            background: transparent;
+            color: var(--green-deep);
+            border: 1px solid rgba(18, 56, 43, 0.25);
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 12.5px;
+            font-weight: 600;
+            text-align: center;
+        }
+        .btn-view-pkg:hover {
+            border-color: var(--green-deep);
+            background: var(--green-pale);
+        }
+
+        /* ============================================================
+           6. PILGRIM TESTIMONIALS & TRUST STATS
+        ============================================================ */
+        .testimonials-section {
+            background: var(--green-deep);
+            color: var(--ivory);
+            padding: 80px 0;
+            position: relative;
+            border-top: 1px solid rgba(200, 151, 65, 0.25);
+            border-bottom: 1px solid rgba(200, 151, 65, 0.25);
+        }
+        .trust-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 54px;
+            padding-bottom: 44px;
+            border-bottom: 1px solid rgba(200, 151, 65, 0.2);
+            text-align: center;
+        }
+        .stat-item h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 34px;
+            font-weight: 800;
+            color: var(--gold-bright);
+            margin-bottom: 4px;
+        }
+        .stat-item p {
+            font-size: 13px;
+            color: rgba(251, 248, 241, 0.75);
+            letter-spacing: 0.5px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .testimonial-card {
+            background: rgba(22, 68, 52, 0.65);
+            border: 1px solid rgba(200, 151, 65, 0.3);
+            border-radius: var(--radius-md);
+            padding: 28px 24px;
+            backdrop-filter: blur(6px);
+            display: flex;
+            flex-direction: column;
+        }
+        .stars-row {
+            color: var(--gold-bright);
+            font-size: 13px;
+            margin-bottom: 14px;
+        }
+        .testimonial-quote {
+            font-size: 13.5px;
+            line-height: 1.65;
+            color: rgba(251, 248, 241, 0.9);
+            font-style: italic;
+            margin-bottom: 20px;
+            flex: 1;
+        }
+        .yatri-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-top: 1px solid rgba(200, 151, 65, 0.15);
+            padding-top: 14px;
+        }
+        .yatri-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: var(--green-deep);
+            font-weight: 700;
+            font-family: 'Cinzel', serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            border: 2px solid var(--gold-bright);
+        }
+        .yatri-info h4 {
+            font-size: 14px;
+            color: var(--ivory);
+            font-weight: 700;
+        }
+        .yatri-info p {
+            font-size: 11.5px;
+            color: var(--gold-bright);
+        }
+
+        /* ============================================================
+           7. FOOTER
+        ============================================================ */
+        .site-footer {
+            background: #061510;
+            color: rgba(251, 248, 241, 0.85);
+            padding: 70px 0 30px;
+            border-top: 2px solid var(--gold);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr 1.2fr 1.1fr 1.3fr;
+            gap: 36px;
+            margin-bottom: 50px;
+        }
+        .footer-brand h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            color: var(--ivory);
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        .footer-brand p {
+            font-size: 13px;
+            line-height: 1.65;
+            color: rgba(251, 248, 241, 0.7);
+            margin-bottom: 18px;
+        }
+        .footer-socials {
+            display: flex;
+            gap: 10px;
+        }
+        .social-link {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(200, 151, 65, 0.12);
+            border: 1px solid rgba(200, 151, 65, 0.35);
+            color: var(--gold-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+        .social-link:hover {
+            background: var(--gold);
+            color: var(--green-deep);
+            transform: translateY(-2px);
+        }
+
+        .footer-col h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 15px;
+            color: var(--gold-bright);
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+        }
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+        .footer-links a {
+            font-size: 13px;
+            color: rgba(251, 248, 241, 0.75);
+        }
+        .footer-links a:hover {
+            color: var(--gold-bright);
+            padding-left: 4px;
+        }
+
+        .footer-contact-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 13px;
+            color: rgba(251, 248, 241, 0.75);
+            line-height: 1.5;
+        }
+        .footer-contact-item i {
+            color: var(--gold);
+            margin-top: 3px;
+            font-size: 13px;
+        }
+
+        .footer-bottom {
+            padding-top: 26px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            font-size: 12.5px;
+            color: rgba(251, 248, 241, 0.55);
+        }
+        .footer-legal-links {
+            display: flex;
+            gap: 18px;
+        }
+        .footer-legal-links a:hover {
+            color: var(--gold-bright);
+        }
+
+        /* ============================================================
+           MODALS & TOAST NOTIFICATION
+        ============================================================ */
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(11, 33, 25, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 2100;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal-backdrop.open {
+            display: flex;
+        }
+        .modal-card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            width: 100%;
+            max-width: 520px;
+            border: 2px solid var(--gold);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            animation: modalPop 0.3s ease;
+        }
+        @keyframes modalPop {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .modal-header {
+            background: var(--green-deep);
+            color: var(--ivory);
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--gold);
+        }
+        .modal-header h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--gold-bright);
+            font-weight: 700;
+        }
+        .modal-close-btn {
+            background: transparent;
+            border: none;
+            color: var(--ivory);
+            font-size: 20px;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .modal-body {
+            padding: 26px 24px;
+        }
+
+        /* Toast notification */
+        .toast-notification {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--green-deep);
+            color: var(--ivory);
+            border: 1.5px solid var(--gold);
+            padding: 14px 22px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 2500;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .toast-notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* ============================================================
+           PRINT STYLES FOR ITINERARY
+        ============================================================ */
+        @media print {
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+            }
+            .navbar, .planner-hero, .planner-card, .guarantees-section, 
+            .circuits-showcase-section, .testimonials-section, .site-footer, 
+            .result-actions-bar, .modal-backdrop, .toast-notification {
+                display: none !important;
+            }
+            .itinerary-result-box {
+                display: block !important;
+                box-shadow: none !important;
+                border: 1px solid #C89741 !important;
+                margin: 0 !important;
+            }
+            .result-header-banner {
+                background: #12382B !important;
+                color: #ffffff !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .timeline-card {
+                page-break-inside: avoid;
+                border: 1px solid #ccc !important;
+                background: #fafafa !important;
+            }
+        }
+
+        /* ============================================================
+           RESPONSIVE DESIGN (MEDIA QUERIES)
+        ============================================================ */
+        @media (max-width: 1080px) {
+            .circuits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .stays-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .guarantees-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .pre-circuits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .trust-stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 28px;
+            }
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 860px) {
+            .nav-links, .nav-login-btn {
+                display: none;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .steps-nav {
+                flex-wrap: wrap;
+                gap: 14px;
+                justify-content: center;
+            }
+            .steps-nav::before, .steps-progress-fill {
+                display: none;
+            }
+            .step-bubble {
+                flex: 1 1 40%;
+            }
+            .form-row-grid, .contact-fields-grid, .pace-options-grid, .inclusions-checklist {
+                grid-template-columns: 1fr;
+            }
+            .result-estimate-grid {
+                grid-template-columns: 1fr;
+            }
+            .planner-body {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .circuits-grid, .stays-grid, .guarantees-grid, .pre-circuits-grid {
+                grid-template-columns: 1fr;
+            }
+            .step-bubble .step-title {
+                font-size: 11.5px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .result-actions-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .actions-left {
+                flex-direction: column;
+                width: 100%;
+            }
+            .btn-whatsapp, .btn-print, .btn-book-consultant {
+                width: 100%;
+                justify-content: center;
+            }
+            .day-activities-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+         STICKY NAVBAR
+    ============================================================ -->
+    <header>
+        <nav class="navbar" id="navbar">
+            <div class="container nav-inner">
+                <!-- Logo: images/logo.jpg + AVAZORA TEMPLE TOURISM -->
+                <a href="index.html" class="nav-logo">
+                    <img src="images/logo.jpg" alt="Avazora Temple Tourism">
+                    <div class="nav-logo-text">
+                        <span class="nav-logo-brand">AVAZORA</span>
+                        <span class="nav-logo-sub">TEMPLE TOURISM</span>
+                    </div>
+                </a>
+
+                <!-- Nav Links -->
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="destinations.html">Destinations</a></li>
+                    <li><a href="packages.html">Tour Packages</a></li>
+                    <li><a href="planner.html" class="active">Trip Planner</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+
+                <!-- Nav Right Actions -->
+                <div class="nav-actions">
+                    <button type="button" class="nav-login-btn" id="navLoginBtn" onclick="openLoginModal()">
+                        <i class="fas fa-user-circle"></i> <span id="navLoginText">Login</span>
+                    </button>
+                    <a href="#plannerApp" class="nav-cta-btn">
+                        <i class="fas fa-om"></i> Plan My Trip
+                    </a>
+                    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Drawer Menu -->
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="index.html">Home</a>
+                <a href="destinations.html">Destinations</a>
+                <a href="packages.html">Tour Packages</a>
+                <a href="planner.html" class="active">Trip Planner</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <div class="mobile-menu-actions">
+                    <button type="button" class="nav-login-btn" style="display:inline-flex;" onclick="openLoginModal(); toggleMobileMenu();">
+                        <i class="fas fa-user-circle"></i> Login / Profile
+                    </button>
+                    <a href="#plannerApp" class="nav-cta-btn" onclick="toggleMobileMenu();">
+                        <i class="fas fa-om"></i> Plan My Trip
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ============================================================
+         1. HERO HEADER (COMPACT & ELEGANT)
+    ============================================================ -->
+    <section class="planner-hero">
+        <div class="container planner-hero-inner">
+            <div class="planner-hero-badge">
+                <i class="fas fa-hands-praying"></i> Bespoke Pilgrimage Concierge
+            </div>
+            <h1>Bespoke Yatra &amp; Trip Planner</h1>
+            <p class="hero-subtext">
+                Craft a personalized pilgrimage itinerary with customized temple darshans, transport, and sacred stays
+            </p>
+            <div class="gold-divider">
+                <i class="fas fa-spa"></i>
+            </div>
+
+            <!-- Trust Chips -->
+            <div class="hero-trust-chips">
+                <div class="trust-chip">
+                    <i class="fas fa-certificate"></i> 100% Customized Sacred Routes
+                </div>
+                <div class="trust-chip">
+                    <i class="fas fa-ticket-alt"></i> Guaranteed Special Darshan Support
+                </div>
+                <div class="trust-chip">
+                    <i class="fas fa-wheelchair"></i> Verified Senior-Friendly Care
+                </div>
+                <div class="trust-chip">
+                    <i class="fas fa-utensils"></i> Authentic Sattvic Dining
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         2. INTERACTIVE MULTI-STEP PLANNER (THE CORE FEATURE)
+    ============================================================ -->
+    <main class="planner-section" id="plannerApp">
+        <div class="container">
+            <div class="planner-card">
+
+                <!-- Step Progress Indicator -->
+                <div class="step-progress-bar">
+                    <div class="steps-nav">
+                        <div class="steps-progress-fill" id="progressFillBar"></div>
+
+                        <!-- Step 1 -->
+                        <button type="button" class="step-bubble active" id="stepBubble1" onclick="goToStep(1)">
+                            <div class="step-icon-circle">1</div>
+                            <span class="step-title">1. Route &amp; Destination</span>
+                        </button>
+
+                        <!-- Step 2 -->
+                        <button type="button" class="step-bubble" id="stepBubble2" onclick="goToStep(2)">
+                            <div class="step-icon-circle">2</div>
+                            <span class="step-title">2. Travel Details</span>
+                        </button>
+
+                        <!-- Step 3 -->
+                        <button type="button" class="step-bubble" id="stepBubble3" onclick="goToStep(3)">
+                            <div class="step-icon-circle">3</div>
+                            <span class="step-title">3. Sacred Preferences</span>
+                        </button>
+
+                        <!-- Step 4 -->
+                        <button type="button" class="step-bubble" id="stepBubble4" onclick="goToStep(4)">
+                            <div class="step-icon-circle">4</div>
+                            <span class="step-title">4. Your Itinerary</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Form Body -->
+                <div class="planner-body">
+                    <form id="yatraPlannerForm" onsubmit="handleGenerateItinerary(event)">
+
+                        <!-- STEP 1: ROUTE & DESTINATION -->
+                        <div class="step-panel active" id="stepPanel1">
+                            <div class="panel-heading-wrap">
+                                <span class="panel-subtitle"><i class="fas fa-compass"></i> Step 1 of 3</span>
+                                <h2 class="panel-title">Choose Your Starting Point &amp; Sacred Circuit</h2>
+                                <p class="panel-desc">Select where you will begin your pilgrimage and the sacred region you wish to explore.</p>
+                            </div>
+
+                            <!-- Starting City -->
+                            <div class="city-select-wrap">
+                                <label for="startCity" class="form-label">
+                                    <i class="fas fa-plane-departure" style="color:var(--gold);"></i> Starting City / Gateway <span class="req">*</span>
+                                </label>
+                                <select id="startCity" class="city-select" onchange="checkCustomCity(this.value)">
+                                    <option value="Chennai" selected>Chennai, Tamil Nadu</option>
+                                    <option value="Madurai">Madurai, Tamil Nadu</option>
+                                    <option value="Coimbatore">Coimbatore, Tamil Nadu</option>
+                                    <option value="Bangalore">Bangalore (Bengaluru), Karnataka</option>
+                                    <option value="Kochi">Kochi / Trivandrum, Kerala</option>
+                                    <option value="Delhi">Delhi / NCR</option>
+                                    <option value="Mumbai">Mumbai / Pune, Maharashtra</option>
+                                    <option value="Hyderabad">Hyderabad, Telangana</option>
+                                    <option value="Varanasi">Varanasi, Uttar Pradesh</option>
+                                    <option value="Haridwar">Haridwar / Dehradun, Uttarakhand</option>
+                                    <option value="Other">Other City (Enter Below)</option>
+                                </select>
+                                <i class="fas fa-chevron-down city-select-arrow"></i>
+                                <input type="text" id="customCityText" class="custom-city-input" placeholder="Type your departure city name...">
+                            </div>
+
+                            <!-- Target Region / Circuit Cards -->
+                            <div>
+                                <label class="form-label">
+                                    <i class="fas fa-gopuram" style="color:var(--gold);"></i> Target Sacred Region / Circuit <span class="req">*</span>
+                                </label>
+                                <div class="circuits-grid" id="circuitsGrid">
+
+                                    <!-- Circuit 1 -->
+                                    <div class="circuit-card selected" data-circuit="south" onclick="selectCircuit(this, 'south')">
+                                        <div class="circuit-icon-box">
+                                            <i class="fas fa-gopuram"></i>
+                                        </div>
+                                        <h3 class="circuit-name">South India Circuit</h3>
+                                        <p class="circuit-subtitle">Dravidian architectural wonders, Jyotirlinga, and living divine sanctuaries.</p>
+                                        <div class="circuit-highlights">
+                                            <span class="circuit-chip">Madurai Meenakshi</span>
+                                            <span class="circuit-chip">Rameswaram</span>
+                                            <span class="circuit-chip">Thanjavur Brihadeeswarar</span>
+                                            <span class="circuit-chip">Srirangam</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Circuit 2 -->
+                                    <div class="circuit-card" data-circuit="chardham" onclick="selectCircuit(this, 'chardham')">
+                                        <div class="circuit-icon-box">
+                                            <i class="fas fa-mountain-sun"></i>
+                                        </div>
+                                        <h3 class="circuit-name">Char Dham Himalayas</h3>
+                                        <p class="circuit-subtitle">The sacred Himalayan heights of salvation and pristine divine energies.</p>
+                                        <div class="circuit-highlights">
+                                            <span class="circuit-chip">Kedarnath Jyotirlinga</span>
+                                            <span class="circuit-chip">Badrinath</span>
+                                            <span class="circuit-chip">Gangotri</span>
+                                            <span class="circuit-chip">Yamunotri</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Circuit 3 -->
+                                    <div class="circuit-card" data-circuit="kerala" onclick="selectCircuit(this, 'kerala')">
+                                        <div class="circuit-icon-box">
+                                            <i class="fas fa-water"></i>
+                                        </div>
+                                        <h3 class="circuit-name">Kerala Sacred Shrines</h3>
+                                        <p class="circuit-subtitle">Serene temple groves, elephant sanctuaries, and timeless Vedic rites.</p>
+                                        <div class="circuit-highlights">
+                                            <span class="circuit-chip">Padmanabhaswamy</span>
+                                            <span class="circuit-chip">Guruvayur Krishna</span>
+                                            <span class="circuit-chip">Vadakkunnathan</span>
+                                            <span class="circuit-chip">Sabarimala</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Circuit 4 -->
+                                    <div class="circuit-card" data-circuit="odisha" onclick="selectCircuit(this, 'odisha')">
+                                        <div class="circuit-icon-box">
+                                            <i class="fas fa-sun"></i>
+                                        </div>
+                                        <h3 class="circuit-name">Odisha Heritage</h3>
+                                        <p class="circuit-subtitle">Kalinga dynasty gems, the holy abode of Jagannath, and solar architecture.</p>
+                                        <div class="circuit-highlights">
+                                            <span class="circuit-chip">Puri Jagannath</span>
+                                            <span class="circuit-chip">Konark Sun Temple</span>
+                                            <span class="circuit-chip">Lingaraj Bhubaneswar</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Circuit 5 -->
+                                    <div class="circuit-card" data-circuit="karnataka" onclick="selectCircuit(this, 'karnataka')">
+                                        <div class="circuit-icon-box">
+                                            <i class="fas fa-dharmachakra"></i>
+                                        </div>
+                                        <h3 class="circuit-name">Karnataka Temples</h3>
+                                        <p class="circuit-subtitle">Coastal sacred corridors, Hoysala stone carvings, and monumental Shiva idols.</p>
+                                        <div class="circuit-highlights">
+                                            <span class="circuit-chip">Murudeshwar</span>
+                                            <span class="circuit-chip">Udupi Krishna</span>
+                                            <span class="circuit-chip">Kukke Subramanya</span>
+                                            <span class="circuit-chip">Dharmasthala</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Circuit 6 -->
+                                    <div class="circuit-card" data-circuit="custom" onclick="selectCircuit(this, 'custom')">
+                                        <div class="circuit-icon-box">
+                                            <i class="fas fa-map-location-dot"></i>
+                                        </div>
+                                        <h3 class="circuit-name">Custom Multi-State</h3>
+                                        <p class="circuit-subtitle">Connect multiple pilgrimage states into one seamless sacred itinerary.</p>
+                                        <div class="circuit-highlights">
+                                            <span class="circuit-chip">Tailored Route</span>
+                                            <span class="circuit-chip">Multi-Flight / Rail</span>
+                                            <span class="circuit-chip">Full Concierge</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <input type="hidden" id="selectedCircuitInput" value="south">
+
+                            <!-- Step 1 Actions -->
+                            <div class="step-actions" style="justify-content: flex-end;">
+                                <button type="button" class="btn-step-next" onclick="validateAndGoToStep(2)">
+                                    Continue to Travel Details <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- STEP 2: TRAVEL DETAILS -->
+                        <div class="step-panel" id="stepPanel2">
+                            <div class="panel-heading-wrap">
+                                <span class="panel-subtitle"><i class="fas fa-calendar-alt"></i> Step 2 of 3</span>
+                                <h2 class="panel-title">Dates, Duration &amp; Traveling Pilgrims</h2>
+                                <p class="panel-desc">Provide your estimated schedule and group size so we can customize pace and vehicle arrangements.</p>
+                            </div>
+
+                            <!-- Row: Date & Duration -->
+                            <div class="form-row-grid">
+                                <div>
+                                    <label for="travelDate" class="form-label">
+                                        <i class="far fa-calendar-check" style="color:var(--gold);"></i> Preferred Starting Date <span class="req">*</span>
+                                    </label>
+                                    <div class="date-input-wrap">
+                                        <input type="date" id="travelDate" class="date-input" required>
+                                    </div>
+                                    <p style="font-size:12px; color:var(--text-muted); margin-top:6px;">
+                                        <i class="fas fa-info-circle" style="color:var(--gold);"></i> Dates can be fine-tuned anytime with your allocated temple concierge.
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <label class="form-label">
+                                        <i class="far fa-clock" style="color:var(--gold);"></i> Yatra Duration <span class="req">*</span>
+                                    </label>
+                                    <div class="duration-pills-wrap" id="durationPills">
+                                        <button type="button" class="duration-pill" data-days="3" onclick="selectDuration(3)">3 Days</button>
+                                        <button type="button" class="duration-pill" data-days="5" onclick="selectDuration(5)">5 Days</button>
+                                        <button type="button" class="duration-pill active" data-days="7" onclick="selectDuration(7)">7 Days</button>
+                                        <button type="button" class="duration-pill" data-days="10" onclick="selectDuration(10)">10 Days</button>
+                                        <button type="button" class="duration-pill" data-days="12" onclick="selectDuration(12)">12+ Days</button>
+                                    </div>
+                                    <input type="hidden" id="selectedDaysInput" value="7">
+                                </div>
+                            </div>
+
+                            <!-- Pilgrims Counters -->
+                            <div class="pilgrims-box">
+                                <label class="form-label" style="margin-bottom:14px;">
+                                    <i class="fas fa-users" style="color:var(--gold);"></i> Number of Pilgrims (Yatris) <span class="req">*</span>
+                                </label>
+
+                                <!-- Adults -->
+                                <div class="pilgrim-counter-row">
+                                    <div class="pilgrim-type-info">
+                                        <h4>Adults (Ages 12 – 59)</h4>
+                                        <p>Primary pilgrims traveling</p>
+                                    </div>
+                                    <div class="counter-controls">
+                                        <button type="button" class="counter-btn" onclick="updateCounter('adults', -1)" aria-label="Decrease Adults">−</button>
+                                        <span class="counter-val" id="cntAdults">2</span>
+                                        <button type="button" class="counter-btn" onclick="updateCounter('adults', 1)" aria-label="Increase Adults">+</button>
+                                    </div>
+                                </div>
+
+                                <!-- Senior Citizens -->
+                                <div class="pilgrim-counter-row">
+                                    <div class="pilgrim-type-info">
+                                        <h4>Senior Citizens (Ages 60+)</h4>
+                                        <p>Wheelchair assistance &amp; ground-floor sacred stays prioritized</p>
+                                    </div>
+                                    <div class="counter-controls">
+                                        <button type="button" class="counter-btn" onclick="updateCounter('seniors', -1)" aria-label="Decrease Seniors">−</button>
+                                        <span class="counter-val" id="cntSeniors">0</span>
+                                        <button type="button" class="counter-btn" onclick="updateCounter('seniors', 1)" aria-label="Increase Seniors">+</button>
+                                    </div>
+                                </div>
+
+                                <!-- Children -->
+                                <div class="pilgrim-counter-row">
+                                    <div class="pilgrim-type-info">
+                                        <h4>Children (Ages 2 – 11)</h4>
+                                        <p>Special kid-friendly dietary and seating care</p>
+                                    </div>
+                                    <div class="counter-controls">
+                                        <button type="button" class="counter-btn" onclick="updateCounter('children', -1)" aria-label="Decrease Children">−</button>
+                                        <span class="counter-val" id="cntChildren">0</span>
+                                        <button type="button" class="counter-btn" onclick="updateCounter('children', 1)" aria-label="Increase Children">+</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Preferred Pace -->
+                            <div>
+                                <label class="form-label">
+                                    <i class="fas fa-person-walking" style="color:var(--gold);"></i> Preferred Yatra Pace <span class="req">*</span>
+                                </label>
+                                <div class="pace-options-grid">
+                                    <div class="pace-card selected" data-pace="relaxed" onclick="selectPace(this, 'relaxed')">
+                                        <div class="pace-icon"><i class="fas fa-om"></i></div>
+                                        <div class="pace-info">
+                                            <h4>Relaxed &amp; Meditative</h4>
+                                            <p>1 to 2 temples daily, extended meditation, unhurried holy tank snanam, and afternoon resting intervals.</p>
+                                        </div>
+                                    </div>
+                                    <div class="pace-card" data-pace="comprehensive" onclick="selectPace(this, 'comprehensive')">
+                                        <div class="pace-icon"><i class="fas fa-route"></i></div>
+                                        <div class="pace-info">
+                                            <h4>Comprehensive Circuit</h4>
+                                            <p>Covers maximum major shrines, early morning Suprabhatam darshans, and efficient intercity sacred transit.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="selectedPaceInput" value="relaxed">
+                            </div>
+
+                            <!-- Step 2 Actions -->
+                            <div class="step-actions">
+                                <button type="button" class="btn-step-back" onclick="goToStep(1)">
+                                    <i class="fas fa-arrow-left"></i> Back: Route
+                                </button>
+                                <button type="button" class="btn-step-next" onclick="validateAndGoToStep(3)">
+                                    Continue to Sacred Preferences <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- STEP 3: SACRED PREFERENCES & CONTACT -->
+                        <div class="step-panel" id="stepPanel3">
+                            <div class="panel-heading-wrap">
+                                <span class="panel-subtitle"><i class="fas fa-hands"></i> Step 3 of 3</span>
+                                <h2 class="panel-title">Accommodations, Sacred Inclusions &amp; Yatris</h2>
+                                <p class="panel-desc">Customize your lodging experience, spiritual arrangements, and provide contact details for your quotation.</p>
+                            </div>
+
+                            <!-- Accommodation Style -->
+                            <div>
+                                <label class="form-label">
+                                    <i class="fas fa-hotel" style="color:var(--gold);"></i> Accommodation Style <span class="req">*</span>
+                                </label>
+                                <div class="stays-grid">
+                                    <div class="stay-card selected" data-stay="heritage" onclick="selectStay(this, 'heritage')">
+                                        <div class="stay-icon"><i class="fas fa-landmark"></i></div>
+                                        <div class="stay-title">Heritage Haveli / Cottage</div>
+                                        <div class="stay-desc">Traditional architecture, brass decor, serene courtyard ambiance.</div>
+                                    </div>
+
+                                    <div class="stay-card" data-stay="three-star" onclick="selectStay(this, 'three-star')">
+                                        <div class="stay-icon"><i class="fas fa-star-half-alt"></i></div>
+                                        <div class="stay-title">3-Star Comfortable</div>
+                                        <div class="stay-desc">Clean, air-conditioned, central proximity to temple corridors.</div>
+                                    </div>
+
+                                    <div class="stay-card" data-stay="premium" onclick="selectStay(this, 'premium')">
+                                        <div class="stay-icon"><i class="fas fa-gem"></i></div>
+                                        <div class="stay-title">4/5-Star Premium Luxury</div>
+                                        <div class="stay-desc">Luxury hospitality, wellness spa, suites &amp; executive amenities.</div>
+                                    </div>
+
+                                    <div class="stay-card" data-stay="ashram" onclick="selectStay(this, 'ashram')">
+                                        <div class="stay-icon"><i class="fas fa-peace"></i></div>
+                                        <div class="stay-title">Ashram / Mutt Stay</div>
+                                        <div class="stay-desc">Spiritual simplicity, morning Vedic chantings, divine peacefulness.</div>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="selectedStayInput" value="heritage">
+                            </div>
+
+                            <!-- Special Sacred Inclusions -->
+                            <div>
+                                <label class="form-label">
+                                    <i class="fas fa-certificate" style="color:var(--gold);"></i> Special Sacred Inclusions
+                                </label>
+                                <div class="inclusions-checklist">
+                                    <label class="inclusion-label">
+                                        <input type="checkbox" id="incVip" checked onchange="updateEstimatePricePreview()">
+                                        <span class="inclusion-text"><i class="fas fa-ticket-alt" style="color:var(--gold); margin-right:6px;"></i> VIP / Special Darshan Passes</span>
+                                    </label>
+                                    <label class="inclusion-label">
+                                        <input type="checkbox" id="incWheelchair" onchange="updateEstimatePricePreview()">
+                                        <span class="inclusion-text"><i class="fas fa-wheelchair" style="color:var(--gold); margin-right:6px;"></i> Senior Citizen Wheelchair Assistance</span>
+                                    </label>
+                                    <label class="inclusion-label">
+                                        <input type="checkbox" id="incPurohit" checked onchange="updateEstimatePricePreview()">
+                                        <span class="inclusion-text"><i class="fas fa-user-tie" style="color:var(--gold); margin-right:6px;"></i> Temple Purohit / Archana Arrangements</span>
+                                    </label>
+                                    <label class="inclusion-label">
+                                        <input type="checkbox" id="incMeals" checked onchange="updateEstimatePricePreview()">
+                                        <span class="inclusion-text"><i class="fas fa-leaf" style="color:var(--gold); margin-right:6px;"></i> Pure Sattvic Vegetarian Meals</span>
+                                    </label>
+                                    <label class="inclusion-label" style="grid-column: 1 / -1;">
+                                        <input type="checkbox" id="incTransfers" checked onchange="updateEstimatePricePreview()">
+                                        <span class="inclusion-text"><i class="fas fa-car-side" style="color:var(--gold); margin-right:6px;"></i> Airport / Railway Station Private Chauffeur Transfers</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Contact Details -->
+                            <div>
+                                <label class="form-label">
+                                    <i class="fas fa-id-card" style="color:var(--gold);"></i> Primary Pilgrim Contact Details <span class="req">*</span>
+                                </label>
+                                <div class="contact-fields-grid">
+                                    <div>
+                                        <input type="text" id="contactName" class="contact-input" placeholder="Primary Pilgrim Name *" required>
+                                    </div>
+                                    <div>
+                                        <input type="tel" id="contactPhone" class="contact-input" placeholder="Mobile / WhatsApp Number (+91) *" required>
+                                    </div>
+                                    <div>
+                                        <input type="email" id="contactEmail" class="contact-input" placeholder="Email Address *" required>
+                                    </div>
+                                </div>
+
+                                <div class="whatsapp-optin">
+                                    <input type="checkbox" id="chkWhatsAppSend" checked>
+                                    <label for="chkWhatsAppSend">
+                                        <i class="fab fa-whatsapp" style="color:#25D366; font-size:15px;"></i> Send my detailed day-by-day itinerary &amp; quotation directly to this WhatsApp number
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Step 3 Actions -->
+                            <div class="step-actions">
+                                <button type="button" class="btn-step-back" onclick="goToStep(2)">
+                                    <i class="fas fa-arrow-left"></i> Back: Travel Details
+                                </button>
+                                <button type="submit" class="btn-generate-itinerary">
+                                    <i class="fas fa-wand-magic-sparkles"></i> Generate Sacred Itinerary &amp; Estimate
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+            <!-- ============================================================
+                 3. LIVE GENERATED ITINERARY PREVIEW RESULT BOX (STEP 4)
+            ============================================================ -->
+            <div class="itinerary-result-box" id="itineraryResult">
+
+                <!-- Header Banner -->
+                <div class="result-header-banner">
+                    <div class="result-badge">
+                        <i class="fas fa-check-circle"></i> Bespoke Pilgrim Itinerary Generated
+                    </div>
+                    <h2 class="result-header-title">Your Curated Sacred Yatra Itinerary</h2>
+                    <p class="result-subline" id="resultSubtitle">
+                        Specially crafted for <strong id="resClientName" style="color:var(--gold-bright);">Devotee</strong> • Starting from <strong id="resFromCity" style="color:var(--gold-bright);">Chennai</strong> on <span id="resStartDate">20 Nov 2026</span>
+                    </p>
+                </div>
+
+                <!-- Route Summary Banner -->
+                <div class="route-summary-bar">
+                    <div class="route-stops" id="resRouteStops">
+                        <span>Chennai</span> <i class="fas fa-arrow-right route-arrow"></i>
+                        <span>Madurai</span> <i class="fas fa-arrow-right route-arrow"></i>
+                        <span>Rameswaram</span> <i class="fas fa-arrow-right route-arrow"></i>
+                        <span>Thanjavur</span> <i class="fas fa-arrow-right route-arrow"></i>
+                        <span>Chennai</span>
+                    </div>
+                    <div class="route-meta-pills">
+                        <span class="meta-pill"><i class="far fa-clock"></i> <strong id="resPillDays">7 Days / 6 Nights</strong></span>
+                        <span class="meta-pill"><i class="fas fa-user-friends"></i> <strong id="resPillPilgrims">2 Yatris</strong></span>
+                        <span class="meta-pill"><i class="fas fa-hotel"></i> <strong id="resPillStay">Heritage Stay</strong></span>
+                        <span class="meta-pill"><i class="fas fa-om"></i> <strong id="resPillPace">Relaxed Pace</strong></span>
+                    </div>
+                </div>
+
+                <!-- Price Estimate & Inclusions Strip -->
+                <div class="result-estimate-grid">
+                    <div class="estimate-card">
+                        <div class="estimate-price-label">Estimated Investment Per Pilgrim</div>
+                        <div class="estimate-price-value" id="resPricePerPerson">
+                            ₹14,500 – ₹18,000 <span class="gold-txt">/ Yatri</span>
+                        </div>
+                        <div class="estimate-total-note" id="resTotalTripEstimate">
+                            Estimated Group Total: ₹29,000 – ₹36,000 (All Inclusive)
+                        </div>
+                        <div class="included-tags-wrap" id="resInclusionsTags">
+                            <span class="inc-tag"><i class="fas fa-check"></i> VIP Darshan</span>
+                            <span class="inc-tag"><i class="fas fa-check"></i> Purohit Support</span>
+                            <span class="inc-tag"><i class="fas fa-check"></i> Sattvic Meals</span>
+                            <span class="inc-tag"><i class="fas fa-check"></i> Private Chauffeur</span>
+                        </div>
+                    </div>
+
+                    <div class="quick-booking-prompt">
+                        <h4 class="quick-prompt-title">
+                            <i class="fas fa-shield-halved" style="color:var(--gold); margin-right:6px;"></i> Avazora Sacred Pilgrimage Guarantee
+                        </h4>
+                        <p class="quick-prompt-desc">
+                            Your itinerary has been automatically matched with registered temple timings, auspicious aarti slots, and private air-conditioned transit. All rates include GST, tolls, dedicated temple guide assistance, and senior comfort amenities.
+                        </p>
+                        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:4px;">
+                            <span style="font-size:12.5px; color:var(--green-deep); font-weight:700;">
+                                <i class="fas fa-phone-alt" style="color:var(--gold);"></i> 24x7 Darshan Concierge
+                            </span>
+                            <span style="font-size:12.5px; color:var(--green-deep); font-weight:700;">
+                                <i class="fas fa-money-bill-wave" style="color:var(--gold);"></i> Zero Hidden Temple Fees
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day-by-Day Timeline List -->
+                <div class="timeline-container">
+                    <div class="timeline-header">
+                        <h3><i class="fas fa-calendar-day" style="color:var(--gold); margin-right:8px;"></i> Day-by-Day Sacred Journey Schedule</h3>
+                        <span style="font-size:13px; color:var(--text-muted);">Customized for your preferred pace &amp; selected circuit</span>
+                    </div>
+
+                    <div class="timeline-items-list" id="timelineItemsList">
+                        <!-- Dynamic Day Cards generated via JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Actions Bar -->
+                <div class="result-actions-bar">
+                    <div class="actions-left">
+                        <button type="button" class="btn-whatsapp" id="btnShareWhatsApp" onclick="openWhatsAppQuote()">
+                            <i class="fab fa-whatsapp" style="font-size:18px;"></i> Send to WhatsApp (+91)
+                        </button>
+                        <button type="button" class="btn-print" onclick="window.print()">
+                            <i class="fas fa-print"></i> Download / Print PDF
+                        </button>
+                        <button type="button" class="btn-edit-plan" onclick="goToStep(1)">
+                            <i class="fas fa-sliders"></i> Modify Preferences
+                        </button>
+                    </div>
+
+                    <div>
+                        <button type="button" class="btn-book-consultant" onclick="openConsultantModal()">
+                            <i class="fas fa-calendar-check"></i> Book This Yatra with Consultant
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ============================================================
+         4. SACRED TRAVEL GUARANTEES
+    ============================================================ -->
+    <section class="guarantees-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag"><i class="fas fa-shield-alt"></i> Trust &amp; Devotion</span>
+                <h2 class="section-title">Sacred Travel Guarantees</h2>
+                <p class="section-desc">We attend to every earthly detail so your mind and heart remain centered entirely on divine prayer and spiritual peace.</p>
+                <div class="gold-divider"><i class="fas fa-spa"></i></div>
+            </div>
+
+            <div class="guarantees-grid">
+                <!-- Guarantee 1 -->
+                <div class="guarantee-card">
+                    <div class="guarantee-icon-wrap">
+                        <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <h3 class="guarantee-title">Guaranteed Special Darshan Support</h3>
+                    <p class="guarantee-desc">Direct liaison with temple trusts for authorized special entry and puja tokens, reducing 4-6 hour serpentine queues to unhurried holy darshans.</p>
+                </div>
+
+                <!-- Guarantee 2 -->
+                <div class="guarantee-card">
+                    <div class="guarantee-icon-wrap">
+                        <i class="fas fa-wheelchair"></i>
+                    </div>
+                    <h3 class="guarantee-title">Verified Senior-Friendly Pilgrimages</h3>
+                    <p class="guarantee-desc">Ground-floor cottage accommodations, step-free corridors, battery cars inside temple premises, and dedicated wheelchair assistance for elder parents.</p>
+                </div>
+
+                <!-- Guarantee 3 -->
+                <div class="guarantee-card">
+                    <div class="guarantee-icon-wrap">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3 class="guarantee-title">Hygienic Sattvic Dining</h3>
+                    <p class="guarantee-desc">Pure vegetarian, freshly cooked sattvic meals adhering to traditional dietary restrictions (no onion or garlic upon request) across all pilgrimage stops.</p>
+                </div>
+
+                <!-- Guarantee 4 -->
+                <div class="guarantee-card">
+                    <div class="guarantee-icon-wrap">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3 class="guarantee-title">Dedicated Temple Tour Pilot / Guide</h3>
+                    <p class="guarantee-desc">Accompanying Vedic guides versed in regional folklore, sthala puranams, and temple architectural history to enlighten your sacred path.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         5. POPULAR PRE-CRAFTED CIRCUITS
+    ============================================================ -->
+    <section class="circuits-showcase-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag"><i class="fas fa-fire-flame-curved"></i> Handcrafted Expeditions</span>
+                <h2 class="section-title">Popular Pre-Crafted Circuits</h2>
+                <p class="section-desc">Prefer a time-tested itinerary? Load any of our most revered temple circuits straight into the planner with a single click.</p>
+                <div class="gold-divider"><i class="fas fa-spa"></i></div>
+            </div>
+
+            <div class="pre-circuits-grid">
+                <!-- Circuit Card 1: South India -->
+                <div class="pre-circuit-card">
+                    <div class="pre-card-img-wrap">
+                        <img src="images/meenakshi.jpg" alt="South India Sacred Circuit" class="pre-card-img">
+                        <span class="pre-duration-badge"><i class="far fa-clock"></i> 7 Days / 6 Nights</span>
+                    </div>
+                    <div class="pre-card-content">
+                        <h3 class="pre-card-title">South India Maha Temple Circuit</h3>
+                        <p class="pre-card-desc">Madurai Meenakshi, Rameswaram Jyotirlinga, Thanjavur Brihadeeswarar, and Srirangam Maha Vishnu sanctuaries.</p>
+                        <div class="pre-card-price">From ₹18,500 / pilgrim</div>
+                        <div class="pre-card-actions">
+                            <button type="button" class="btn-load-circuit" onclick="loadPreCraftedCircuit('south', 7)">
+                                <i class="fas fa-wand-magic-sparkles"></i> Load Into Planner
+                            </button>
+                            <a href="packages.html" class="btn-view-pkg">Details →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Circuit Card 2: Char Dham -->
+                <div class="pre-circuit-card">
+                    <div class="pre-card-img-wrap">
+                        <img src="images/kedarnath.jpg" alt="Char Dham Himalayas" class="pre-card-img">
+                        <span class="pre-duration-badge"><i class="far fa-clock"></i> 10 Days / 9 Nights</span>
+                    </div>
+                    <div class="pre-card-content">
+                        <h3 class="pre-card-title">Sacred Char Dham Himalayan Yatra</h3>
+                        <p class="pre-card-desc">Yamunotri, Gangotri, Kedarnath Jyotirlinga, and Badrinath with helicopter coordination and VIP darshan passes.</p>
+                        <div class="pre-card-price">From ₹38,000 / pilgrim</div>
+                        <div class="pre-card-actions">
+                            <button type="button" class="btn-load-circuit" onclick="loadPreCraftedCircuit('chardham', 10)">
+                                <i class="fas fa-wand-magic-sparkles"></i> Load Into Planner
+                            </button>
+                            <a href="packages.html" class="btn-view-pkg">Details →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Circuit Card 3: Kerala -->
+                <div class="pre-circuit-card">
+                    <div class="pre-card-img-wrap">
+                        <img src="images/padmanabhaswamy.jpg" alt="Kerala Sacred Shrines" class="pre-card-img">
+                        <span class="pre-duration-badge"><i class="far fa-clock"></i> 5 Days / 4 Nights</span>
+                    </div>
+                    <div class="pre-card-content">
+                        <h3 class="pre-card-title">Kerala Divine Heritage Shrines</h3>
+                        <p class="pre-card-desc">Trivandrum Padmanabhaswamy, Guruvayur Sri Krishna, Thrissur Vadakkunnathan, and serene backwater rejuvenation.</p>
+                        <div class="pre-card-price">From ₹16,200 / pilgrim</div>
+                        <div class="pre-card-actions">
+                            <button type="button" class="btn-load-circuit" onclick="loadPreCraftedCircuit('kerala', 5)">
+                                <i class="fas fa-wand-magic-sparkles"></i> Load Into Planner
+                            </button>
+                            <a href="packages.html" class="btn-view-pkg">Details →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         6. PILGRIM TESTIMONIALS / TRUST BADGES
+    ============================================================ -->
+    <section class="testimonials-section">
+        <div class="container">
+            <!-- Trust Stats Strip -->
+            <div class="trust-stats-grid">
+                <div class="stat-item">
+                    <h3>4.9 / 5</h3>
+                    <p>AVERAGE YATRI RATING</p>
+                </div>
+                <div class="stat-item">
+                    <h3>25,000+</h3>
+                    <p>PILGRIMS BLESSED</p>
+                </div>
+                <div class="stat-item">
+                    <h3>140+</h3>
+                    <p>SACRED TEMPLES COVERED</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>SATTVIC &amp; SENIOR ASSURED</p>
+                </div>
+            </div>
+
+            <div class="section-header" style="color:var(--ivory);">
+                <span class="section-tag" style="color:var(--gold-bright);"><i class="fas fa-comments"></i> Pilgrim Voices</span>
+                <h2 class="section-title" style="color:var(--ivory);">Blessed Yatris Share Their Journeys</h2>
+                <p class="section-desc" style="color:rgba(251,248,241,0.75);">Read genuine experiences of families who journeyed with Avazora Temple Tourism across sacred India.</p>
+                <div class="gold-divider"><i class="fas fa-spa"></i></div>
+            </div>
+
+            <div class="testimonials-grid">
+                <!-- Review 1 -->
+                <div class="testimonial-card">
+                    <div class="stars-row">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-quote">
+                        "Taking my 78-year-old mother to Rameswaram and Madurai felt daunting, but Avazora handled wheelchair support at every gopuram gate and got us VIP darshan within 25 minutes. Truly divine service!"
+                    </p>
+                    <div class="yatri-profile">
+                        <div class="yatri-avatar">RS</div>
+                        <div class="yatri-info">
+                            <h4>Ramesh Sundaram</h4>
+                            <p>Bangalore • South India Circuit</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="testimonial-card">
+                    <div class="stars-row">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-quote">
+                        "The customized trip planner gave us an exact day-by-day plan with sattvic meals and peaceful ashram stays. The purohit in Varanasi performed our family sankalpam with absolute Vedic purity."
+                    </p>
+                    <div class="yatri-profile">
+                        <div class="yatri-avatar">AK</div>
+                        <div class="yatri-info">
+                            <h4>Ananya Kulkarni</h4>
+                            <p>Pune • Custom Multi-State Yatra</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="testimonial-card">
+                    <div class="stars-row">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-quote">
+                        "Flawless logistics for Kedarnath &amp; Badrinath. Helicopter passes, oxygen support in the car, and lovely warm tea at each stop. Our family felt blessed and completely looked after."
+                    </p>
+                    <div class="yatri-profile">
+                        <div class="yatri-avatar">VG</div>
+                        <div class="yatri-info">
+                            <h4>Vijay Gokhale</h4>
+                            <p>Mumbai • Char Dham Yatra</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         7. SITE FOOTER
+    ============================================================ -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Col 1: Brand -->
+                <div class="footer-brand">
+                    <h3>AVAZORA TEMPLE TOURISM</h3>
+                    <p>
+                        Pioneering sacred Hindu pilgrimage circuits across India with reverent Vedic care, VIP darshan passes, authentic sattvic dining, and heritage comforts.
+                    </p>
+                    <div class="footer-socials">
+                        <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/918001234567" class="social-link" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Quick Links -->
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="destinations.html">Destinations</a></li>
+                        <li><a href="packages.html">Tour Packages</a></li>
+                        <li><a href="planner.html">Trip Planner</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Sacred Circuits -->
+                <div class="footer-col">
+                    <h4>Sacred Circuits</h4>
+                    <ul class="footer-links">
+                        <li><a href="packages.html?cat=south">South India Circuits</a></li>
+                        <li><a href="packages.html?cat=chardham">Char Dham Yatra</a></li>
+                        <li><a href="packages.html?cat=kerala">Kerala Shrines</a></li>
+                        <li><a href="packages.html?cat=odisha">Odisha Jagannath Trail</a></li>
+                        <li><a href="packages.html?cat=karnataka">Karnataka Temples</a></li>
+                        <li><a href="planner.html">Custom Bespoke Yatra</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Top Shrines -->
+                <div class="footer-col">
+                    <h4>Top Shrines</h4>
+                    <ul class="footer-links">
+                        <li><a href="destinations.html?state=Tamil+Nadu">Madurai Meenakshi</a></li>
+                        <li><a href="destinations.html?state=Tamil+Nadu">Rameswaram Jyotirlinga</a></li>
+                        <li><a href="destinations.html?state=Uttarakhand">Kedarnath Dham</a></li>
+                        <li><a href="destinations.html?state=Kerala">Padmanabhaswamy</a></li>
+                        <li><a href="destinations.html?state=Odisha">Puri Jagannath</a></li>
+                        <li><a href="destinations.html?state=Tamil+Nadu">Thanjavur Brihadeeswarar</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 5: Contact Concierge -->
+                <div class="footer-col">
+                    <h4>Darshan Concierge</h4>
+                    <ul class="footer-contact-list">
+                        <li class="footer-contact-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>+91 (800) 123-4567<br><small style="color:var(--gold-bright);">9:00 AM – 9:00 PM IST</small></span>
+                        </li>
+                        <li class="footer-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>yatra@avazora.com</span>
+                        </li>
+                        <li class="footer-contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Temple Street, Heritage Square, Chennai, TN 600001</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Legal Bar -->
+            <div class="footer-bottom">
+                <span>&copy; 2026 Avazora Temple Tourism. All Rights Reserved. Preserving Sacred Pilgrimage Traditions.</span>
+                <div class="footer-legal-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms &amp; Conditions</a>
+                    <a href="#">Temple Darshan Code</a>
+                    <a href="#">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+         MODAL 1: CONSULTANT BOOKING MODAL
+    ============================================================ -->
+    <div class="modal-backdrop" id="consultantModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3><i class="fas fa-hands-praying" style="color:var(--gold); margin-right:8px;"></i> Book Yatra Consultation</h3>
+                <button type="button" class="modal-close-btn" onclick="closeConsultantModal()" aria-label="Close modal">✕</button>
+            </div>
+            <div class="modal-body">
+                <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:18px;">
+                    Our senior temple concierge will review your curated itinerary for <strong id="modalCircuitName" style="color:var(--green-deep);">South India Circuit</strong> and schedule your VIP darshan passes.
+                </p>
+
+                <form onsubmit="handleConsultantSubmit(event)">
+                    <div style="display:flex; flex-direction:column; gap:14px;">
+                        <div>
+                            <label class="form-label" style="font-size:12.5px;">Pilgrim Name *</label>
+                            <input type="text" id="modalPilgrimName" class="contact-input" required>
+                        </div>
+                        <div>
+                            <label class="form-label" style="font-size:12.5px;">Mobile (WhatsApp) *</label>
+                            <input type="tel" id="modalPilgrimPhone" class="contact-input" required>
+                        </div>
+                        <div>
+                            <label class="form-label" style="font-size:12.5px;">Preferred Call Time</label>
+                            <select id="modalCallTime" class="city-select" style="padding:10px 14px;">
+                                <option value="Morning">Morning (9:00 AM – 12:00 PM)</option>
+                                <option value="Afternoon">Afternoon (12:00 PM – 4:00 PM)</option>
+                                <option value="Evening" selected>Evening (4:00 PM – 8:00 PM)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="form-label" style="font-size:12.5px;">Specific Puja / Sankalpam Requests (Optional)</label>
+                            <input type="text" id="modalPujaNotes" class="contact-input" placeholder="e.g. Navagraha homam, senior wheelchair">
+                        </div>
+                        <button type="submit" class="btn-step-next" style="width:100%; justify-content:center; margin-top:6px;">
+                            <i class="fas fa-paper-plane"></i> Confirm Consultation Request
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         MODAL 2: USER LOGIN / PROFILE MODAL
+    ============================================================ -->
+    <div class="modal-backdrop" id="loginModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3><i class="fas fa-user-circle" style="color:var(--gold); margin-right:8px;"></i> Devotee Login / Signup</h3>
+                <button type="button" class="modal-close-btn" onclick="closeLoginModal()" aria-label="Close modal">✕</button>
+            </div>
+            <div class="modal-body">
+                <div id="loginStep1">
+                    <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:16px;">
+                        Enter your mobile number or email to access saved temple itineraries and bookings.
+                    </p>
+                    <form onsubmit="handleLoginStep1(event)">
+                        <input type="text" id="loginIdInput" class="contact-input" placeholder="Email or 10-digit Mobile Number" required style="margin-bottom:14px;">
+                        <button type="submit" class="btn-step-next" style="width:100%; justify-content:center;">
+                            Continue →
+                        </button>
+                    </form>
+                </div>
+
+                <div id="loginStep2" style="display:none;">
+                    <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:16px;">
+                        Please provide your devotee name to personalize your spiritual records.
+                    </p>
+                    <form onsubmit="handleLoginStep2(event)">
+                        <input type="text" id="loginNameInput" class="contact-input" placeholder="Full Name (as on ID)" required style="margin-bottom:14px;">
+                        <input type="password" class="contact-input" placeholder="Set or Enter Password" required style="margin-bottom:14px;">
+                        <button type="submit" class="btn-generate-itinerary" style="width:100%; justify-content:center;">
+                            Confirm &amp; Access Dashboard
+                        </button>
+                        <button type="button" style="background:none; border:none; color:var(--gold); font-size:13px; margin-top:12px; cursor:pointer;" onclick="document.getElementById('loginStep2').style.display='none'; document.getElementById('loginStep1').style.display='block';">
+                            ← Back
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         TOAST NOTIFICATION
+    ============================================================ -->
+    <div class="toast-notification" id="toastNotice">
+        <i class="fas fa-check-circle" style="color:var(--gold-bright); font-size:18px;"></i>
+        <span id="toastMsg">Itinerary ready!</span>
+    </div>
+
+    <!-- ============================================================
+         JAVASCRIPT APPLICATION LOGIC
+    ============================================================ -->
+    <script>
+        // State management
+        const plannerState = {
+            currentStep: 1,
+            startCity: 'Chennai',
+            circuit: 'south',
+            travelDate: '',
+            durationDays: 7,
+            adults: 2,
+            seniors: 0,
+            children: 0,
+            pace: 'relaxed',
+            stay: 'heritage',
+            inclusions: {
+                vip: true,
+                wheelchair: false,
+                purohit: true,
+                meals: true,
+                transfers: true
+            },
+            contactName: '',
+            contactPhone: '',
+            contactEmail: '',
+            estimatedPriceLow: 14500,
+            estimatedPriceHigh: 18000
+        };
+
+        // Initialize on DOM load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set min date to tomorrow
+            const travelDateInput = document.getElementById('travelDate');
+            if (travelDateInput) {
+                const today = new Date();
+                today.setDate(today.getDate() + 1);
+                travelDateInput.min = today.toISOString().split('T')[0];
+                travelDateInput.value = today.toISOString().split('T')[0];
+                plannerState.travelDate = travelDateInput.value;
+            }
+
+            // Restore user login from localStorage if present
+            const savedUserName = localStorage.getItem('avazora_user_name');
+            if (savedUserName) {
+                updateNavbarForUser(savedUserName);
+            }
+
+            // Sticky Navbar on scroll
+            window.addEventListener('scroll', () => {
+                const nav = document.getElementById('navbar');
+                if (window.scrollY > 20) {
+                    nav.classList.add('solid');
+                } else {
+                    nav.classList.remove('solid');
+                }
+            });
+
+            // Mobile toggle
+            const mobileToggle = document.getElementById('mobileToggle');
+            if (mobileToggle) {
+                mobileToggle.addEventListener('click', toggleMobileMenu);
+            }
+
+            // Initial calculation
+            updateEstimatePricePreview();
+        });
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            if (menu) menu.classList.toggle('open');
+        }
+
+        // Navigation between steps
+        function goToStep(stepNumber) {
+            if (stepNumber < 1 || stepNumber > 4) return;
+
+            // Update step indicator
+            for (let i = 1; i <= 4; i++) {
+                const bubble = document.getElementById(`stepBubble${i}`);
+                if (!bubble) continue;
+
+                bubble.classList.remove('active');
+                if (i < stepNumber) {
+                    bubble.classList.add('completed');
+                    bubble.querySelector('.step-icon-circle').innerHTML = '<i class="fas fa-check"></i>';
+                } else if (i === stepNumber) {
+                    bubble.classList.add('active');
+                    bubble.classList.remove('completed');
+                    bubble.querySelector('.step-icon-circle').textContent = i;
+                } else {
+                    bubble.classList.remove('completed');
+                    bubble.querySelector('.step-icon-circle').textContent = i;
+                }
+            }
+
+            // Update horizontal progress bar fill
+            const progressFill = document.getElementById('progressFillBar');
+            if (progressFill) {
+                const percentage = ((stepNumber - 1) / 3) * 90;
+                progressFill.style.width = `${percentage}%`;
+            }
+
+            // Switch panel
+            document.querySelectorAll('.step-panel').forEach(panel => panel.classList.remove('active'));
+
+            if (stepNumber <= 3) {
+                const targetPanel = document.getElementById(`stepPanel${stepNumber}`);
+                if (targetPanel) targetPanel.classList.add('active');
+            }
+
+            plannerState.currentStep = stepNumber;
+        }
+
+        function validateAndGoToStep(stepNumber) {
+            if (stepNumber === 2) {
+                // Validate Step 1
+                const citySelect = document.getElementById('startCity');
+                if (citySelect.value === 'Other') {
+                    const customCity = document.getElementById('customCityText').value.trim();
+                    if (!customCity) {
+                        showToast('Please type your departure city');
+                        document.getElementById('customCityText').focus();
+                        return;
+                    }
+                    plannerState.startCity = customCity;
+                } else {
+                    plannerState.startCity = citySelect.value;
+                }
+                goToStep(2);
+                scrollSmoothToPlanner();
+            } else if (stepNumber === 3) {
+                // Validate Step 2
+                const dateInput = document.getElementById('travelDate');
+                if (!dateInput.value) {
+                    showToast('Please select your preferred travel date');
+                    dateInput.focus();
+                    return;
+                }
+                plannerState.travelDate = dateInput.value;
+
+                const totalPilgrims = plannerState.adults + plannerState.seniors + plannerState.children;
+                if (totalPilgrims < 1) {
+                    showToast('Please select at least 1 traveling pilgrim');
+                    return;
+                }
+                goToStep(3);
+                scrollSmoothToPlanner();
+            }
+        }
+
+        function scrollSmoothToPlanner() {
+            const planner = document.getElementById('plannerApp');
+            if (planner) {
+                planner.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Circuit selection
+        function selectCircuit(cardElem, circuitKey) {
+            document.querySelectorAll('.circuit-card').forEach(c => c.classList.remove('selected'));
+            cardElem.classList.add('selected');
+            document.getElementById('selectedCircuitInput').value = circuitKey;
+            plannerState.circuit = circuitKey;
+            updateEstimatePricePreview();
+        }
+
+        function checkCustomCity(val) {
+            const customInput = document.getElementById('customCityText');
+            if (val === 'Other') {
+                customInput.style.display = 'block';
+                customInput.focus();
+            } else {
+                customInput.style.display = 'none';
+            }
+        }
+
+        // Duration selection
+        function selectDuration(days) {
+            document.querySelectorAll('.duration-pill').forEach(btn => btn.classList.remove('active'));
+            const selectedBtn = document.querySelector(`.duration-pill[data-days="${days}"]`);
+            if (selectedBtn) selectedBtn.classList.add('active');
+            document.getElementById('selectedDaysInput').value = days;
+            plannerState.durationDays = parseInt(days, 10);
+            updateEstimatePricePreview();
+        }
+
+        // Pilgrim counters
+        function updateCounter(type, change) {
+            if (type === 'adults') {
+                plannerState.adults = Math.max(1, Math.min(30, plannerState.adults + change));
+                document.getElementById('cntAdults').textContent = plannerState.adults;
+            } else if (type === 'seniors') {
+                plannerState.seniors = Math.max(0, Math.min(20, plannerState.seniors + change));
+                document.getElementById('cntSeniors').textContent = plannerState.seniors;
+                // auto-check wheelchair recommendation if senior >= 1
+                if (plannerState.seniors > 0) {
+                    const wc = document.getElementById('incWheelchair');
+                    if (wc && !wc.checked && change > 0) wc.checked = true;
+                }
+            } else if (type === 'children') {
+                plannerState.children = Math.max(0, Math.min(20, plannerState.children + change));
+                document.getElementById('cntChildren').textContent = plannerState.children;
+            }
+            updateEstimatePricePreview();
+        }
+
+        // Pace selection
+        function selectPace(elem, paceVal) {
+            document.querySelectorAll('.pace-card').forEach(c => c.classList.remove('selected'));
+            elem.classList.add('selected');
+            document.getElementById('selectedPaceInput').value = paceVal;
+            plannerState.pace = paceVal;
+            updateEstimatePricePreview();
+        }
+
+        // Stay selection
+        function selectStay(elem, stayVal) {
+            document.querySelectorAll('.stay-card').forEach(c => c.classList.remove('selected'));
+            elem.classList.add('selected');
+            document.getElementById('selectedStayInput').value = stayVal;
+            plannerState.stay = stayVal;
+            updateEstimatePricePreview();
+        }
+
+        // Estimate price calculation
+        function updateEstimatePricePreview() {
+            const days = plannerState.durationDays || 7;
+            const adults = plannerState.adults || 2;
+            const seniors = plannerState.seniors || 0;
+            const kids = plannerState.children || 0;
+            const totalPilgrims = Math.max(1, adults + seniors + kids);
+
+            // Base daily rate by accommodation style
+            let dailyBase = 2600;
+            if (plannerState.stay === 'heritage') dailyBase = 3200;
+            else if (plannerState.stay === 'three-star') dailyBase = 2400;
+            else if (plannerState.stay === 'premium') dailyBase = 4600;
+            else if (plannerState.stay === 'ashram') dailyBase = 1500;
+
+            // Circuit logistical multiplier
+            let circuitMultiplier = 1.0;
+            if (plannerState.circuit === 'chardham') circuitMultiplier = 1.45;
+            else if (plannerState.circuit === 'kerala') circuitMultiplier = 1.1;
+            else if (plannerState.circuit === 'odisha') circuitMultiplier = 1.05;
+            else if (plannerState.circuit === 'karnataka') circuitMultiplier = 1.05;
+            else if (plannerState.circuit === 'custom') circuitMultiplier = 1.25;
+
+            // Pace multiplier
+            const paceMultiplier = plannerState.pace === 'comprehensive' ? 1.12 : 1.0;
+
+            // Base cost per person
+            let perPersonBase = dailyBase * days * circuitMultiplier * paceMultiplier;
+
+            // Inclusions adjustment
+            const vipChecked = document.getElementById('incVip')?.checked ?? true;
+            const wheelchairChecked = document.getElementById('incWheelchair')?.checked ?? false;
+            const purohitChecked = document.getElementById('incPurohit')?.checked ?? true;
+            const mealsChecked = document.getElementById('incMeals')?.checked ?? true;
+            const transfersChecked = document.getElementById('incTransfers')?.checked ?? true;
+
+            if (vipChecked) perPersonBase += 1200;
+            if (wheelchairChecked && seniors > 0) perPersonBase += 600;
+            if (purohitChecked) perPersonBase += 900;
+            if (mealsChecked) perPersonBase += (days * 700);
+            if (transfersChecked) perPersonBase += 1100;
+
+            // Round to nearest 500
+            const lowEstimate = Math.round(perPersonBase / 500) * 500;
+            const highEstimate = Math.round((perPersonBase * 1.25) / 500) * 500;
+
+            plannerState.estimatedPriceLow = lowEstimate;
+            plannerState.estimatedPriceHigh = highEstimate;
+        }
+
+        // Submitting Step 3 -> Generate Itinerary Result
+        function handleGenerateItinerary(e) {
+            e.preventDefault();
+
+            // Contact validation
+            const name = document.getElementById('contactName').value.trim();
+            const phone = document.getElementById('contactPhone').value.trim();
+            const email = document.getElementById('contactEmail').value.trim();
+
+            if (!name || !phone || !email) {
+                showToast('Please fill in your name, phone and email');
+                return;
+            }
+
+            plannerState.contactName = name;
+            plannerState.contactPhone = phone;
+            plannerState.contactEmail = email;
+
+            // Capture inclusions
+            plannerState.inclusions.vip = document.getElementById('incVip')?.checked ?? true;
+            plannerState.inclusions.wheelchair = document.getElementById('incWheelchair')?.checked ?? false;
+            plannerState.inclusions.purohit = document.getElementById('incPurohit')?.checked ?? true;
+            plannerState.inclusions.meals = document.getElementById('incMeals')?.checked ?? true;
+            plannerState.inclusions.transfers = document.getElementById('incTransfers')?.checked ?? true;
+
+            // Recalculate
+            updateEstimatePricePreview();
+
+            // Populate Result Box
+            renderGeneratedItinerary();
+
+            // Reveal Result box smoothly
+            const resultBox = document.getElementById('itineraryResult');
+            resultBox.style.display = 'block';
+
+            // Mark Step 4 active
+            goToStep(4);
+
+            // Smooth scroll to result
+            setTimeout(() => {
+                resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                showToast(`Itinerary generated for ${name}!`);
+            }, 100);
+        }
+
+        // Contextual Day-by-Day Generation
+        function renderGeneratedItinerary() {
+            // Update Headers & Meta
+            document.getElementById('resClientName').textContent = plannerState.contactName;
+            document.getElementById('resFromCity').textContent = plannerState.startCity;
+
+            const formattedDate = new Date(plannerState.travelDate).toLocaleDateString('en-IN', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric'
+            });
+            document.getElementById('resStartDate').textContent = formattedDate;
+
+            const days = plannerState.durationDays;
+            document.getElementById('resPillDays').textContent = `${days} Days / ${days - 1} Nights`;
+
+            const totalYatris = plannerState.adults + plannerState.seniors + plannerState.children;
+            let pilgrimSummary = `${totalYatris} Yatris`;
+            if (plannerState.seniors > 0) pilgrimSummary += ` (${plannerState.seniors} Senior)`;
+            document.getElementById('resPillPilgrims').textContent = pilgrimSummary;
+
+            let stayName = 'Heritage Haveli';
+            if (plannerState.stay === 'three-star') stayName = '3-Star Comfortable';
+            else if (plannerState.stay === 'premium') stayName = '4/5-Star Premium';
+            else if (plannerState.stay === 'ashram') stayName = 'Ashram / Mutt Stay';
+            document.getElementById('resPillStay').textContent = stayName;
+
+            document.getElementById('resPillPace').textContent = plannerState.pace === 'relaxed' ? 'Relaxed Pace' : 'Comprehensive Pace';
+
+            // Prices
+            const lowFmt = plannerState.estimatedPriceLow.toLocaleString('en-IN');
+            const highFmt = plannerState.estimatedPriceHigh.toLocaleString('en-IN');
+            document.getElementById('resPricePerPerson').innerHTML = `₹${lowFmt} – ₹${highFmt} <span class="gold-txt">/ Yatri</span>`;
+
+            const groupLow = (plannerState.estimatedPriceLow * totalYatris).toLocaleString('en-IN');
+            const groupHigh = (plannerState.estimatedPriceHigh * totalYatris).toLocaleString('en-IN');
+            document.getElementById('resTotalTripEstimate').textContent = `Estimated Group Total (${totalYatris} Yatris): ₹${groupLow} – ₹${groupHigh} (All Inclusive)`;
+
+            // Route Stops
+            renderRouteStopsBanner();
+
+            // Inclusions Tags
+            renderInclusionsTags();
+
+            // Timeline Items
+            renderTimelineCards();
+        }
+
+        function renderRouteStopsBanner() {
+            const circuit = plannerState.circuit;
+            const from = plannerState.startCity;
+            const container = document.getElementById('resRouteStops');
+
+            let stops = [];
+            if (circuit === 'south') {
+                stops = [from, 'Madurai', 'Rameswaram', 'Thanjavur', 'Trichy', from];
+            } else if (circuit === 'chardham') {
+                stops = [from, 'Haridwar', 'Yamunotri', 'Gangotri', 'Kedarnath', 'Badrinath', 'Rishikesh'];
+            } else if (circuit === 'kerala') {
+                stops = [from, 'Trivandrum', 'Guruvayur', 'Thrissur', 'Kochi', from];
+            } else if (circuit === 'odisha') {
+                stops = [from, 'Bhubaneswar', 'Puri Jagannath', 'Konark', from];
+            } else if (circuit === 'karnataka') {
+                stops = [from, 'Mangalore', 'Udupi', 'Murudeshwar', 'Gokarna', from];
+            } else {
+                stops = [from, 'Varanasi', 'Ayodhya', 'Prayagraj', from];
+            }
+
+            container.innerHTML = stops.map((stop, idx) => {
+                if (idx === stops.length - 1) return `<span>${stop}</span>`;
+                return `<span>${stop}</span> <i class="fas fa-arrow-right route-arrow"></i>`;
+            }).join(' ');
+        }
+
+        function renderInclusionsTags() {
+            const tagsWrap = document.getElementById('resInclusionsTags');
+            const tags = [];
+
+            if (plannerState.inclusions.vip) tags.push('<span class="inc-tag"><i class="fas fa-check"></i> VIP Darshan Passes</span>');
+            if (plannerState.inclusions.purohit) tags.push('<span class="inc-tag"><i class="fas fa-check"></i> Vedic Purohit Archana</span>');
+            if (plannerState.inclusions.meals) tags.push('<span class="inc-tag"><i class="fas fa-check"></i> Sattvic Pure Veg Dining</span>');
+            if (plannerState.inclusions.transfers) tags.push('<span class="inc-tag"><i class="fas fa-check"></i> Private Chauffeur AC Vehicle</span>');
+            if (plannerState.inclusions.wheelchair) tags.push('<span class="inc-tag"><i class="fas fa-check"></i> Senior Wheelchair Priority</span>');
+            tags.push('<span class="inc-tag"><i class="fas fa-check"></i> All Taxes, Parking & Tolls</span>');
+
+            tagsWrap.innerHTML = tags.join(' ');
+        }
+
+        function renderTimelineCards() {
+            const list = document.getElementById('timelineItemsList');
+            const days = plannerState.durationDays;
+            const circuit = plannerState.circuit;
+            const items = [];
+
+            // Contextual Itinerary Datasets
+            const dataset = getItineraryData(circuit, days);
+
+            for (let i = 0; i < days; i++) {
+                const dayData = dataset[i] || {
+                    title: `Day ${i + 1}: Sacred Temple Darshan & Spiritual Explorations`,
+                    desc: 'Auspicious morning aradhana, temple parikrama, sattvic lunch prasadam, and evening Vedic arti.',
+                    activities: ['Morning Sankalpam', 'Temple Trust Entry', 'Sattvic Bhojanam', 'Evening Mangala Aarti'],
+                    transit: 'Local Chauffeur Transit (Approx 20-35 km)'
+                };
+
+                items.push(`
+                    <div class="timeline-card">
+                        <div class="day-badge-row">
+                            <span class="day-badge">DAY ${i + 1}</span>
+                            <span class="day-transit-chip"><i class="fas fa-car-side"></i> ${dayData.transit}</span>
+                        </div>
+                        <h4 class="day-title">${dayData.title}</h4>
+                        <p class="day-desc">${dayData.desc}</p>
+                        <div class="day-activities-list">
+                            ${dayData.activities.map(act => `<div class="day-activity-item"><i class="fas fa-spa"></i> ${act}</div>`).join('')}
+                        </div>
+                    </div>
+                `);
+            }
+
+            list.innerHTML = items.join('');
+        }
+
+        function getItineraryData(circuit, days) {
+            // South India
+            if (circuit === 'south') {
+                return [
+                    {
+                        title: 'Arrival in Madurai • Divine Meenakshi Sundareswarar Temple',
+                        desc: 'Warm floral reception by our temple pilot. Check-in to your heritage lodging. Evening special entry for the divine Meenakshi Amman Chithirai Gopuram darshan and golden chariot pradakshina.',
+                        activities: ['VIP Special Darshan Entry', 'Vedic Priest Sankalpam', 'Evening Deeparadhana', 'Traditional Sattvic Dinner'],
+                        transit: 'Airport / Station to Heritage Stay (18 km)'
+                    },
+                    {
+                        title: 'Madurai to Rameswaram • Sacred Island Crossing & Agni Theertham',
+                        desc: 'Scenic drive across Pamban Sea Bridge. Sacred Agni Theertham holy snanam followed by organized 22 holy wells (Theertham) purification bath with dedicated attendant.',
+                        activities: ['Pamban Bridge Crossing', '22 Wells Sacred Bath', 'Ramanathaswamy Jyotirlinga Darshan', 'Spiritual Evening Pravachanam'],
+                        transit: 'Madurai to Rameswaram (172 km • 3.5 hrs)'
+                    },
+                    {
+                        title: 'Dhanushkodi Ram Sethu Sangam • Journey to Thanjavur',
+                        desc: 'Dawn visit to Dhanushkodi where Lord Rama initiated the bridge to Lanka. Afternoon transit through Chettinad heritage mansions to the Chola capital of Thanjavur.',
+                        activities: ['Dhanushkodi Ocean Sangam', 'Kothandaramaswamy Temple', 'Chettinad Sattvic Thali Lunch', 'Thanjavur Check-in'],
+                        transit: 'Rameswaram to Thanjavur (235 km • 4.5 hrs)'
+                    },
+                    {
+                        title: 'Thanjavur Brihadeeswarar Marvel • Kumbakonam Temple Corridor',
+                        desc: 'Morning parikrama of the 1,000-year-old Great Living Chola Temple (UNESCO Heritage). Afternoon visit to Kumbakonam Mahamaham holy tank and Adi Kumbeswarar shrine.',
+                        activities: ['Brihadeeswarar Monolithic Nandi', 'Chola Architecture Walk', 'Kumbakonam Mahamaham Tank', 'Evening Pooja at Sarangapani'],
+                        transit: 'Thanjavur to Kumbakonam (40 km • 1 hr)'
+                    },
+                    {
+                        title: 'Srirangam Sri Ranganathaswamy • Trichy Rockfort',
+                        desc: 'Dawn visit to Srirangam—the world\'s largest active Hindu temple complex. Special Vaikunta corridor darshan. Evening panoramic sunset darshan at Rockfort Ucchi Pillayar.',
+                        activities: ['Srirangam VIP Sanctum Entry', 'Maha Prasadam Tasting', 'Rockfort Lift / Assisted Steps', 'Evening Mangala Vadhyam'],
+                        transit: 'Kumbakonam to Trichy (90 km • 2 hrs)'
+                    },
+                    {
+                        title: 'Chidambaram Nataraja Temple (Akasha Lingam)',
+                        desc: 'Journey to the cosmic heart of classical dance and space element at Chidambaram Nataraja Temple. Witness the profound Chidambara Rahasyam crystal lingam abhishekam.',
+                        activities: ['Akasha Lingam Darshan', 'Ruby Nataraja Abhishekam', 'Deekshithar Vedic Chants', 'Heritage Haveli Rest'],
+                        transit: 'Trichy to Chidambaram (135 km • 3 hrs)'
+                    },
+                    {
+                        title: 'Kanchipuram Silk & Sacred Shrines • Return Blessings',
+                        desc: 'Visit to Kamakshi Amman and Ekambareswarar (Prithvi Lingam) with sanctified silk vastram offering. Conclude your pilgrimage with private transfer to your homebound flight/train.',
+                        activities: ['Kamakshi Amman Archana', 'Ekambareswarar Mango Tree Shrines', 'Sanctified Prasadam Pack', 'Airport Departure Transfer'],
+                        transit: 'Chidambaram to Chennai / Airport (190 km • 4 hrs)'
+                    },
+                    {
+                        title: 'Tirupati Balaji Maha Darshan Extension',
+                        desc: 'Special privilege darshan at Seven Hills Tirumala for Lord Venkateswara. Sacred laddoo prasadam collection and sacred tonsuring assistance if desired.',
+                        activities: ['Tirumala Special Entry Token', 'Padmavathi Ammavari Temple', 'Sacred Laddoo Prasadam', 'Evening Rest in Renigunta'],
+                        transit: 'Chennai to Tirupati (140 km • 3.5 hrs)'
+                    },
+                    {
+                        title: 'Tiruvannamalai Arunachaleswarar (Agni Lingam)',
+                        desc: 'Sacred Girivalam route circumambulation of the holy mountain Arunachala and deep peaceful meditation at Sri Ramana Maharshi Ashram.',
+                        activities: ['Arunachaleswarar Agni Shrine', 'Ramana Ashram Meditation', 'Girivalam Electric Cart', 'Evening Mountain Aarti'],
+                        transit: 'Tirupati to Tiruvannamalai (195 km • 4 hrs)'
+                    },
+                    {
+                        title: 'Kanyakumari Triveni Sangam & Sunset Aradhana',
+                        desc: 'Holy confluence bath at Triveni Sangam where Arabian Sea, Indian Ocean, and Bay of Bengal unite. Devi Kanya Kumari temple sunset pooja.',
+                        activities: ['Triveni Sangam Holy Snanam', 'Bhagavathy Amman Temple', 'Vivekananda Rock Memorial', 'Grand Departure Blessings'],
+                        transit: 'Madurai to Kanyakumari (245 km • 4.5 hrs)'
+                    },
+                    {
+                        title: 'Suchindram Thanumalayan Temple • Holy Navagraha Tour',
+                        desc: 'Unique trimurti shrine (Brahma, Vishnu, Shiva in one lingam) and sacred musical stone pillars.',
+                        activities: ['Thanumalayan Trimurti Darshan', 'Musical Pillars Demonstration', 'Sattvic Feast', 'Relaxed Evening Rest'],
+                        transit: 'Kanyakumari Local Excursion (30 km)'
+                    },
+                    {
+                        title: 'Grand Yatra Completion & Farewell Havan',
+                        desc: 'Family thanksgiving pooja and sankalpam completion with our chief purohit. Blessed journey home with sacred theertham and energized yantras.',
+                        activities: ['Maha Purnahuti Havan', 'Sacred Theertham Bottles', 'Souvenir Heritage Gift', 'Assisted Airport Departure'],
+                        transit: 'Final Departure Transfers'
+                    }
+                ];
+            }
+
+            // Char Dham
+            if (circuit === 'chardham') {
+                return [
+                    {
+                        title: 'Arrival in Haridwar / Dehradun • Ganga Aarti at Har Ki Pauri',
+                        desc: 'Divine arrival in the gateway of gods. Holy dip in the sacred Ganges and reserved priority seating for the grand evening Ganga Aarti at Har Ki Pauri.',
+                        activities: ['Har Ki Pauri Priority Aarti', 'Ganga Snanam Assistance', 'Vedic Yatra Sankalpam', 'Mountain Acclimatization Stay'],
+                        transit: 'Dehradun Airport to Haridwar (45 km)'
+                    },
+                    {
+                        title: 'Haridwar to Barkot / Yamunotri Foothills',
+                        desc: 'Picturesque drive through the Garhwal Himalayan pine forests and Yamuna valley. Rest and acclimatization in riverside wooden cottages.',
+                        activities: ['Scenic Himalayan Valleys', 'Kempty Falls Pause', 'River Yamuna Darshan', 'Warm Sattvic Mountain Dinner'],
+                        transit: 'Haridwar to Barkot (210 km • 6.5 hrs)'
+                    },
+                    {
+                        title: 'Yamunotri Dham • Holy Surya Kund & Divya Shila',
+                        desc: 'Trek or assisted pony/palki to the origin of River Yamuna. Boil rice prasadam in the natural boiling spring of Surya Kund and offer prayers at Yamunotri Temple.',
+                        activities: ['Pony / Palki Arrangement', 'Surya Kund Holy Cooking', 'Divya Shila Puja', 'Return to Barkot Retreat'],
+                        transit: 'Barkot to Janki Chatti + Yamunotri Trek (45 km)'
+                    },
+                    {
+                        title: 'Barkot to Uttarkashi • Kashi Vishwanath Temple',
+                        desc: 'Journey to the northern Varanasi along the Bhagirathi river. Evening darshan at the ancient Kashi Vishwanath and Shakti temple featuring the towering bronze spear.',
+                        activities: ['Uttarkashi Vishwanath Lingam', 'Shakti Temple Trishul Darshan', 'Bhagirathi Ghat Walk', 'Peaceful Valley Rest'],
+                        transit: 'Barkot to Uttarkashi (100 km • 3.5 hrs)'
+                    },
+                    {
+                        title: 'Uttarkashi to Gangotri Dham & Return',
+                        desc: 'Ascent to 10,200 ft where Goddess Ganga descended to Earth. Holy snanam at Bhagirath Shila and special archana at Gangotri Temple surrounded by deodar trees.',
+                        activities: ['Gangotri Temple Archana', 'Bhagirath Shila Offering', 'Submerged Shivalingam Darshan', 'Evening Ashram Chants'],
+                        transit: 'Uttarkashi to Gangotri roundtrip (200 km)'
+                    },
+                    {
+                        title: 'Uttarkashi to Guptkashi / Phata (Kedarnath Base)',
+                        desc: 'Scenic drive across Mandakini Valley. Pre-flight briefing and helipad registration for Kedarnath Jyotirlinga darshan.',
+                        activities: ['Mandakini River Views', 'Guptkashi Vishwanath Darshan', 'Helicopter Slot Verification', 'Oxygen & Medical Prep'],
+                        transit: 'Uttarkashi to Guptkashi (220 km • 7 hrs)'
+                    },
+                    {
+                        title: 'Kedarnath Jyotirlinga Mahadarshan',
+                        desc: 'Ascend to the majestic Himalayan shrine of Lord Shiva at 11,755 ft surrounded by snowcapped peaks. Touch the sacred triangular rock lingam in the sanctum sanctorum.',
+                        activities: ['Helicopter / Assisted Trek', 'Sanctum Sanctorum Darshan', 'Bhairavnath Peak View', 'Evening Kedarnath Maha Aarti'],
+                        transit: 'Phata Helipad to Kedarnath (10 min flight)'
+                    },
+                    {
+                        title: 'Kedarnath to Badrinath via Joshimath',
+                        desc: 'Descend to valley and proceed to the sacred Dham of Lord Badri Vishal. Pass through the confluence of Vishnuprayag and the winter seat of Shankaracharya at Joshimath.',
+                        activities: ['Joshimath Narsingh Temple', 'Vishnuprayag Confluence', 'Badrinath Check-in', 'Tapt Kund Warm Dip'],
+                        transit: 'Guptkashi to Badrinath (190 km • 6.5 hrs)'
+                    },
+                    {
+                        title: 'Badrinath Maha Abhishekam & Mana Village (Last Village of India)',
+                        desc: 'Witness the divine morning Badri Vishal idol smeared with sandalwood. Visit Mana village, Vyas Gufa where Mahabharata was penned, and origin of Saraswati river.',
+                        activities: ['Maha Abhishekam Darshan', 'Vyas Gufa & Ganesh Gufa', 'Bhim Pul Natural Bridge', 'Saraswati River Origin'],
+                        transit: 'Badrinath local exploration'
+                    },
+                    {
+                        title: 'Badrinath to Rishikesh • Devprayag Sangam & Departure',
+                        desc: 'Spectacular descent following the Alaknanda river. Halt at Devprayag to witness the divine confluence of Bhagirathi and Alaknanda becoming the Ganga. Transfer to airport.',
+                        activities: ['Devprayag Sangam Darshan', 'Rishikesh Ram Jhula Walk', 'Parmarth Niketan Ashram Pause', 'Airport Departure Transfer'],
+                        transit: 'Badrinath to Rishikesh / Dehradun (295 km • 8 hrs)'
+                    }
+                ];
+            }
+
+            // Kerala
+            if (circuit === 'kerala') {
+                return [
+                    {
+                        title: 'Arrival in Trivandrum • Sree Padmanabhaswamy Temple',
+                        desc: 'Traditional Kerala welcome. Evening darshan in traditional Mundu attire at the world\'s richest and most mystical temple—Sree Padmanabhaswamy with Lord Vishnu in Anantha Shayana pose.',
+                        activities: ['Padmanabhaswamy Special Darshan', 'Traditional Attire Assistance', 'Padmatheertham Tank Walk', 'Authentic Kerala Sadhya'],
+                        transit: 'Trivandrum Airport to Heritage Hotel (12 km)'
+                    },
+                    {
+                        title: 'Attukal Bhagavathy & Varkala Janardhana Swamy',
+                        desc: 'Morning visit to Attukal Amma temple (Sabarimala of women). Scenic coastal journey to the 2,000-year-old cliffside Janardhana Swamy temple at Varkala with holy Papanasam beach snanam.',
+                        activities: ['Attukal Bhagavathy Pooja', 'Papanasam Beach Holy Dip', 'Janardhana Swamy Darshan', 'Ayurvedic Rejuvenation Rest'],
+                        transit: 'Trivandrum to Varkala (45 km • 1.5 hrs)'
+                    },
+                    {
+                        title: 'Journey to Guruvayur • Sacred Krishna Sanctum',
+                        desc: 'Travel along the emerald coconut groves to the Dwarka of South India. Evening darshan of Lord Guruvayurappan adorned in golden kavacham and butter archana.',
+                        activities: ['Guruvayurappan Special Queue', 'Neyvilakku (Ghee Lamp) Offering', 'Punnathur Kotta Elephant Fort', 'Temple Melam Performance'],
+                        transit: 'Varkala to Guruvayur (220 km • 5 hrs)'
+                    },
+                    {
+                        title: 'Thrissur Vadakkunnathan & Chottanikkara Bhagavathy',
+                        desc: 'Visit the ancient circular Shiva temple of Vadakkunnathan with centuries of ghee abhishekam forming an unbroken mountain of white ghee. Evening Guruthi pooja at Chottanikkara.',
+                        activities: ['Vadakkunnathan Ghee Mound Darshan', 'Mural Painting Heritage', 'Chottanikkara Evening Guruthi', 'Serene Palm Haven Stay'],
+                        transit: 'Guruvayur to Thrissur & Kochi (95 km • 2.5 hrs)'
+                    },
+                    {
+                        title: 'Kochi Heritage & Departure Blessings',
+                        desc: 'Morning prayers at Poornathrayeesa Temple (former royal temple of Cochin Maharajas). Souvenir prasadam collection and assisted departure to Kochi International Airport.',
+                        activities: ['Poornathrayeesa Temple Darshan', 'Sanctified Prasadam Hamper', 'Backwater Boat Cruise', 'Airport Departure Transfer'],
+                        transit: 'Hotel to Kochi Airport (35 km • 1 hr)'
+                    }
+                ];
+            }
+
+            // Fallback general 7-day generic sacred schedule
+            return [
+                {
+                    title: `Day 1: Arrival & Holy Inception in ${plannerState.startCity}`,
+                    desc: 'Auspicious welcome with temple shawl and sandalwood tilak. Check-in and evening temple orientation.',
+                    activities: ['Traditional Welcome', 'Vedic Priest Sankalpam', 'Evening Deeparadhana', 'Sattvic Dinner'],
+                    transit: 'Arrival Station / Airport to Sacred Lodge'
+                },
+                {
+                    title: 'Day 2: Principal Deity Mahadarshan & Sacred Bath',
+                    desc: 'Dawn Suprabhatam awakening pooja followed by special VIP line sanctum access and holy theertham bath.',
+                    activities: ['Suprabhatam Darshan', 'VIP Entry Tokens', 'Theertham Snanam', 'Prasadam Bhojanam'],
+                    transit: 'Temple Corridor Chauffeur Service'
+                },
+                {
+                    title: 'Day 3: Ancient Heritage Temples & Stone Carvings',
+                    desc: 'Explore historical gopurams, monolithic pillared halls, and understand centuries of sthala puranam lore.',
+                    activities: ['Guided Architecture Walk', 'Archana with Name Offering', 'Peaceful Parikrama', 'Evening Bhajan'],
+                    transit: 'Intercity Sacred Transit (85 km)'
+                },
+                {
+                    title: 'Day 4: River Confluence / Holy Tank Snanam',
+                    desc: 'Spiritual snanam at sacred river ghats with private changing tents and Vedic homam rituals.',
+                    activities: ['Sacred Ghat Snanam', 'Family Sankalpa Puja', 'Temple Trust Annadhanam', 'Meditation Hour'],
+                    transit: 'Riverside Corridor Transit'
+                },
+                {
+                    title: 'Day 5: Navagraha Shrines & Planetary Peace Puja',
+                    desc: 'Dedicated circuit covering ancient remedial shrines with specific ghee lamp offerings and sesame pujas.',
+                    activities: ['Navagraha Shanti Archana', 'Ghee Lamp Deepam', 'Sattvic Feasting', 'Relaxed Evening Rest'],
+                    transit: 'Scenic Regional Highway (90 km)'
+                },
+                {
+                    title: 'Day 6: Divine Mother Shakti Peetham / Murugan Shrine',
+                    desc: 'Grand golden chariot procession and special kumkum archana at the prominent devi shrine of the circuit.',
+                    activities: ['Kumkuma Archana', 'Golden Chariot Witnessing', 'Sacred Silk Vastram', 'Temple Music Recital'],
+                    transit: 'Hill Temple Transit with Battery Car'
+                },
+                {
+                    title: 'Day 7: Maha Purnahuti Havan & Departure Blessings',
+                    desc: 'Concluding sacred rituals, collection of bottled theertham, and escorted transfer to return transit hub.',
+                    activities: ['Final Blessing Puja', 'Theertham & Laddu Packs', 'Souvenir Yatra Token', 'Homeward Departure'],
+                    transit: 'Airport / Rail Departure Transfer'
+                }
+            ];
+        }
+
+        // WhatsApp sharing link
+        function openWhatsAppQuote() {
+            const phone = '918001234567'; // Avazora official support
+            const circuitName = document.querySelector(`.circuit-card[data-circuit="${plannerState.circuit}"] .circuit-name`)?.textContent || 'Sacred Pilgrimage';
+            const totalPilgrims = plannerState.adults + plannerState.seniors + plannerState.children;
+
+            const inclusionsList = [];
+            if (plannerState.inclusions.vip) inclusionsList.push('VIP Darshan');
+            if (plannerState.inclusions.wheelchair) inclusionsList.push('Senior Wheelchair');
+            if (plannerState.inclusions.purohit) inclusionsList.push('Purohit Archana');
+            if (plannerState.inclusions.meals) inclusionsList.push('Sattvic Meals');
+            if (plannerState.inclusions.transfers) inclusionsList.push('Private AC Chauffeur');
+
+            const message = `Namaste Avazora! 🙏\n\nI just designed a sacred pilgrimage itinerary on your website:\n` +
+                `• Pilgrim Name: ${plannerState.contactName || 'Devotee'}\n` +
+                `• Circuit: ${circuitName}\n` +
+                `• Starting From: ${plannerState.startCity}\n` +
+                `• Travel Date: ${plannerState.travelDate}\n` +
+                `• Duration: ${plannerState.durationDays} Days (${plannerState.pace === 'relaxed' ? 'Relaxed Pace' : 'Comprehensive'})\n` +
+                `• Yatris: ${totalPilgrims} (${plannerState.adults} Adults, ${plannerState.seniors} Seniors, ${plannerState.children} Kids)\n` +
+                `• Lodging: ${plannerState.stay.toUpperCase()}\n` +
+                `• Inclusions: ${inclusionsList.join(', ')}\n` +
+                `• Estimated Rate: ₹${plannerState.estimatedPriceLow.toLocaleString('en-IN')} – ₹${plannerState.estimatedPriceHigh.toLocaleString('en-IN')} per yatri\n\n` +
+                `Please share available departure dates and priest schedules. Thank you!`;
+
+            const encoded = encodeURIComponent(message);
+            window.open(`https://wa.me/${phone}?text=${encoded}`, '_blank');
+        }
+
+        // Pre-crafted circuit loader
+        function loadPreCraftedCircuit(circuitKey, days) {
+            // Select circuit
+            const targetCard = document.querySelector(`.circuit-card[data-circuit="${circuitKey}"]`);
+            if (targetCard) selectCircuit(targetCard, circuitKey);
+
+            // Select duration
+            selectDuration(days);
+
+            // Scroll to planner and go to step 1
+            goToStep(1);
+            scrollSmoothToPlanner();
+            showToast(`Loaded ${circuitKey.toUpperCase()} circuit into planner!`);
+        }
+
+        // Consultant Modal
+        function openConsultantModal() {
+            const modal = document.getElementById('consultantModal');
+            if (!modal) return;
+
+            const circuitName = document.querySelector(`.circuit-card[data-circuit="${plannerState.circuit}"] .circuit-name`)?.textContent || 'Selected Circuit';
+            document.getElementById('modalCircuitName').textContent = circuitName;
+            document.getElementById('modalPilgrimName').value = plannerState.contactName || '';
+            document.getElementById('modalPilgrimPhone').value = plannerState.contactPhone || '';
+
+            modal.classList.add('open');
+        }
+
+        function closeConsultantModal() {
+            const modal = document.getElementById('consultantModal');
+            if (modal) modal.classList.remove('open');
+        }
+
+        function handleConsultantSubmit(e) {
+            e.preventDefault();
+            closeConsultantModal();
+            showToast('Consultation request confirmed! Our concierge will call you shortly.');
+        }
+
+        // Login Modal
+        function openLoginModal() {
+            const modal = document.getElementById('loginModal');
+            if (modal) modal.classList.add('open');
+        }
+
+        function closeLoginModal() {
+            const modal = document.getElementById('loginModal');
+            if (modal) modal.classList.remove('open');
+        }
+
+        function handleLoginStep1(e) {
+            e.preventDefault();
+            document.getElementById('loginStep1').style.display = 'none';
+            document.getElementById('loginStep2').style.display = 'block';
+        }
+
+        function handleLoginStep2(e) {
+            e.preventDefault();
+            const userName = document.getElementById('loginNameInput').value.trim() || 'Devotee';
+            localStorage.setItem('avazora_user_name', userName);
+            updateNavbarForUser(userName);
+            closeLoginModal();
+            showToast(`Welcome back, ${userName}!`);
+        }
+
+        function updateNavbarForUser(name) {
+            const loginText = document.getElementById('navLoginText');
+            if (loginText) {
+                const firstName = name.split(' ')[0];
+                loginText.textContent = `Hi, ${firstName}`;
+            }
+            const navLoginBtn = document.getElementById('navLoginBtn');
+            if (navLoginBtn) {
+                navLoginBtn.onclick = () => window.location.href = 'dashboard.html';
+                navLoginBtn.title = 'View Yatra Dashboard';
+            }
+        }
+
+        // Toast feedback
+        let toastTimeout;
+        function showToast(msg) {
+            const toast = document.getElementById('toastNotice');
+            const msgEl = document.getElementById('toastMsg');
+            if (!toast || !msgEl) return;
+
+            msgEl.textContent = msg;
+            toast.classList.add('show');
+
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3800);
+        }
+    </script>
+</body>
+</html>
