@@ -332,81 +332,187 @@
             transition: all .2s;
         }
         .social-link:hover { background: var(--contact-gold); color: var(--contact-green); border-color: var(--contact-gold); }
+
+        /* ── V2 HEADER STYLES (Matching Home) ── */
+        .top-bar {
+            background: #12382B;
+            color: rgba(255,255,255,0.9);
+            font-size: 12.5px;
+            padding: 7px 0;
+            font-family: 'Inter', sans-serif;
+        }
+        .top-bar-inner {
+            max-width: 1240px; margin: 0 auto; padding: 0 24px;
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+        }
+        .top-bar-left { display: flex; gap: 28px; }
+        .top-bar-left span { display: flex; align-items: center; gap: 6px; }
+        .top-bar-right { display: flex; gap: 20px; align-items: center; }
+        .top-bar-right a { color: #E8BE78; font-size: 12.5px; font-weight: 600; text-decoration: none; }
+        .top-bar-right select {
+            background: transparent; color: #fff;
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 4px; padding: 2px 8px; font-size: 12px; cursor: pointer;
+        }
+
+        .navbar {
+            position: sticky; top: 0; z-index: 1000;
+            background: #FFFFFF !important;
+            box-shadow: 0 2px 16px rgba(18,56,43,0.12);
+            border-bottom: 1px solid rgba(200,151,65,0.25);
+            padding: 0 !important;
+        }
+        .nav-inner {
+            max-width: 1240px; margin: 0 auto; padding: 0 24px;
+            display: flex; align-items: center; gap: 16px; height: 68px;
+        }
+        .nav-logo {
+            display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+            text-decoration: none;
+        }
+        .nav-logo img {
+            width: 42px; height: 42px; border-radius: 50%; object-fit: cover;
+            border: 2px solid #C89741;
+        }
+        .nav-logo-text .brand { display: block; font-family: 'Cinzel', serif; font-size: 18px; font-weight: 700; color: #12382B; line-height: 1.1; }
+        .nav-logo-text .sub   { display: block; font-size: 10px; color: #3D6B55; letter-spacing: 1.5px; text-transform: uppercase; font-family: 'Inter', sans-serif; }
+
+        .nav-links {
+            display: flex; align-items: center; gap: 2px;
+            flex: 1; justify-content: center;
+        }
+        .nav-links a {
+            color: #12382B !important; font-size: 14px; font-weight: 500;
+            padding: 8px 14px; border-radius: 6px; transition: 0.2s; white-space: nowrap;
+            text-decoration: none; font-family: 'Inter', sans-serif;
+        }
+        .nav-links a:hover, .nav-links a.active { color: #C89741 !important; background: #E6F2EC; }
+
+        .nav-dropdown { position: relative; }
+        .nav-dropdown-menu {
+            display: none; position: absolute; top: calc(100% + 6px); left: 0;
+            background: #FFFFFF; border: 1px solid rgba(200,151,65,0.25);
+            border-radius: 12px; box-shadow: 0 4px 24px rgba(18,56,43,0.12);
+            min-width: 190px; padding: 8px; z-index: 999;
+        }
+        .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+        .nav-dropdown-menu a {
+            display: block; padding: 10px 16px; color: #12382B !important;
+            font-size: 14px; border-radius: 6px; transition: 0.2s;
+        }
+        .nav-dropdown-menu a:hover { background: #E6F2EC; color: #C89741 !important; }
+
+        .nav-right { display: flex; align-items: center; gap: 10px; }
+        .nav-fav-btn {
+            background: none; border: 1.5px solid rgba(200,151,65,0.25);
+            border-radius: 50%; width: 38px; height: 38px;
+            font-size: 17px; cursor: pointer; color: #C89741; transition: 0.2s;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .nav-fav-btn:hover { border-color: #C89741; background: #FBF0D9; }
+
+        .nav-plan-btn {
+            background: #C89741; color: #12382B;
+            border: none; padding: 10px 22px; border-radius: 30px;
+            font-size: 13px; font-weight: 700; cursor: pointer;
+            letter-spacing: 0.4px; transition: 0.2s; white-space: nowrap;
+            text-decoration: none; display: inline-flex; align-items: center; justify-content: center;
+            font-family: 'Inter', sans-serif;
+        }
+        .nav-plan-btn:hover { background: #E8BE78; transform: translateY(-1px); }
+
+        .nav-mobile-toggle {
+            display: none; background: #E6F2EC;
+            border: 1.5px solid rgba(200,151,65,0.25); border-radius: 7px;
+            padding: 6px 11px; font-size: 20px; cursor: pointer; color: #12382B;
+        }
+        .nav-mobile-menu {
+            display: none; flex-direction: column;
+            background: #FFFFFF; border-top: 2px solid #C89741;
+            padding: 10px 24px 20px;
+        }
+        .nav-mobile-menu.open { display: flex; }
+        .nav-mobile-menu a {
+            color: #12382B; padding: 13px 0;
+            border-bottom: 1px solid rgba(200,151,65,0.25); font-size: 15px;
+            text-decoration: none;
+        }
+        .nav-mobile-menu a:last-child { border-bottom: none; color: #C89741; font-weight: 700; }
+
+        @media (max-width: 820px) {
+            .nav-links { display: none !important; }
+            .nav-mobile-toggle { display: block !important; }
+            .top-bar-left { display: none !important; }
+        }
     </style>
 </head>
 <body class="avazora">
 
-    <!-- NAVBAR -->
-    <nav class="navbar" id="nav" style="background: var(--green-deep); position: sticky; top: 0; z-index: 999; padding: 15px 36px;">
-        <div class="logo">
-            <a href="index.html" style="display:flex; align-items:center; text-decoration:none; gap:12px;">
-                <img src="images/logo.jpg" alt="Avazora Tourism Logo" class="nav-logo-img" />
-                <span style="color:var(--ivory); font-size:22px; font-weight:700; font-family:'Cinzel', serif;">AVAZORA</span>
+    <!-- ═══════════════════════════════════════════
+         TOP UTILITY BAR
+    ═══════════════════════════════════════════ -->
+    <div class="top-bar">
+        <div class="top-bar-inner">
+            <div class="top-bar-left">
+                <span>🕐 24/7 Travel Support</span>
+                <span>🗺️ Custom Itineraries</span>
+                <span>⭐ 100% Personalized Trips</span>
+            </div>
+            <div class="top-bar-right">
+                <a href="tel:+918001234567">📞 +91 (800) 123-4567</a>
+                <select aria-label="Currency">
+                    <option>INR ₹</option>
+                    <option>USD $</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         NAVBAR
+    ═══════════════════════════════════════════ -->
+    <nav class="navbar" id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <img src="images/logo.jpg" alt="Avazora Logo">
+                <div class="nav-logo-text">
+                    <span class="brand">AVAZORA</span>
+                    <span class="sub">Temple Tourism</span>
+                </div>
             </a>
-        </div>
-        <div class="nav-links">
-            <a href="index.html#home">Home</a>
-            <a href="about.html">About</a>
-            <div class="dropdown">
-                <a href="index.html#services" class="dropbtn">Services</a>
-                <div class="dropdown-content mega-menu">
-                    <div class="mega-col">
-                        <h4>Domestic Tourism</h4>
-                        <a href="#">Tamil Nadu Temple Tours</a>
-                        <a href="#">South India Pilgrimage Tours</a>
-                        <a href="#">North India Temple Tours</a>
-                        <a href="#">East India Heritage Tours</a>
-                        <a href="#">West India Temple Tours</a>
-                        <a href="#">Pan-India Pilgrimage Tours</a>
-                    </div>
-                    <div class="mega-col">
-                        <h4>International Tourism</h4>
-                        <a href="#">International Pilgrimage Tours</a>
-                        <a href="#">Indian Heritage Tours</a>
-                        <a href="#">Spiritual &amp; Cultural Tours</a>
-                        <a href="#">Group Tours</a>
-                        <a href="#">Customized International Tours</a>
-                    </div>
-                    <div class="mega-col">
-                        <h4>Special Tours</h4>
-                        <a href="#">Family Tours</a>
-                        <a href="#">Senior Citizen Tours</a>
-                        <a href="#">Solo Traveller Tours</a>
-                        <a href="#">Photography Tours</a>
-                        <a href="#">Festival Tours</a>
-                    </div>
-                    <div class="mega-col">
-                        <h4>Travel Assistance</h4>
-                        <a href="#">Tour Planning</a>
-                        <a href="#">Hotel Assistance</a>
-                        <a href="#">Transport Assistance</a>
-                        <a href="#">Customized Itinerary</a>
-                        <a href="#">Group Booking</a>
+
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <div class="nav-dropdown">
+                    <a href="destinations.html">Destinations ▾</a>
+                    <div class="nav-dropdown-menu">
+                        <a href="destinations.html?state=Tamil Nadu">Tamil Nadu</a>
+                        <a href="destinations.html?state=Kerala">Kerala</a>
+                        <a href="destinations.html?state=Odisha">Odisha</a>
+                        <a href="destinations.html?state=Uttarakhand">Uttarakhand</a>
+                        <a href="destinations.html?state=Madhya Pradesh">Madhya Pradesh</a>
+                        <a href="destinations.html?state=Karnataka">Karnataka</a>
                     </div>
                 </div>
+                <a href="packages.html">Tour Packages</a>
+                <a href="planner.html">Trip Planner</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html" class="active">Contact</a>
             </div>
-            <div class="dropdown">
-                <a href="index.html#temples" class="dropbtn">Temples</a>
-                <div class="dropdown-content">
-                    <a href="index.html#temples">Temple Directory</a>
-                    <a href="index.html#architecture">Architecture</a>
-                </div>
+
+            <div class="nav-right">
+                <button class="nav-fav-btn" title="Saved temples">♡</button>
+                <a href="planner.html" class="nav-plan-btn">PLAN MY TRIP</a>
+                <button class="nav-mobile-toggle" id="mobileToggle">☰</button>
             </div>
-            <a href="index.html#festivals">Festivals</a>
-            <a href="index.html#ai">AI Guide</a>
-            <a href="contact.html" style="color: var(--gold-bright) !important;">Contact</a>
         </div>
-        <div class="nav-right">
-            <span class="mobile-toggle icon-btn" id="mobileToggle" data-icon="menu"></span>
-        </div>
-        <div class="mobile-menu" id="mobileMenu">
-            <a href="index.html#home">Home</a>
-            <a href="about.html">About</a>
-            <a href="index.html#services">Services</a>
-            <a href="index.html#temples">Temples</a>
-            <a href="index.html#festivals">Festivals</a>
-            <a href="index.html#ai">AI Guide</a>
-            <a href="contact.html">Contact</a>
+        <div class="nav-mobile-menu" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="destinations.html">Destinations</a>
+            <a href="packages.html">Tour Packages</a>
+            <a href="planner.html">Trip Planner</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html" class="active">Contact</a>
         </div>
     </nav>
 
