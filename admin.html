@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Avazora Admin — Enquiry Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --green: #0b2119;
+            --green-mid: #1a3d2b;
+            --gold: #d6ad55;
+            --gold-dim: #c89a30;
+            --ivory: #f5f0e8;
+            --sidebar-w: 260px;
+        }
+        body { font-family: 'Inter', sans-serif; background: #f4f1eb; color: #1a1a1a; display: flex; min-height: 100vh; }
+
+        /* ── Sidebar ── */
+        .sidebar {
+            width: var(--sidebar-w); background: var(--green);
+            display: flex; flex-direction: column;
+            position: fixed; left: 0; top: 0; bottom: 0; z-index: 100;
+        }
+        .sidebar-logo {
+            padding: 24px 20px;
+            border-bottom: 1px solid rgba(214,173,85,0.2);
+            display: flex; align-items: center; gap: 12px;
+        }
+        .sidebar-logo .logo-text { font-family: 'Cinzel', serif; font-size: 20px; color: var(--gold); font-weight: 700; }
+        .sidebar-logo .logo-sub { font-size: 11px; color: rgba(245,240,232,0.5); margin-top: 2px; font-family: 'Space Grotesk', sans-serif; }
+        .sidebar-nav { padding: 20px 0; flex: 1; }
+        .sidebar-item {
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px 20px; cursor: pointer;
+            color: rgba(245,240,232,0.7); font-size: 14px; font-weight: 500;
+            transition: all .2s; border-left: 3px solid transparent;
+        }
+        .sidebar-item:hover, .sidebar-item.active {
+            color: var(--ivory); background: rgba(255,255,255,0.05);
+            border-left-color: var(--gold);
+        }
+        .sidebar-item .si-icon { font-size: 18px; }
+        .sidebar-footer {
+            padding: 16px 20px; border-top: 1px solid rgba(214,173,85,0.2);
+            font-size: 12px; color: rgba(245,240,232,0.4);
+        }
+
+        /* ── Main ── */
+        .main { margin-left: var(--sidebar-w); flex: 1; display: flex; flex-direction: column; }
+        .topbar {
+            background: white; padding: 16px 32px;
+            display: flex; align-items: center; justify-content: space-between;
+            border-bottom: 1px solid #e8e2d8;
+            position: sticky; top: 0; z-index: 50;
+        }
+        .topbar h1 { font-family: 'Cinzel', serif; font-size: 20px; color: var(--green); }
+        .topbar-right { display: flex; gap: 12px; align-items: center; }
+        .topbar-badge { background: var(--gold); color: var(--green); font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 20px; font-family: 'Space Grotesk', sans-serif; }
+
+        /* ── Stats Bar ── */
+        .stats-bar { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; padding: 24px 32px; }
+        @media (max-width: 1200px) { .stats-bar { grid-template-columns: repeat(3, 1fr); } }
+        .stat-card {
+            background: white; border-radius: 12px; padding: 20px;
+            border: 1px solid #e8e2d8;
+            display: flex; flex-direction: column; gap: 4px;
+        }
+        .stat-card .sc-num { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--green); }
+        .stat-card .sc-label { font-size: 12px; color: #888; font-weight: 500; }
+        .stat-card.highlight { border-color: var(--gold); background: #fffaf0; }
+        .stat-card.highlight .sc-num { color: var(--gold-dim); }
+
+        /* ── Filters ── */
+        .filters-row { padding: 0 32px 16px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+        .filter-select {
+            padding: 9px 14px; border: 1.5px solid #e0d8cc; border-radius: 8px;
+            font-size: 13px; font-family: 'Inter', sans-serif;
+            background: white; color: #333; cursor: pointer; outline: none;
+        }
+        .filter-select:focus { border-color: var(--gold); }
+        .refresh-btn {
+            margin-left: auto;
+            background: var(--green); color: var(--ivory);
+            border: none; padding: 9px 20px; border-radius: 8px;
+            font-size: 13px; font-weight: 600; cursor: pointer; transition: background .2s;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .refresh-btn:hover { background: var(--green-mid); }
+
+        /* ── Table ── */
+        .table-section { padding: 0 32px 32px; }
+        .table-wrap { background: white; border-radius: 12px; border: 1px solid #e8e2d8; overflow: hidden; }
+        table { width: 100%; border-collapse: collapse; }
+        thead tr { background: #faf8f4; border-bottom: 2px solid #e8e2d8; }
+        th { padding: 14px 16px; text-align: left; font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #888; white-space: nowrap; }
+        td { padding: 14px 16px; font-size: 14px; border-bottom: 1px solid #f0ebe0; vertical-align: middle; }
+        tbody tr { cursor: pointer; transition: background .15s; }
+        tbody tr:hover { background: #faf8f4; }
+        tbody tr.selected { background: #fffaf0; }
+        .enq-num { font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; color: var(--green); }
+        .status-badge {
+            display: inline-block; padding: 4px 10px; border-radius: 20px;
+            font-size: 11px; font-weight: 700; font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: .04em;
+        }
+        .status-NEW { background: #e8f4fd; color: #1a6fa8; }
+        .status-CONTACTED { background: #e8f7ee; color: #1a6f3a; }
+        .status-IN_PROGRESS { background: #fff4e0; color: #b07020; }
+        .status-QUOTATION_SENT { background: #f0e8ff; color: #6030a8; }
+        .status-CONFIRMED { background: #e0f7e0; color: #157015; }
+        .status-CLOSED { background: #f0f0f0; color: #666; }
+        .type-badge {
+            display: inline-block; padding: 3px 8px; border-radius: 4px;
+            font-size: 11px; font-weight: 600;
+        }
+        .type-Domestic { background: #e8f4fd; color: #1a6fa8; }
+        .type-International { background: #fde8f0; color: #a81a6f; }
+        .empty-state { text-align: center; padding: 60px 20px; color: #aaa; }
+
+        /* ── Detail Panel ── */
+        .detail-panel {
+            position: fixed; right: 0; top: 0; bottom: 0; width: 420px;
+            background: white; border-left: 1px solid #e8e2d8;
+            transform: translateX(100%); transition: transform .3s ease;
+            z-index: 200; overflow-y: auto;
+            display: flex; flex-direction: column;
+        }
+        .detail-panel.open { transform: translateX(0); }
+        .dp-header {
+            padding: 24px; border-bottom: 1px solid #e8e2d8;
+            display: flex; align-items: center; justify-content: space-between;
+            position: sticky; top: 0; background: white; z-index: 10;
+        }
+        .dp-close { background: none; border: none; font-size: 22px; cursor: pointer; color: #888; }
+        .dp-enq-num { font-family: 'Cinzel', serif; font-size: 16px; color: var(--green); }
+        .dp-body { padding: 24px; flex: 1; }
+        .dp-section { margin-bottom: 28px; }
+        .dp-section h4 {
+            font-family: 'Space Grotesk', sans-serif; font-size: 11px;
+            font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+            color: #c07a2a; margin-bottom: 14px;
+            padding-bottom: 8px; border-bottom: 1px solid #f0ebe0;
+        }
+        .dp-row { display: flex; gap: 12px; margin-bottom: 10px; }
+        .dp-row .dr-label { font-size: 12px; color: #888; min-width: 130px; font-weight: 500; }
+        .dp-row .dr-value { font-size: 14px; color: var(--green); font-weight: 500; }
+        .dp-actions { padding: 20px 24px; border-top: 1px solid #e8e2d8; display: flex; flex-direction: column; gap: 12px; }
+        .dp-action-row { display: flex; gap: 8px; }
+        .dp-btn {
+            flex: 1; padding: 10px; border-radius: 8px;
+            border: none; cursor: pointer; font-size: 13px; font-weight: 600;
+            font-family: 'Space Grotesk', sans-serif; transition: all .2s;
+            display: flex; align-items: center; justify-content: center; gap: 6px;
+        }
+        .dp-btn-wa { background: #25d366; color: white; }
+        .dp-btn-wa:hover { filter: brightness(1.1); }
+        .dp-btn-call { background: var(--green); color: var(--ivory); }
+        .dp-btn-call:hover { background: var(--green-mid); }
+        .dp-btn-email { background: #f4f1eb; color: var(--green); border: 1px solid #e0d8cc; }
+        .dp-btn-email:hover { background: #e8e2d8; }
+        .status-select-wrap { display: flex; gap: 8px; align-items: center; }
+        .status-select-wrap select {
+            flex: 1; padding: 10px 12px; border: 1.5px solid #e0d8cc; border-radius: 8px;
+            font-size: 13px; font-family: 'Inter', sans-serif; outline: none;
+        }
+        .status-select-wrap select:focus { border-color: var(--gold); }
+        .status-update-btn {
+            background: var(--gold); color: var(--green); border: none;
+            padding: 10px 16px; border-radius: 8px; font-size: 13px; font-weight: 700;
+            cursor: pointer; transition: all .2s; font-family: 'Space Grotesk', sans-serif;
+        }
+        .status-update-btn:hover { filter: brightness(1.1); }
+        .dp-notes { width: 100%; padding: 10px 12px; border: 1.5px solid #e0d8cc; border-radius: 8px; font-size: 13px; font-family: 'Inter', sans-serif; resize: vertical; min-height: 80px; outline: none; }
+        .dp-notes:focus { border-color: var(--gold); }
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <div>
+                <div class="logo-text">AVAZORA</div>
+                <div class="logo-sub">Admin Dashboard</div>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="sidebar-item active"><span class="si-icon">📋</span> Contact Enquiries</div>
+            <div class="sidebar-item" onclick="window.open('index.html','_blank')"><span class="si-icon">🏠</span> View Website</div>
+            <div class="sidebar-item" onclick="window.open('contact.html','_blank')"><span class="si-icon">📞</span> Contact Page</div>
+            <div class="sidebar-item" onclick="window.open('http://localhost:8080/docs','_blank')"><span class="si-icon">⚙️</span> API Docs</div>
+        </nav>
+        <div class="sidebar-footer">© 2026 Avazora Tourism</div>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="main">
+        <div class="topbar">
+            <h1>Contact Enquiries</h1>
+            <div class="topbar-right">
+                <span class="topbar-badge" id="newBadge">0 NEW</span>
+            </div>
+        </div>
+
+        <!-- STATS -->
+        <div class="stats-bar" id="statsBar">
+            <div class="stat-card highlight"><div class="sc-num" id="statNew">–</div><div class="sc-label">New</div></div>
+            <div class="stat-card"><div class="sc-num" id="statContacted">–</div><div class="sc-label">Contacted</div></div>
+            <div class="stat-card"><div class="sc-num" id="statProgress">–</div><div class="sc-label">In Progress</div></div>
+            <div class="stat-card"><div class="sc-num" id="statQuote">–</div><div class="sc-label">Quote Sent</div></div>
+            <div class="stat-card"><div class="sc-num" id="statConfirmed">–</div><div class="sc-label">Confirmed</div></div>
+            <div class="stat-card"><div class="sc-num" id="statTotal">–</div><div class="sc-label">Total</div></div>
+        </div>
+
+        <!-- FILTERS -->
+        <div class="filters-row">
+            <select class="filter-select" id="filterStatus" onchange="loadEnquiries()">
+                <option value="">All Statuses</option>
+                <option>NEW</option>
+                <option>CONTACTED</option>
+                <option>IN_PROGRESS</option>
+                <option>QUOTATION_SENT</option>
+                <option>CONFIRMED</option>
+                <option>CLOSED</option>
+            </select>
+            <select class="filter-select" id="filterType" onchange="loadEnquiries()">
+                <option value="">All Types</option>
+                <option>Domestic</option>
+                <option>International</option>
+            </select>
+            <button class="refresh-btn" onclick="loadEnquiries()">↻ Refresh</button>
+        </div>
+
+        <!-- TABLE -->
+        <div class="table-section">
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Enquiry ID</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Service</th>
+                            <th>Destination</th>
+                            <th>Travellers</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="enquiryTableBody">
+                        <tr><td colspan="8" class="empty-state">Loading enquiries...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- DETAIL PANEL -->
+    <div class="detail-panel" id="detailPanel">
+        <div class="dp-header">
+            <div class="dp-enq-num" id="dpEnqNum">—</div>
+            <button class="dp-close" onclick="closePanel()">✕</button>
+        </div>
+        <div class="dp-body">
+            <div class="dp-section">
+                <h4>Customer Details</h4>
+                <div class="dp-row"><span class="dr-label">Name</span><span class="dr-value" id="dpName">—</span></div>
+                <div class="dp-row"><span class="dr-label">Email</span><span class="dr-value" id="dpEmail">—</span></div>
+                <div class="dp-row"><span class="dr-label">Phone / WhatsApp</span><span class="dr-value" id="dpPhone">—</span></div>
+                <div class="dp-row"><span class="dr-label">Country</span><span class="dr-value" id="dpCountry">—</span></div>
+            </div>
+            <div class="dp-section">
+                <h4>Journey Details</h4>
+                <div class="dp-row"><span class="dr-label">Tour Type</span><span class="dr-value" id="dpTourType">—</span></div>
+                <div class="dp-row"><span class="dr-label">Service</span><span class="dr-value" id="dpService">—</span></div>
+                <div class="dp-row"><span class="dr-label">From</span><span class="dr-value" id="dpFrom">—</span></div>
+                <div class="dp-row"><span class="dr-label">Destination</span><span class="dr-value" id="dpDest">—</span></div>
+                <div class="dp-row"><span class="dr-label">Travel Date</span><span class="dr-value" id="dpDate">—</span></div>
+                <div class="dp-row"><span class="dr-label">Travellers</span><span class="dr-value" id="dpTravellers">—</span></div>
+                <div class="dp-row"><span class="dr-label">Duration</span><span class="dr-value" id="dpDuration">—</span></div>
+                <div class="dp-row"><span class="dr-label">Budget</span><span class="dr-value" id="dpBudget">—</span></div>
+            </div>
+            <div class="dp-section" id="dpDomesticSection">
+                <h4>Domestic Info</h4>
+                <div class="dp-row"><span class="dr-label">State</span><span class="dr-value" id="dpState">—</span></div>
+                <div class="dp-row"><span class="dr-label">City</span><span class="dr-value" id="dpCity">—</span></div>
+                <div class="dp-row"><span class="dr-label">Region</span><span class="dr-value" id="dpRegion">—</span></div>
+            </div>
+            <div class="dp-section" id="dpIntlSection">
+                <h4>International Info</h4>
+                <div class="dp-row"><span class="dr-label">Arrival Airport</span><span class="dr-value" id="dpAirport">—</span></div>
+                <div class="dp-row"><span class="dr-label">Visa Assistance</span><span class="dr-value" id="dpVisa">—</span></div>
+                <div class="dp-row"><span class="dr-label">Accommodation</span><span class="dr-value" id="dpAccom">—</span></div>
+                <div class="dp-row"><span class="dr-label">Airport Transfer</span><span class="dr-value" id="dpTransfer">—</span></div>
+            </div>
+            <div class="dp-section">
+                <h4>Message</h4>
+                <p style="font-size:14px; color:#444; line-height:1.6;" id="dpMessage">—</p>
+            </div>
+        </div>
+        <div class="dp-actions">
+            <div class="dp-action-row">
+                <button class="dp-btn dp-btn-wa" id="dpWaBtn">💬 WhatsApp</button>
+                <button class="dp-btn dp-btn-call" id="dpCallBtn">📞 Call</button>
+                <button class="dp-btn dp-btn-email" id="dpEmailBtn">📧 Email</button>
+            </div>
+            <div class="status-select-wrap">
+                <select id="dpStatusSelect">
+                    <option>NEW</option>
+                    <option>CONTACTED</option>
+                    <option>IN_PROGRESS</option>
+                    <option>QUOTATION_SENT</option>
+                    <option>CONFIRMED</option>
+                    <option>CLOSED</option>
+                </select>
+                <button class="status-update-btn" onclick="updateStatus()">Update</button>
+            </div>
+            <textarea class="dp-notes" id="dpNotes" placeholder="Add admin notes..."></textarea>
+        </div>
+    </div>
+
+    <script>
+        const API = 'http://localhost:8080/api';
+        let allEnquiries = [];
+        let selectedId = null;
+
+        async function loadEnquiries() {
+            const status = document.getElementById('filterStatus').value;
+            const type = document.getElementById('filterType').value;
+            let url = `${API}/admin/enquiries?limit=200`;
+            if (status) url += `&status=${status}`;
+            if (type) url += `&tour_type=${type}`;
+
+            try {
+                const res = await fetch(url);
+                allEnquiries = await res.json();
+            } catch (e) {
+                // Demo data fallback
+                allEnquiries = [
+                    { id: 1, enquiry_number: 'AVZ-2026-00001', name: 'Roshni S.', email: 'roshni@example.com', phone: '+91 98765 43210', country: 'India', tour_type: 'Domestic', service: 'Pilgrimage Tour', destination: 'Tamil Nadu', travellers: 4, duration: 3, travel_date: '2026-09-15', budget: '₹25,000', message: 'I want to visit Chola temples.', status: 'NEW', starting_location: 'Chennai', state: 'Tamil Nadu', city: 'Madurai', preferred_region: 'Chola temples', created_at: new Date().toISOString() },
+                    { id: 2, enquiry_number: 'AVZ-2026-00002', name: 'Arun K.', email: 'arun@example.com', phone: '+91 87654 32109', country: 'India', tour_type: 'International', service: 'Heritage Tour', destination: 'Rajasthan', travellers: 2, duration: 7, travel_date: '2026-10-01', budget: '$2,000', message: '', status: 'CONTACTED', arrival_airport: 'Delhi', visa_assistance: 'Yes', accommodation: 'Yes', airport_transfer: 'Yes', created_at: new Date().toISOString() },
+                ];
+            }
+
+            renderTable(allEnquiries);
+            updateStats(allEnquiries);
+        }
+
+        function renderTable(data) {
+            const tbody = document.getElementById('enquiryTableBody');
+            if (!data.length) {
+                tbody.innerHTML = '<tr><td colspan="8" class="empty-state">No enquiries found.</td></tr>';
+                return;
+            }
+            tbody.innerHTML = data.map(e => `
+                <tr onclick="openPanel(${e.id})" class="${selectedId === e.id ? 'selected' : ''}">
+                    <td><span class="enq-num">${e.enquiry_number}</span></td>
+                    <td>${e.name}</td>
+                    <td><span class="type-badge type-${e.tour_type || 'Domestic'}">${e.tour_type || '—'}</span></td>
+                    <td>${e.service || '—'}</td>
+                    <td>${e.destination || '—'}</td>
+                    <td>${e.travellers || '—'}</td>
+                    <td>${e.created_at ? new Date(e.created_at).toLocaleDateString('en-IN') : '—'}</td>
+                    <td><span class="status-badge status-${e.status}">${e.status}</span></td>
+                </tr>
+            `).join('');
+        }
+
+        function updateStats(data) {
+            const count = (s) => data.filter(e => e.status === s).length;
+            document.getElementById('statNew').textContent = count('NEW');
+            document.getElementById('statContacted').textContent = count('CONTACTED');
+            document.getElementById('statProgress').textContent = count('IN_PROGRESS');
+            document.getElementById('statQuote').textContent = count('QUOTATION_SENT');
+            document.getElementById('statConfirmed').textContent = count('CONFIRMED');
+            document.getElementById('statTotal').textContent = data.length;
+            document.getElementById('newBadge').textContent = `${count('NEW')} NEW`;
+        }
+
+        function val(v) { return v || '—'; }
+
+        function openPanel(id) {
+            selectedId = id;
+            const e = allEnquiries.find(x => x.id === id);
+            if (!e) return;
+
+            document.getElementById('dpEnqNum').textContent = e.enquiry_number;
+            document.getElementById('dpName').textContent = val(e.name);
+            document.getElementById('dpEmail').textContent = val(e.email);
+            document.getElementById('dpPhone').textContent = val(e.phone);
+            document.getElementById('dpCountry').textContent = val(e.country);
+            document.getElementById('dpTourType').textContent = val(e.tour_type);
+            document.getElementById('dpService').textContent = val(e.service);
+            document.getElementById('dpFrom').textContent = val(e.starting_location);
+            document.getElementById('dpDest').textContent = val(e.destination);
+            document.getElementById('dpDate').textContent = val(e.travel_date);
+            document.getElementById('dpTravellers').textContent = e.travellers ? `${e.travellers} persons` : '—';
+            document.getElementById('dpDuration').textContent = e.duration ? `${e.duration} days` : '—';
+            document.getElementById('dpBudget').textContent = val(e.budget);
+            document.getElementById('dpMessage').textContent = e.message || 'No message provided.';
+            document.getElementById('dpStatusSelect').value = e.status;
+            document.getElementById('dpNotes').value = e.admin_notes || '';
+
+            // Domestic / International sections
+            const isDomestic = e.tour_type === 'Domestic';
+            document.getElementById('dpDomesticSection').style.display = isDomestic ? '' : 'none';
+            document.getElementById('dpIntlSection').style.display = !isDomestic ? '' : 'none';
+            if (isDomestic) {
+                document.getElementById('dpState').textContent = val(e.state);
+                document.getElementById('dpCity').textContent = val(e.city);
+                document.getElementById('dpRegion').textContent = val(e.preferred_region);
+            } else {
+                document.getElementById('dpAirport').textContent = val(e.arrival_airport);
+                document.getElementById('dpVisa').textContent = val(e.visa_assistance);
+                document.getElementById('dpAccom').textContent = val(e.accommodation);
+                document.getElementById('dpTransfer').textContent = val(e.airport_transfer);
+            }
+
+            // Action buttons
+            const waMsg = encodeURIComponent(`Hello ${e.name}! 🙏\n\nThank you for your ${e.tour_type || ''} enquiry to ${e.destination || 'India'}.\n\nYour Enquiry ID: ${e.enquiry_number}\n\nOur team will be in touch shortly with a personalized itinerary.\n\n— Avazora Tourism Team`);
+            document.getElementById('dpWaBtn').onclick = () => window.open(`https://wa.me/${(e.phone || '').replace(/\D/g, '')}?text=${waMsg}`, '_blank');
+            document.getElementById('dpCallBtn').onclick = () => window.open(`tel:${e.phone}`, '_self');
+            document.getElementById('dpEmailBtn').onclick = () => window.open(`mailto:${e.email}?subject=Your Avazora Enquiry ${e.enquiry_number}`, '_self');
+
+            document.getElementById('detailPanel').classList.add('open');
+            renderTable(allEnquiries);
+        }
+
+        function closePanel() {
+            selectedId = null;
+            document.getElementById('detailPanel').classList.remove('open');
+        }
+
+        async function updateStatus() {
+            if (!selectedId) return;
+            const status = document.getElementById('dpStatusSelect').value;
+            const notes = document.getElementById('dpNotes').value;
+
+            try {
+                await fetch(`${API}/admin/enquiries/${selectedId}/status`, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status, admin_notes: notes }),
+                });
+            } catch (e) {
+                // Update locally for demo
+                const idx = allEnquiries.findIndex(x => x.id === selectedId);
+                if (idx !== -1) { allEnquiries[idx].status = status; allEnquiries[idx].admin_notes = notes; }
+            }
+
+            await loadEnquiries();
+            openPanel(selectedId);
+        }
+
+        // Load on init
+        loadEnquiries();
+        // Auto-refresh every 30 seconds
+        setInterval(loadEnquiries, 30000);
+    </script>
+</body>
+</html>

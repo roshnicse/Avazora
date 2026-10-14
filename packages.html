@@ -1,0 +1,2808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sacred Tour Packages — Avazora Temple Tourism</title>
+    <meta name="description" content="Handcrafted pilgrimage experiences and sacred temple circuits across India. South India, Char Dham, Odisha, Kerala, and bespoke spiritual yatras." />
+
+    <!-- Google Fonts: Cinzel & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome 6.5.1 for crisp iconography -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* ============================================================
+           AVAZORA TEMPLE TOURISM — THEME TOKENS
+        ============================================================ */
+        :root {
+            --green-deep:   #0B2119;
+            --green:        #12382B;
+            --green-mid:    #164434;
+            --green-light:  #1E5A44;
+            --green-pale:   #EAF3EE;
+            --gold:         #C89741;
+            --gold-bright:  #E8BE78;
+            --gold-light:   #FBF0D9;
+            --ivory:        #FBF8F1;
+            --ivory-dim:    #F2EBDC;
+            --ink:          #171512;
+            --white:        #FFFFFF;
+            --text-muted:   #546059;
+            --border-gold:  rgba(200, 151, 65, 0.28);
+            --border-light: rgba(18, 56, 43, 0.12);
+            --shadow-sm:    0 4px 14px rgba(11, 33, 25, 0.06);
+            --shadow-md:    0 10px 30px rgba(11, 33, 25, 0.10);
+            --shadow-lg:    0 18px 46px rgba(11, 33, 25, 0.16);
+            --radius-sm:    6px;
+            --radius-md:    12px;
+            --radius-lg:    18px;
+            --transition:   all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--ink);
+            background-color: var(--ivory);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        button, input, select, textarea {
+            font-family: inherit;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Gold Ornamental Dividers */
+        .gold-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin: 18px auto 0;
+        }
+        .gold-divider::before,
+        .gold-divider::after {
+            content: '';
+            height: 1px;
+            width: 70px;
+            background: linear-gradient(to right, transparent, var(--gold));
+        }
+        .gold-divider::after {
+            background: linear-gradient(to left, transparent, var(--gold));
+        }
+        .gold-divider i {
+            color: var(--gold-bright);
+            font-size: 13px;
+        }
+
+        /* Section Headings */
+        .section-header {
+            text-align: center;
+            max-width: 760px;
+            margin: 0 auto 46px;
+        }
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gold);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(28px, 4vw, 38px);
+            font-weight: 700;
+            color: var(--green-deep);
+            line-height: 1.25;
+            margin-bottom: 12px;
+        }
+        .section-desc {
+            font-size: 15.5px;
+            color: var(--text-muted);
+            line-height: 1.65;
+        }
+
+        /* ============================================================
+           STICKY NAVBAR
+        ============================================================ */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(11, 33, 25, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(200, 151, 65, 0.25);
+            padding: 14px 0;
+            transition: background 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+        }
+        .navbar.solid {
+            background: var(--green-deep);
+            padding: 10px 0;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+            border-bottom-color: rgba(200, 151, 65, 0.4);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+        .nav-logo img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 12px rgba(200, 151, 65, 0.35);
+        }
+        .nav-logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .nav-logo-brand {
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--ivory);
+            line-height: 1;
+        }
+        .nav-logo-sub {
+            font-size: 9.5px;
+            letter-spacing: 2.4px;
+            text-transform: uppercase;
+            color: var(--gold-bright);
+            font-weight: 500;
+            margin-top: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: rgba(251, 248, 241, 0.88);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 6px;
+            letter-spacing: 0.3px;
+        }
+        .nav-links a:hover {
+            color: var(--gold-bright);
+            background: rgba(200, 151, 65, 0.12);
+        }
+        .nav-links a.active {
+            color: var(--gold-bright);
+            font-weight: 700;
+            background: rgba(200, 151, 65, 0.18);
+            border: 1px solid rgba(200, 151, 65, 0.4);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .nav-cta-btn {
+            background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+            color: var(--green-deep);
+            padding: 9px 20px;
+            border-radius: 24px;
+            font-size: 13.5px;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            box-shadow: 0 4px 14px rgba(200, 151, 65, 0.3);
+        }
+        .nav-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(200, 151, 65, 0.45);
+            filter: brightness(1.08);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: transparent;
+            color: var(--ivory);
+            font-size: 22px;
+            padding: 6px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: var(--green-deep);
+            border-top: 1px solid rgba(200, 151, 65, 0.25);
+            padding: 16px 24px 24px;
+        }
+        .mobile-menu.open {
+            display: block;
+        }
+        .mobile-menu a {
+            display: block;
+            padding: 12px 0;
+            color: var(--ivory);
+            font-size: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            font-weight: 500;
+        }
+        .mobile-menu a.active {
+            color: var(--gold-bright);
+            font-weight: 700;
+        }
+
+        /* ============================================================
+           1. HERO (COMPACT)
+        ============================================================ */
+        .packages-hero {
+            background: radial-gradient(circle at 50% 30%, #164434 0%, #0B2119 100%);
+            color: var(--ivory);
+            padding: 70px 24px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(200, 151, 65, 0.25);
+        }
+        .packages-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle, rgba(200, 151, 65, 0.08) 1px, transparent 1px);
+            background-size: 32px 32px;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        .packages-hero-inner {
+            max-width: 820px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        .packages-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(200, 151, 65, 0.15);
+            border: 1px solid var(--gold);
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--gold-bright);
+            margin-bottom: 18px;
+        }
+        .packages-hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--ivory);
+            margin-bottom: 14px;
+            line-height: 1.2;
+        }
+        .packages-hero p.hero-subtext {
+            font-size: clamp(15px, 2vw, 18px);
+            color: rgba(251, 248, 241, 0.85);
+            max-width: 680px;
+            margin: 0 auto;
+            line-height: 1.65;
+            font-weight: 300;
+        }
+
+        /* Trust Chips Under Hero */
+        .hero-trust-chips {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(200, 151, 65, 0.18);
+        }
+        .trust-chip {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: rgba(251, 248, 241, 0.9);
+            font-weight: 500;
+        }
+        .trust-chip i {
+            color: var(--gold-bright);
+            font-size: 14px;
+        }
+
+        /* ============================================================
+           2. FILTER BAR
+        ============================================================ */
+        .filter-section {
+            background: var(--white);
+            border-bottom: 1px solid rgba(18, 56, 43, 0.1);
+            padding: 22px 0;
+            box-shadow: 0 4px 18px rgba(11, 33, 25, 0.04);
+            position: sticky;
+            top: 72px;
+            z-index: 990;
+        }
+        .filter-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .filter-pills-list {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .filter-pill {
+            background: transparent;
+            color: var(--green);
+            border: 1.5px solid var(--green);
+            padding: 9px 20px;
+            border-radius: 30px;
+            font-size: 13.5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            user-select: none;
+        }
+        .filter-pill:hover {
+            color: var(--gold);
+            border-color: var(--gold);
+            background: rgba(200, 151, 65, 0.08);
+        }
+        .filter-pill.active {
+            background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+            color: var(--green-deep);
+            border-color: var(--gold);
+            box-shadow: 0 4px 14px rgba(200, 151, 65, 0.28);
+            font-weight: 700;
+        }
+        .filter-meta-count {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .filter-meta-count strong {
+            color: var(--green-deep);
+        }
+
+        /* ============================================================
+           3. PACKAGES GRID
+        ============================================================ */
+        .packages-section {
+            padding: 54px 0 84px;
+            background: var(--ivory);
+        }
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .package-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(200, 151, 65, 0.22);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, opacity 0.3s ease;
+            position: relative;
+        }
+        .package-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--gold);
+        }
+
+        /* Card Image Area */
+        .card-img-wrapper {
+            position: relative;
+            height: 220px;
+            width: 100%;
+            overflow: hidden;
+            background-color: var(--green-deep);
+        }
+        .card-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .package-card:hover .card-img {
+            transform: scale(1.08);
+        }
+
+        /* Card Overlay Badges */
+        .card-ribbon {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+            color: var(--green-deep);
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            z-index: 2;
+        }
+        .duration-pill {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: rgba(11, 33, 25, 0.88);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: var(--ivory);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(200, 151, 65, 0.45);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            z-index: 2;
+        }
+
+        /* Card Body */
+        .card-body {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .package-name {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--green-deep);
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+        .package-route {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            line-height: 1.45;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 7px;
+            font-weight: 500;
+        }
+        .package-route i {
+            color: var(--gold);
+            margin-top: 3px;
+            flex-shrink: 0;
+            font-size: 12px;
+        }
+
+        /* Highlights */
+        .package-highlights {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            margin-bottom: 18px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid rgba(18, 56, 43, 0.09);
+        }
+        .highlight-item {
+            font-size: 13.5px;
+            color: var(--ink);
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            line-height: 1.4;
+        }
+        .highlight-check {
+            color: var(--gold);
+            font-size: 13px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        /* Includes Strip */
+        .includes-strip {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--ivory);
+            border: 1px solid rgba(200, 151, 65, 0.18);
+            border-radius: var(--radius-sm);
+            padding: 8px 12px;
+            margin-bottom: 20px;
+            font-size: 12px;
+            color: var(--green-deep);
+            font-weight: 600;
+        }
+        .include-chip {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: default;
+        }
+        .include-chip span.emoji {
+            font-size: 14px;
+        }
+
+        /* Price & Actions Row */
+        .card-footer {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .price-row {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+        }
+        .price-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-weight: 600;
+        }
+        .price-val {
+            font-family: 'Cinzel', serif;
+            font-size: 23px;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: 0.3px;
+        }
+        .price-val span {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        .card-actions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .btn-card-outline {
+            background: transparent;
+            color: var(--green);
+            border: 1.5px solid var(--green);
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .btn-card-outline:hover {
+            background: var(--green);
+            color: var(--ivory);
+            border-color: var(--green);
+        }
+        .btn-card-gold {
+            background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+            color: var(--green-deep);
+            border: 1.5px solid var(--gold);
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 800;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(200, 151, 65, 0.25);
+            transition: var(--transition);
+        }
+        .btn-card-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(200, 151, 65, 0.4);
+            filter: brightness(1.06);
+        }
+
+        /* Empty state if filter has no results */
+        .no-results-box {
+            display: none;
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 24px;
+            background: var(--white);
+            border-radius: var(--radius-md);
+            border: 1px dashed var(--gold);
+        }
+        .no-results-box i {
+            font-size: 42px;
+            color: var(--gold);
+            margin-bottom: 14px;
+        }
+
+        /* ============================================================
+           4. WHY CHOOSE AVAZORA (DARK GREEN BG, 4 CARDS)
+        ============================================================ */
+        .why-avazora-section {
+            background: linear-gradient(145deg, #0B2119 0%, #12382B 100%);
+            color: var(--ivory);
+            padding: 80px 0;
+            border-top: 1px solid rgba(200, 151, 65, 0.2);
+            border-bottom: 1px solid rgba(200, 151, 65, 0.2);
+            position: relative;
+        }
+        .why-avazora-section .section-title {
+            color: var(--ivory);
+        }
+        .why-avazora-section .section-desc {
+            color: rgba(251, 248, 241, 0.82);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        .feature-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(200, 151, 65, 0.25);
+            border-radius: var(--radius-md);
+            padding: 34px 24px;
+            text-align: center;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .feature-card:hover {
+            transform: translateY(-6px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--gold-bright);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+        }
+        .feature-icon-wrap {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: rgba(200, 151, 65, 0.15);
+            border: 1.5px solid var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--gold-bright);
+            font-size: 24px;
+            box-shadow: 0 0 16px rgba(200, 151, 65, 0.2);
+            transition: var(--transition);
+        }
+        .feature-card:hover .feature-icon-wrap {
+            background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+            color: var(--green-deep);
+            transform: scale(1.08);
+        }
+        .feature-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--ivory);
+            margin-bottom: 10px;
+        }
+        .feature-desc {
+            font-size: 13.5px;
+            color: rgba(251, 248, 241, 0.78);
+            line-height: 1.6;
+        }
+
+        /* ============================================================
+           5. CUSTOM PACKAGE CTA (IVORY BG, 2 COLUMNS)
+        ============================================================ */
+        .custom-cta-section {
+            background: var(--ivory);
+            padding: 90px 0;
+            position: relative;
+        }
+        .custom-cta-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            border: 1.5px solid rgba(200, 151, 65, 0.32);
+            box-shadow: var(--shadow-lg);
+            padding: 50px;
+            display: grid;
+            grid-template-columns: 1fr 1.05fr;
+            gap: 48px;
+            align-items: center;
+        }
+        .custom-cta-left .cta-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            color: var(--gold);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .custom-cta-left h2 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(28px, 3.5vw, 36px);
+            font-weight: 700;
+            color: var(--green-deep);
+            line-height: 1.25;
+            margin-bottom: 16px;
+        }
+        .custom-cta-left p {
+            font-size: 15px;
+            color: var(--text-muted);
+            line-height: 1.65;
+            margin-bottom: 24px;
+        }
+        .custom-benefits {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14.5px;
+            color: var(--ink);
+            font-weight: 500;
+        }
+        .benefit-item i {
+            color: var(--gold);
+            font-size: 16px;
+        }
+
+        /* Mini Form Right */
+        .custom-cta-right {
+            background: var(--ivory);
+            border-radius: var(--radius-md);
+            padding: 36px;
+            border: 1px solid rgba(200, 151, 65, 0.25);
+            box-shadow: var(--shadow-sm);
+            position: relative;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .form-group-full {
+            grid-column: 1 / -1;
+        }
+        .form-group label {
+            display: block;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--green-deep);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 8px;
+            border: 1.5px solid rgba(18, 56, 43, 0.16);
+            background: var(--white);
+            color: var(--ink);
+            font-size: 14px;
+            transition: var(--transition);
+        }
+        .form-control:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(200, 151, 65, 0.18);
+        }
+        select.form-control {
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C89741' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            background-size: 14px;
+            padding-right: 36px;
+            cursor: pointer;
+        }
+        .btn-custom-quote {
+            width: 100%;
+            background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+            color: var(--green-deep);
+            border: none;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 4px 16px rgba(200, 151, 65, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-custom-quote:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(200, 151, 65, 0.5);
+            filter: brightness(1.06);
+        }
+
+        /* Success Message Container */
+        .quote-success-box {
+            display: none;
+            text-align: center;
+            padding: 40px 24px;
+            animation: fadeIn 0.4s ease;
+        }
+        .quote-success-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: rgba(30, 92, 62, 0.12);
+            color: var(--green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin: 0 auto 18px;
+            border: 2px solid var(--green);
+        }
+        .quote-success-box h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
+            color: var(--green-deep);
+            margin-bottom: 10px;
+        }
+        .quote-success-box p {
+            font-size: 15px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        .quote-success-badge {
+            margin-top: 20px;
+            display: inline-block;
+            background: var(--gold-light);
+            color: var(--green-deep);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 13px;
+            border: 1px solid var(--gold);
+        }
+
+        /* ============================================================
+           6. TESTIMONIALS (3 CARDS, IVORY BG)
+        ============================================================ */
+        .testimonials-section {
+            padding: 84px 0 94px;
+            background: var(--ivory);
+            border-top: 1px solid rgba(18, 56, 43, 0.08);
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .testimonial-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 34px 28px;
+            border: 1px solid rgba(200, 151, 65, 0.25);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            transition: var(--transition);
+        }
+        .testimonial-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--gold);
+        }
+        .testimonial-quote-icon {
+            font-size: 26px;
+            color: var(--gold);
+            opacity: 0.7;
+            margin-bottom: 14px;
+        }
+        .stars-row {
+            display: flex;
+            gap: 4px;
+            color: #E29B27;
+            font-size: 15px;
+            margin-bottom: 14px;
+        }
+        .testimonial-text {
+            font-size: 14.5px;
+            color: var(--ink);
+            line-height: 1.7;
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+        .testimonial-author-block {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(18, 56, 43, 0.08);
+        }
+        .author-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--green-deep), var(--green-light));
+            color: var(--gold-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-family: 'Cinzel', serif;
+            font-size: 17px;
+            border: 2px solid var(--gold);
+            flex-shrink: 0;
+        }
+        .author-info h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 15.5px;
+            color: var(--green-deep);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .author-info .author-meta {
+            font-size: 12.5px;
+            color: var(--gold);
+            font-weight: 600;
+            margin-top: 2px;
+        }
+        .author-info .tour-name {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* ============================================================
+           7. BOOKING STEPS (WHITE BG, HORIZONTAL)
+        ============================================================ */
+        .steps-section {
+            background: var(--white);
+            padding: 80px 0;
+            border-top: 1px solid rgba(18, 56, 43, 0.08);
+            border-bottom: 1px solid rgba(18, 56, 43, 0.08);
+        }
+        .steps-flow-container {
+            position: relative;
+            margin-top: 40px;
+        }
+
+        /* Horizontal Golden Connecting Line */
+        .steps-flow-line {
+            position: absolute;
+            top: 36px;
+            left: 8%;
+            right: 8%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold) 0%, var(--gold-bright) 50%, var(--gold) 100%);
+            z-index: 1;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            position: relative;
+            z-index: 2;
+        }
+        .step-item {
+            text-align: center;
+            padding: 0 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .step-circle {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 2px solid var(--gold);
+            box-shadow: 0 4px 16px rgba(200, 151, 65, 0.25);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            position: relative;
+            transition: var(--transition);
+        }
+        .step-item:hover .step-circle {
+            background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+            transform: scale(1.08);
+            box-shadow: 0 8px 24px rgba(200, 151, 65, 0.4);
+        }
+        .step-num {
+            font-family: 'Cinzel', serif;
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--gold);
+            letter-spacing: 1px;
+            line-height: 1;
+            margin-bottom: 2px;
+        }
+        .step-icon {
+            font-size: 20px;
+            color: var(--green-deep);
+        }
+        .step-item:hover .step-num,
+        .step-item:hover .step-icon {
+            color: var(--green-deep);
+        }
+        .step-title {
+            font-family: 'Cinzel', serif;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--green-deep);
+            margin-bottom: 8px;
+        }
+        .step-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.55;
+            max-width: 240px;
+        }
+
+        /* ============================================================
+           8. FOOTER (DARK GREEN, 5 COLS)
+        ============================================================ */
+        .footer {
+            background: var(--green-deep);
+            color: var(--ivory);
+            padding: 80px 0 30px;
+            border-top: 1px solid rgba(200, 151, 65, 0.25);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr 1fr 1.2fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        .footer-brand .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .footer-brand .footer-logo img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+        }
+        .footer-logo-brand {
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--ivory);
+            line-height: 1;
+        }
+        .footer-logo-sub {
+            font-size: 9px;
+            letter-spacing: 2.2px;
+            text-transform: uppercase;
+            color: var(--gold-bright);
+            display: block;
+            margin-top: 3px;
+        }
+        .footer-desc {
+            font-size: 13.5px;
+            color: rgba(251, 248, 241, 0.72);
+            line-height: 1.7;
+            margin-bottom: 22px;
+        }
+        .footer-social-links {
+            display: flex;
+            gap: 10px;
+        }
+        .social-link {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(200, 151, 65, 0.3);
+            color: var(--ivory);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+        .social-link:hover {
+            background: var(--gold);
+            color: var(--green-deep);
+            border-color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .footer-col h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--gold-bright);
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 8px;
+        }
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 28px;
+            height: 2px;
+            background: var(--gold);
+        }
+        .footer-links-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+        }
+        .footer-links-list a {
+            font-size: 13.5px;
+            color: rgba(251, 248, 241, 0.78);
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .footer-links-list a:hover {
+            color: var(--gold-bright);
+            transform: translateX(4px);
+        }
+
+        .footer-contact-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 13.5px;
+            color: rgba(251, 248, 241, 0.78);
+            line-height: 1.5;
+        }
+        .footer-contact-item i {
+            color: var(--gold);
+            font-size: 14px;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+        .footer-contact-link {
+            color: rgba(251, 248, 241, 0.78);
+        }
+        .footer-contact-link:hover {
+            color: var(--gold-bright);
+        }
+
+        /* Footer Bottom Bar */
+        .footer-bottom {
+            border-top: 1px solid rgba(200, 151, 65, 0.2);
+            padding-top: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 12.5px;
+            color: rgba(251, 248, 241, 0.6);
+        }
+        .footer-legal-links {
+            display: flex;
+            gap: 20px;
+        }
+        .footer-legal-links a:hover {
+            color: var(--gold-bright);
+        }
+
+        /* ============================================================
+           INTERACTIVE MODALS: VIEW DETAILS & BOOKING
+        ============================================================ */
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(11, 33, 25, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .modal-backdrop.open {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            border: 1.5px solid var(--gold);
+            max-width: 680px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+            animation: modalPop 0.3s ease;
+        }
+        @keyframes modalPop {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .modal-header {
+            background: var(--green-deep);
+            color: var(--ivory);
+            padding: 24px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--gold);
+        }
+        .modal-header h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            color: var(--gold-bright);
+        }
+        .modal-close-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(200, 151, 65, 0.4);
+            color: var(--ivory);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+        }
+        .modal-close-btn:hover {
+            background: var(--gold);
+            color: var(--green-deep);
+        }
+        .modal-body {
+            padding: 28px;
+        }
+
+        /* Modal Details Content */
+        .modal-meta-strip {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid rgba(18, 56, 43, 0.1);
+        }
+        .modal-meta-item {
+            font-size: 13px;
+            color: var(--green);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .modal-meta-item i {
+            color: var(--gold);
+        }
+        .modal-sec-title {
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            color: var(--green-deep);
+            margin: 18px 0 10px;
+            font-weight: 700;
+        }
+        .modal-itinerary-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .modal-itinerary-item {
+            font-size: 13.5px;
+            color: var(--ink);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            background: var(--ivory);
+            padding: 8px 12px;
+            border-radius: 6px;
+            border-left: 3px solid var(--gold);
+        }
+        .modal-inclusions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .inc-pill {
+            font-size: 12.5px;
+            color: var(--green-deep);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--green-pale);
+            padding: 7px 12px;
+            border-radius: 6px;
+        }
+
+        /* Toast feedback */
+        .toast-notification {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--green-deep);
+            color: var(--ivory);
+            border: 1.5px solid var(--gold);
+            padding: 14px 22px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 2500;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .toast-notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* ============================================================
+           RESPONSIVE DESIGN (MEDIA QUERIES)
+        ============================================================ */
+        @media (max-width: 1080px) {
+            .packages-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .footer-brand {
+                grid-column: 1 / -1;
+            }
+            .custom-cta-card {
+                grid-template-columns: 1fr;
+                padding: 36px 28px;
+            }
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            .steps-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px 20px;
+            }
+            .steps-flow-line {
+                display: none;
+            }
+        }
+
+        @media (max-width: 860px) {
+            .nav-links, .nav-actions .nav-cta-btn {
+                display: none;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .filter-section {
+                top: 66px;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+         STICKY NAVBAR
+    ============================================================ -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-inner">
+            <a href="index.html" class="nav-logo">
+                <img src="images/logo.jpg" alt="Avazora Temple Tourism">
+                <div class="nav-logo-text">
+                    <span class="nav-logo-brand">AVAZORA</span>
+                    <span class="nav-logo-sub">TEMPLE TOURISM</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="destinations.html">Destinations</a></li>
+                <li><a href="packages.html" class="active">Tour Packages</a></li>
+                <li><a href="planner.html">Trip Planner</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="#customQuoteSection" class="nav-cta-btn">
+                    <i class="fas fa-feather-alt"></i> Plan Custom Yatra
+                </a>
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="destinations.html">Destinations</a>
+            <a href="packages.html" class="active">Tour Packages</a>
+            <a href="planner.html">Trip Planner</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="#customQuoteSection" style="color: var(--gold-bright); font-weight:700;">Plan Custom Yatra →</a>
+        </div>
+    </nav>
+
+    <!-- ============================================================
+         1. HERO SECTION (COMPACT)
+    ============================================================ -->
+    <header class="packages-hero">
+        <div class="container packages-hero-inner">
+            <div class="packages-hero-badge">
+                <i class="fas fa-om"></i> Sacred Pilgrimage Expeditions
+            </div>
+            <h1>Sacred Tour Packages</h1>
+            <p class="hero-subtext">
+                Handcrafted pilgrimage experiences across India's most revered temples
+            </p>
+            <div class="gold-divider">
+                <i class="fas fa-spa"></i>
+            </div>
+
+            <!-- Compact Trust Chips -->
+            <div class="hero-trust-chips">
+                <div class="trust-chip">
+                    <i class="fas fa-star"></i> 4.9/5 Pilgrim Satisfaction
+                </div>
+                <div class="trust-chip">
+                    <i class="fas fa-user-check"></i> 25,000+ Completed Yatras
+                </div>
+                <div class="trust-chip">
+                    <i class="fas fa-ticket-alt"></i> Guaranteed VIP Darshan Passes
+                </div>
+                <div class="trust-chip">
+                    <i class="fas fa-certificate"></i> Govt. Certified Vedic Guides
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================
+         2. FILTER BAR
+    ============================================================ -->
+    <section class="filter-section" id="filterBar">
+        <div class="container filter-wrapper">
+            <div class="filter-pills-list" role="tablist" aria-label="Tour Packages Categories">
+                <button class="filter-pill active" data-category="all" role="tab" aria-selected="true">
+                    <i class="fas fa-border-all"></i> All Packages
+                </button>
+                <button class="filter-pill" data-category="south" role="tab" aria-selected="false">
+                    <i class="fas fa-gopuram"></i> South India
+                </button>
+                <button class="filter-pill" data-category="north" role="tab" aria-selected="false">
+                    <i class="fas fa-mountain"></i> North India
+                </button>
+                <button class="filter-pill" data-category="chardham" role="tab" aria-selected="false">
+                    <i class="fas fa-dharmachakra"></i> Char Dham
+                </button>
+                <button class="filter-pill" data-category="heritage" role="tab" aria-selected="false">
+                    <i class="fas fa-landmark"></i> Heritage
+                </button>
+                <button class="filter-pill" data-category="family" role="tab" aria-selected="false">
+                    <i class="fas fa-users"></i> Family
+                </button>
+            </div>
+
+            <div class="filter-meta-count">
+                <i class="fas fa-compass" style="color:var(--gold);"></i>
+                <span id="packageCountText">Showing <strong>6</strong> Handcrafted Packages</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         3. PACKAGES GRID
+    ============================================================ -->
+    <main class="packages-section">
+        <div class="container">
+            <div class="packages-grid" id="packagesGrid">
+
+                <!-- Package A: South India Temple Circuit -->
+                <article class="package-card" data-category="south family" data-id="south-circuit">
+                    <div class="card-img-wrapper">
+                        <img src="images/meenakshi.jpg" alt="South India Temple Circuit - Meenakshi Amman Temple" class="card-img" loading="lazy">
+                        <span class="card-ribbon">
+                            <i class="fas fa-award"></i> BEST SELLER
+                        </span>
+                        <span class="duration-pill">
+                            <i class="far fa-clock"></i> 7D / 6N
+                        </span>
+                    </div>
+
+                    <div class="card-body">
+                        <h2 class="package-name">South India Temple Circuit</h2>
+                        <div class="package-route">
+                            <i class="fas fa-route"></i>
+                            <span>Chennai → Madurai → Rameswaram → Thanjavur</span>
+                        </div>
+
+                        <ul class="package-highlights">
+                            <li class="highlight-item">
+                                <i class="fas fa-check-circle highlight-check"></i>
+                                <span>Meenakshi Amman Temple VIP Darshan</span>
+                            </li>
+                            <li class="highlight-item">
+                                <i class="fas fa-check-circle highlight-check"></i>
+                                <span>Brihadeeswarar Temple UNESCO Guided Tour</span>
+                            </li>
+                            <li class="highlight-item">
+                                <i class="fas fa-check-circle highlight-check"></i>
+                                <span>Ramanathaswamy Temple 22 Theertham Snanam</span>
+                            </li>
+                        </ul>
+
+                        <div class="includes-strip">
+                            <div class="include-chip" title="Heritage & Star Hotels"><span class="emoji">🏨</span> Hotel</div>
+                            <div class="include-chip" title="Chauffeur AC Transport"><span class="emoji">🚌</span> Transport</div>
+                            <div class="include-chip" title="Sattvic Vegetarian Dining"><span class="emoji">🍽️</span> Meals</div>
+                            <div class="include-chip" title="Guided VIP Sightseeing"><span class="emoji">📸</span> Sightseeing</div>
+                        </div>
+
+                        <div class="card-footer">
+                            <div class="price-row">
+                                <span class="price-label">All-Inclusive</span>
+                                <div class="price-val">₹18,500 <span>/ person</span></div>
+                            </div>
+                            <div class="card-actions-grid">
+                                <button type="button" class="btn-card-outline" onclick="openDetailsModal('south-circuit')">View Details</button>
+                                <button type="button" class="btn-card-gold" onclick="openBookingModal('South India Temple Circuit', '₹18,500')">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Package B: Char Dham Yatra -->
+                <article class="package-card" data-category="north chardham" data-id="chardham-yatra">
+                    <div class="card-img-wrapper">
+                        <img src="images/kedarnath.jpg" alt="Char Dham Yatra - Kedarnath Dham" class="card-img" loading="lazy">
+                        <span class="card-ribbon">
+                            <i class="fas fa-fire"></i> POPULAR
+                        </span>
+                        <span class="duration-pill">
+                            <i class="far fa-clock"></i> 12D / 11N
+                        </span>
+                    </div>
+
+                    <div class="card-body">
+                        <h2 class="package-name">Char Dham Yatra</h2>
+                        <div class="package-route">
+                            <i class="fas fa-route"></i>
+                            <span>Haridwar → Yamunotri → Gangotri → Kedarnath → Badrinath</span>
+                        </div>
+
+                        <ul class="package-highlights">
+                            <li class="highlight-item">
+                                <i class="fas fa-check-circle highlight-check"></i>
+                                <span>All 4 Sacred Himalayan Dhams Completed</span>
+                            </li>
+                            <li class="highlight-item">
+                                <i class="fas fa-check-circle highlight-check"></i>
+                                <span>Optional Helicopter Service Available</span>
+                            </li>
+                            <li class="highlight-item">
+                                <i class="fas fa-check-circle highlight-check"></i>
+                                <span>Scenic Himalayan Trail & Medical Assistance</span>
+                            </li>
+                        </ul>
+
+                        <div class="includes-strip">
+                            <div class="include-chip" title="Himalayan Cottages & Hotels"><span class="emoji">🏨</span> Hotel</div>
+                            <div class="include-chip" title="Mountain AC Coach & Heli Option"><span class="emoji">🚌</span> Transport</div>
+                            <div class="include-chip" title="Fresh Sattvic Meals"><span class="emoji">🍽️</span> Meals</div>
+                            <div class="include-chip" title="Shrine Darshan Priority"><span class="emoji">📸</span> Sightseeing</div>
+                        </div>
+
+                        <div class="card-footer">
+                            <div class="price-row">
+                                <span class="price-label">All-Inclusive</span>
+                                <div class="price-val">₹42,000 <span>/ person</span></div>
+                            </div>
+                            <div class="card-actions-grid">
+                                <button type="button" class="btn-card-outline" onclick="openDetailsModal('chardham-yatra')">View Details</button>
+                                <button type="button" class="btn-card-gold" onclick="openBookingModal('Char Dham Yatra', '₹42,000')">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Package C: Odisha Heritage Trail -->
+                <article class="package-card" data-category="heritage family" data-id="odisha-trail">
+                    <div class="card-img-wrapper">
+                        <img src="images/konark.jpg" alt="Odisha Heritage Trail - Konark Sun Temple" class="card-img" loading="lazy">
+                        <span class="card-ribbon">
+                            <i class="fas fa-sparkles"></i> NEW
+                        </span>
+                        <span class="duration-pill">
+                            <i class="far fa-clock"></i> 5D / 4N
+                        </span>
+                    </div>
+
+                    <div class="card-body">
+                        <h2 class="package-name">Odisha Heritage Trail</h2>
+                        <div class="package-route">
+                            <i class="fas fa-route"></i>
+                            <span>Bhubaneswar → Puri → Konark</span>
+                        </div>
+
+                        <ul class="package-highlights">
+                            <li class="highlight-item">
+                                <i class="fas fa-check-circle highlight-check"></i>
+                                <span>Jagannath Puri Temple Special Puja & Mahaprasad</span>
+                            </li>
+                            <li class="highlight-item">
+                                <i class="fas fa-check-circle highlight-check"></i>
+                                <span>Konark Sun Temple UNESCO Architectural Walk</span>
+                            </li>
+                            <li class="highlight-item">
+                                <i class="fas fa-check-circle highlight-check"></i>
+                                <span>Lingaraj Temple Ancient Kalinga Shrines</span>
+                            </li>
+                        </ul>
+
+                        <div class="includes-strip">
+                            <div class="include-chip" title="Deluxe Beachfront & City Hotels"><span class="emoji">🏨</span> Hotel</div>
+                            <div class="include-chip" title="AC Dedicated Sedan / Coach"><span class="emoji">🚌</span> Transport</div>
+                            <div class="include-chip" title="Authentic Odia & Temple Prasad"><span class="emoji">🍽️</span> Meals</div>
+                            <div class="include-chip" title="Expert Heritage Storyteller"><span class="emoji">📸</span> Sightseeing</div>
+                        </div>
+
+                        <div class="card-footer">
+                            <div class="price-row">
+                                <span class="price-label">All-Inclusive</span>
+                                <div class="price-val">₹14,500 <span>/ person</span></div>
+                            </div>
+                            <div class="card-actions-grid">
+                                <button type="button" class="btn-card-outline" onclick="openDetailsModal('odisha-trail')">View Details</button>
+                                <button type="button" class="btn-card-gold" onclick="openBookingModal('Odisha Heritage Trail', '₹14,500')">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Package D: Khajuraho & Central India -->
+                <article class="package-card" data-category="heritage north" data-id="khajuraho-trail">
+                    <div class="card-img-wrapper">
+                        <img src="images/kandariya.jpg" alt="Khajuraho & Central India - Kandariya Mahadeva Temple" class="card-img" loading="lazy">
+                        <span class="card-ribbon">
+                            <i class="fas fa-landmark"></i> HERITAGE GEM
+                        </span>
+                        <span class="duration-pill">
+                            <i class="far fa-clock"></i> 4D / 3N
+                        </span>
+                    </div>
+
+                    <div class="card-body">
+                        <h2 class="package-name">Khajuraho & Central India</h2>
+                        <div class="package-route">
+                            <i class="fas fa-route"></i>
+                            <span>Delhi → Khajuraho → Orchha</span>
+                        </div>
+
+                        <ul class="package-highlights">
+                            <li class="highlight-item">
+                                <i class="fas fa-check-circle highlight-check"></i>
+                                <span>UNESCO Khajuraho Temples & Western Group</span>
+                            </li>
+                            <li class="highlight-item">
+                                <i class="fas fa-check-circle highlight-check"></i>
+                                <span>Mahakaleshwar Jyotirlinga Bhasma Aarti Access</span>
+                            </li>
+                            <li class="highlight-item">
+                                <i class="fas fa-check-circle highlight-check"></i>
+                                <span>Ancient Temple Sculptures & Orchha Cenotaphs</span>
+                            </li>
+                        </ul>
+
+                        <div class="includes-strip">
+                            <div class="include-chip" title="Royal Heritage Havelis"><span class="emoji">🏨</span> Hotel</div>
+                            <div class="include-chip" title="Chauffeur Luxury Car"><span class="emoji">🚌</span> Transport</div>
+                            <div class="include-chip" title="Royal Bundelkhandi Thali"><span class="emoji">🍽️</span> Meals</div>
+                            <div class="include-chip" title="Sound & Light Show Included"><span class="emoji">📸</span> Sightseeing</div>
+                        </div>
+
+                        <div class="card-footer">
+                            <div class="price-row">
+                                <span class="price-label">All-Inclusive</span>
+                                <div class="price-val">₹16,800 <span>/ person</span></div>
+                            </div>
+                            <div class="card-actions-grid">
+                                <button type="button" class="btn-card-outline" onclick="openDetailsModal('khajuraho-trail')">View Details</button>
+                                <button type="button" class="btn-card-gold" onclick="openBookingModal('Khajuraho & Central India', '₹16,800')">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Package E: Kerala Temple Circuit -->
+                <article class="package-card" data-category="south family" data-id="kerala-circuit">
+                    <div class="card-img-wrapper">
+                        <img src="images/guruvayur.jpg" alt="Kerala Temple Circuit - Guruvayur Sri Krishna Temple" class="card-img" loading="lazy">
+                        <span class="card-ribbon">
+                            <i class="fas fa-award"></i> BEST SELLER
+                        </span>
+                        <span class="duration-pill">
+                            <i class="far fa-clock"></i> 6D / 5N
+                        </span>
+                    </div>
+
+                    <div class="card-body">
+                        <h2 class="package-name">Kerala Temple Circuit</h2>
+                        <div class="package-route">
+                            <i class="fas fa-route"></i>
+                            <span>Kochi → Thrissur → Guruvayur → Trivandrum</span>
+                        </div>
+
+                        <ul class="package-highlights">
+                            <li class="highlight-item">
+                                <i class="fas fa-check-circle highlight-check"></i>
+                                <span>Guruvayur Sri Krishna Temple Special Nirmalyam</span>
+                            </li>
+                            <li class="highlight-item">
+                                <i class="fas fa-check-circle highlight-check"></i>
+                                <span>Padmanabhaswamy Temple Traditional Darshan</span>
+                            </li>
+                            <li class="highlight-item">
+                                <i class="fas fa-check-circle highlight-check"></i>
+                                <span>Vadakkunnathan Temple Ancient Mural Sanctuary</span>
+                            </li>
+                        </ul>
+
+                        <div class="includes-strip">
+                            <div class="include-chip" title="Traditional Ayurvedic Resorts"><span class="emoji">🏨</span> Hotel</div>
+                            <div class="include-chip" title="AC Executive Tourist Van"><span class="emoji">🚌</span> Transport</div>
+                            <div class="include-chip" title="Authentic Kerala Sadya"><span class="emoji">🍽️</span> Meals</div>
+                            <div class="include-chip" title="Senior Citizen Assistance"><span class="emoji">📸</span> Sightseeing</div>
+                        </div>
+
+                        <div class="card-footer">
+                            <div class="price-row">
+                                <span class="price-label">All-Inclusive</span>
+                                <div class="price-val">₹21,500 <span>/ person</span></div>
+                            </div>
+                            <div class="card-actions-grid">
+                                <button type="button" class="btn-card-outline" onclick="openDetailsModal('kerala-circuit')">View Details</button>
+                                <button type="button" class="btn-card-gold" onclick="openBookingModal('Kerala Temple Circuit', '₹21,500')">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Package F: Tamil Nadu Express -->
+                <article class="package-card" data-category="south family" data-id="tamil-express">
+                    <div class="card-img-wrapper">
+                        <img src="images/kapaleeshwarar.jpg" alt="Tamil Nadu Express - Kapaleeshwarar Temple" class="card-img" loading="lazy">
+                        <span class="card-ribbon">
+                            <i class="fas fa-bolt"></i> POPULAR
+                        </span>
+                        <span class="duration-pill">
+                            <i class="far fa-clock"></i> 3D / 2N
+                        </span>
+                    </div>
+
+                    <div class="card-body">
+                        <h2 class="package-name">Tamil Nadu Express</h2>
+                        <div class="package-route">
+                            <i class="fas fa-route"></i>
+                            <span>Chennai → Kanchipuram → Tirupati</span>
+                        </div>
+
+                        <ul class="package-highlights">
+                            <li class="highlight-item">
+                                <i class="fas fa-check-circle highlight-check"></i>
+                                <span>Kapaleeshwarar Temple Historic Mylapore Darshan</span>
+                            </li>
+                            <li class="highlight-item">
+                                <i class="fas fa-check-circle highlight-check"></i>
+                                <span>1000-Pillar Ekambareswarar & Varadharaja Tour</span>
+                            </li>
+                            <li class="highlight-item">
+                                <i class="fas fa-check-circle highlight-check"></i>
+                                <span>Tirupati Balaji Sheegra Darshan Guaranteed Slot</span>
+                            </li>
+                        </ul>
+
+                        <div class="includes-strip">
+                            <div class="include-chip" title="Comfort 4-Star Stays"><span class="emoji">🏨</span> Hotel</div>
+                            <div class="include-chip" title="Private AC Chauffeur Car"><span class="emoji">🚌</span> Transport</div>
+                            <div class="include-chip" title="Tirupati Laddu & South Thali"><span class="emoji">🍽️</span> Meals</div>
+                            <div class="include-chip" title="Priority Darshan Escort"><span class="emoji">📸</span> Sightseeing</div>
+                        </div>
+
+                        <div class="card-footer">
+                            <div class="price-row">
+                                <span class="price-label">All-Inclusive</span>
+                                <div class="price-val">₹9,500 <span>/ person</span></div>
+                            </div>
+                            <div class="card-actions-grid">
+                                <button type="button" class="btn-card-outline" onclick="openDetailsModal('tamil-express')">View Details</button>
+                                <button type="button" class="btn-card-gold" onclick="openBookingModal('Tamil Nadu Express', '₹9,500')">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- No Results Fallback Card -->
+                <div class="no-results-box" id="noResultsBox">
+                    <i class="fas fa-search-location"></i>
+                    <h3 style="font-family:'Cinzel', serif; font-size: 22px; color:var(--green-deep); margin-bottom: 8px;">No Packages in this Category</h3>
+                    <p style="color:var(--text-muted); font-size:14px; margin-bottom: 20px;">We specialize in customized pilgrimages tailored to your exact destination preferences.</p>
+                    <button type="button" class="btn-card-gold" onclick="document.querySelector('[data-category=\'all\']').click()" style="display:inline-block; max-width: 220px; margin: 0 auto;">Show All Packages</button>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- ============================================================
+         4. WHY CHOOSE AVAZORA (DARK GREEN BG, 4 CARDS)
+    ============================================================ -->
+    <section class="why-avazora-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag" style="color: var(--gold-bright);">
+                    <i class="fas fa-shield-alt"></i> The Avazora Distinction
+                </span>
+                <h2 class="section-title">Why Pilgrims Choose Avazora</h2>
+                <p class="section-desc">
+                    We treat every sacred journey as an act of seva, ensuring complete peace of mind, reverence, and unhurried temple contemplation.
+                </p>
+                <div class="gold-divider">
+                    <i class="fas fa-om"></i>
+                </div>
+            </div>
+
+            <div class="features-grid">
+                <!-- Card 1 -->
+                <div class="feature-card">
+                    <div class="feature-icon-wrap">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3 class="feature-title">Expert Guided Tours</h3>
+                    <p class="feature-desc">
+                        Accompanied by vetted Vedic scholars and multilingual temple historians who bring sacred sthala puranams and architectural iconography alive.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="feature-card">
+                    <div class="feature-icon-wrap">
+                        <i class="fas fa-bus-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Comfortable Transport</h3>
+                    <p class="feature-desc">
+                        Chauffeur-driven sanitised AC coaches and private sedans with punctual pickups, luggage assistance, and seasoned mountain/highway drivers.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="feature-card">
+                    <div class="feature-icon-wrap">
+                        <i class="fas fa-hotel"></i>
+                    </div>
+                    <h3 class="feature-title">Handpicked Stays</h3>
+                    <p class="feature-desc">
+                        Thoughtfully curated 4★ & 5★ heritage properties and clean spiritual ashram suites located in close walking proximity to temple main gates.
+                    </p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="feature-card">
+                    <div class="feature-icon-wrap">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="feature-title">24/7 Support</h3>
+                    <p class="feature-desc">
+                        Dedicated on-ground pilgrimage coordinator, doctor-on-call emergency access, and live travel assistance from inception to blessed completion.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         5. CUSTOM PACKAGE CTA (IVORY BG, 2 COLUMNS)
+    ============================================================ -->
+    <section class="custom-cta-section" id="customQuoteSection">
+        <div class="container">
+            <div class="custom-cta-card">
+                <!-- Left Column -->
+                <div class="custom-cta-left">
+                    <span class="cta-tag">
+                        <i class="fas fa-magic"></i> Bespoke Pilgrimage Design
+                    </span>
+                    <h2>Can't find the perfect package? We build custom pilgrimages.</h2>
+                    <p>
+                        Every family's spiritual longing is unique. Whether you require wheelchair assistance for elderly parents, private Vedic homams, specific star nakshatra puja timings, or luxury helicopter charters, our travel architects will craft your bespoke itinerary.
+                    </p>
+                    <ul class="custom-benefits">
+                        <li class="benefit-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Tailored itineraries paced gently for senior citizens & kids</span>
+                        </li>
+                        <li class="benefit-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Private VIP Darshan passes & priest arrangements included</span>
+                        </li>
+                        <li class="benefit-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Pure sattvic vegetarian culinary planning throughout</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Right Column: Mini Form -->
+                <div class="custom-cta-right">
+                    <form id="customQuoteForm" onsubmit="handleCustomQuoteSubmit(event)">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="custName">Your Name *</label>
+                                <input type="text" id="custName" class="form-control" placeholder="e.g. Ramesh Iyer" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="custPhone">Phone Number *</label>
+                                <input type="tel" id="custPhone" class="form-control" placeholder="e.g. +91 98765 43210" required>
+                            </div>
+                            <div class="form-group form-group-full">
+                                <label for="custDest">Target Destination / Temples *</label>
+                                <input type="text" id="custDest" class="form-control" placeholder="e.g. Rameswaram, Somnath, Varanasi" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="custPax">Travellers *</label>
+                                <input type="number" id="custPax" class="form-control" min="1" max="50" value="2" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="custBudget">Estimated Budget *</label>
+                                <select id="custBudget" class="form-control" required>
+                                    <option value="" disabled selected>Select Budget Range</option>
+                                    <option value="Under ₹10k">Under ₹10,000 / person</option>
+                                    <option value="₹10k-₹25k">₹10,000 – ₹25,000 / person</option>
+                                    <option value="₹25k-₹50k">₹25,000 – ₹50,000 / person</option>
+                                    <option value="Above ₹50k">Above ₹50,000 (Luxury Yatra)</option>
+                                </select>
+                            </div>
+                            <div class="form-group form-group-full">
+                                <button type="submit" class="btn-custom-quote">
+                                    <i class="fas fa-paper-plane"></i> Get Custom Quote
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Success State on Submit -->
+                    <div class="quote-success-box" id="quoteSuccessBox">
+                        <div class="quote-success-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <h3>Request Received!</h3>
+                        <p>
+                            ✓ Request received! Our team will contact you within 2 hours with a bespoke pilgrimage plan.
+                        </p>
+                        <div class="quote-success-badge">
+                            <i class="fas fa-phone-alt"></i> Priority Concierge Assigned
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         6. TESTIMONIALS (3 CARDS, IVORY BG)
+    ============================================================ -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">
+                    <i class="fas fa-heart"></i> Pilgrim Reflections
+                </span>
+                <h2 class="section-title">Blessed Experiences Shared</h2>
+                <p class="section-desc">
+                    Hear authentic stories from pilgrims across India who entrusted their sacred yatras to Avazora.
+                </p>
+                <div class="gold-divider">
+                    <i class="fas fa-hands-praying"></i>
+                </div>
+            </div>
+
+            <div class="testimonials-grid">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card">
+                    <div>
+                        <div class="testimonial-quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div class="stars-row">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "The spiritual experience was beyond words. Avazora arranged seamless VIP temple darshans and wonderful heritage stays that let our elderly parents travel in complete serenity. The Vedic scholar in Madurai gave us goosebumps explaining the Chola architecture."
+                        </p>
+                    </div>
+                    <div class="testimonial-author-block">
+                        <div class="author-avatar">RK</div>
+                        <div class="author-info">
+                            <h4>Ravi Kumar</h4>
+                            <div class="author-meta">Chennai, Tamil Nadu</div>
+                            <div class="tour-name">South India Circuit (7D/6N)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card">
+                    <div>
+                        <div class="testimonial-quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div class="stars-row">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "A life-changing journey through the sacred Himalayas. The helicopter service, oxygen support, and devoted guides made our Kedarnath & Badrinath yatra effortless and divine. We were treated like family at every Himalayan milestone."
+                        </p>
+                    </div>
+                    <div class="testimonial-author-block">
+                        <div class="author-avatar">PS</div>
+                        <div class="author-info">
+                            <h4>Priya Sharma</h4>
+                            <div class="author-meta">New Delhi</div>
+                            <div class="tour-name">Char Dham Yatra (12D/11N)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card">
+                    <div>
+                        <div class="testimonial-quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div class="stars-row">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "Avazora made every detail perfect. The knowledgeable Vedic historians and timely puja rituals at Guruvayur and Padmanabhaswamy temple were unforgettable. Their chauffeur was exceptionally courteous and the sattvic meals were divine."
+                        </p>
+                    </div>
+                    <div class="testimonial-author-block">
+                        <div class="author-avatar">AN</div>
+                        <div class="author-info">
+                            <h4>Anitha Nair</h4>
+                            <div class="author-meta">Kochi, Kerala</div>
+                            <div class="tour-name">Kerala Temple Circuit (6D/5N)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         7. BOOKING STEPS (WHITE BG, HORIZONTAL)
+    ============================================================ -->
+    <section class="steps-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">
+                    <i class="fas fa-road"></i> Effortless Process
+                </span>
+                <h2 class="section-title">How To Embark On Your Yatra</h2>
+                <p class="section-desc">
+                    Four simple steps to transform your pilgrimage aspiration into a peaceful spiritual reality.
+                </p>
+                <div class="gold-divider">
+                    <i class="fas fa-bell"></i>
+                </div>
+            </div>
+
+            <div class="steps-flow-container">
+                <!-- Connecting Line Desktop -->
+                <div class="steps-flow-line"></div>
+
+                <div class="steps-grid">
+                    <!-- Step 1 -->
+                    <div class="step-item">
+                        <div class="step-circle">
+                            <span class="step-num">STEP 01</span>
+                            <i class="fas fa-map-marked-alt step-icon"></i>
+                        </div>
+                        <h3 class="step-title">Choose Package</h3>
+                        <p class="step-desc">
+                            Select from our vetted sacred circuits or tell us your preferred deities and shrines.
+                        </p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="step-item">
+                        <div class="step-circle">
+                            <span class="step-num">STEP 02</span>
+                            <i class="fas fa-sliders-h step-icon"></i>
+                        </div>
+                        <h3 class="step-title">Customise</h3>
+                        <p class="step-desc">
+                            Select travel dates, group size, special puja sankalpams, and luxury vehicle tier.
+                        </p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="step-item">
+                        <div class="step-circle">
+                            <span class="step-num">STEP 03</span>
+                            <i class="fas fa-ticket-alt step-icon"></i>
+                        </div>
+                        <h3 class="step-title">Confirm Booking</h3>
+                        <p class="step-desc">
+                            Secure your booking with transparent pricing, instant voucher, and VIP darshan slots.
+                        </p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="step-item">
+                        <div class="step-circle">
+                            <span class="step-num">STEP 04</span>
+                            <i class="fas fa-praying-hands step-icon"></i>
+                        </div>
+                        <h3 class="step-title">Begin Your Yatra</h3>
+                        <p class="step-desc">
+                            Step into sacred sanctity with our 24/7 dedicated pilgrimage concierge by your side.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         8. FOOTER (DARK GREEN, 5 COLS)
+    ============================================================ -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-grid">
+                <!-- Col 1: Brand -->
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <img src="images/logo.jpg" alt="Avazora Temple Tourism">
+                        <div>
+                            <span class="footer-logo-brand">AVAZORA</span>
+                            <span class="footer-logo-sub">TEMPLE TOURISM</span>
+                        </div>
+                    </a>
+                    <p class="footer-desc">
+                        India's premier sacred pilgrimage portal curating authentic temple circuits, priority VIP darshan access, and enlightened heritage journeys.
+                    </p>
+                    <div class="footer-social-links">
+                        <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Company -->
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="about.html#values">Our Heritage Mission</a></li>
+                        <li><a href="contact.html">Careers & Press</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Plan Your Trip -->
+                <div class="footer-col">
+                    <h4>Plan Your Trip</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="planner.html">Trip Planner</a></li>
+                        <li><a href="packages.html">Tour Packages</a></li>
+                        <li><a href="packages.html?cat=chardham">Char Dham Yatra</a></li>
+                        <li><a href="packages.html?cat=south">South India Circuits</a></li>
+                        <li><a href="#customQuoteSection">Custom Yatra</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Destinations -->
+                <div class="footer-col">
+                    <h4>Destinations</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="destinations.html?state=Tamil+Nadu">Tamil Nadu</a></li>
+                        <li><a href="destinations.html?state=Kerala">Kerala</a></li>
+                        <li><a href="destinations.html?state=Uttarakhand">Uttarakhand</a></li>
+                        <li><a href="destinations.html?state=Odisha">Odisha</a></li>
+                        <li><a href="destinations.html?state=Madhya+Pradesh">Madhya Pradesh</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 5: Contact -->
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul class="footer-contact-list">
+                        <li class="footer-contact-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>+91 (800) 123-4567</span>
+                        </li>
+                        <li class="footer-contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:hello@avazora.com" class="footer-contact-link">hello@avazora.com</a>
+                        </li>
+                        <li class="footer-contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Temple Street, Heritage Square, Chennai, TN 600001</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <span>&copy; 2026 Avazora Tourism. All Rights Reserved. Preserving India's Living Temple Heritage.</span>
+                <div class="footer-legal-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms & Conditions</a>
+                    <a href="#">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+         MODAL 1: VIEW DETAILS MODAL
+    ============================================================ -->
+    <div class="modal-backdrop" id="detailsModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="modalPkgTitle">Package Details</h3>
+                <button type="button" class="modal-close-btn" onclick="closeDetailsModal()" aria-label="Close modal">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-meta-strip">
+                    <div class="modal-meta-item">
+                        <i class="far fa-clock"></i> <span id="modalPkgDuration">7D / 6N</span>
+                    </div>
+                    <div class="modal-meta-item">
+                        <i class="fas fa-route"></i> <span id="modalPkgRoute">Route overview</span>
+                    </div>
+                    <div class="modal-meta-item">
+                        <i class="fas fa-tag"></i> <span id="modalPkgPrice" style="color:var(--gold); font-weight:700;">From ₹18,500 / person</span>
+                    </div>
+                </div>
+
+                <h4 class="modal-sec-title">Day-By-Day Sacred Itinerary</h4>
+                <ul class="modal-itinerary-list" id="modalItineraryList">
+                    <!-- Dynamic Itinerary -->
+                </ul>
+
+                <h4 class="modal-sec-title">What's Included</h4>
+                <div class="modal-inclusions-grid">
+                    <div class="inc-pill"><i class="fas fa-check" style="color:var(--gold);"></i> 4★ / 5★ Accommodations</div>
+                    <div class="inc-pill"><i class="fas fa-check" style="color:var(--gold);"></i> Private AC Chauffeur Vehicle</div>
+                    <div class="inc-pill"><i class="fas fa-check" style="color:var(--gold);"></i> Pure Sattvic Vegetarian Meals</div>
+                    <div class="inc-pill"><i class="fas fa-check" style="color:var(--gold);"></i> Guaranteed VIP Darshan Passes</div>
+                    <div class="inc-pill"><i class="fas fa-check" style="color:var(--gold);"></i> Dedicated Vedic Temple Guide</div>
+                    <div class="inc-pill"><i class="fas fa-check" style="color:var(--gold);"></i> All Tolls, Parking & Temple Taxes</div>
+                </div>
+
+                <div style="display:flex; justify-content: flex-end; gap: 12px; margin-top: 24px; padding-top: 18px; border-top: 1px solid rgba(18,56,43,0.1);">
+                    <button type="button" class="btn-card-outline" onclick="closeDetailsModal()">Close</button>
+                    <button type="button" class="btn-card-gold" id="modalBookBtn">Book This Package</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         MODAL 2: BOOKING MODAL
+    ============================================================ -->
+    <div class="modal-backdrop" id="bookingModal">
+        <div class="modal-card" style="max-width: 540px;">
+            <div class="modal-header">
+                <h3>Book Your Pilgrimage</h3>
+                <button type="button" class="modal-close-btn" onclick="closeBookingModal()" aria-label="Close modal">✕</button>
+            </div>
+            <div class="modal-body">
+                <p style="font-size:13.5px; color:var(--text-muted); margin-bottom: 18px;">
+                    Reserve your slots for <strong id="bookingPkgName" style="color:var(--green-deep);">Selected Package</strong> (<span id="bookingPkgPriceText" style="color:var(--gold); font-weight:700;">₹0</span>). Our darshan concierge will confirm your schedule.
+                </p>
+
+                <form id="bookingForm" onsubmit="handleBookingSubmit(event)">
+                    <div class="form-grid" style="grid-template-columns: 1fr;">
+                        <div class="form-group">
+                            <label for="bookName">Primary Pilgrim Name *</label>
+                            <input type="text" id="bookName" class="form-control" placeholder="Full name as on Aadhaar/ID" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="bookPhone">Mobile Number (WhatsApp) *</label>
+                            <input type="tel" id="bookPhone" class="form-control" placeholder="+91 98765 43210" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="bookDate">Preferred Start Date *</label>
+                            <input type="date" id="bookDate" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="bookTravellers">Total Yatris *</label>
+                            <input type="number" id="bookTravellers" class="form-control" min="1" max="50" value="2" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="bookSpecialRequests">Special Requirements (Optional)</label>
+                            <input type="text" id="bookSpecialRequests" class="form-control" placeholder="e.g. Wheelchair, Senior Citizen, Special Puja">
+                        </div>
+                        <button type="submit" class="btn-custom-quote" style="margin-top:12px;">
+                            <i class="fas fa-lock"></i> Confirm & Request Voucher
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div class="toast-notification" id="toastNotice">
+        <i class="fas fa-check-circle" style="color:var(--gold-bright); font-size:18px;"></i>
+        <span id="toastMessage">Action completed successfully!</span>
+    </div>
+
+    <!-- ============================================================
+         JAVASCRIPT LOGIC
+    ============================================================ -->
+    <script>
+        // --- 1. Sticky Nav on Scroll ---
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('solid');
+            } else {
+                navbar.classList.remove('solid');
+            }
+        });
+
+        // --- 2. Mobile Nav Toggle ---
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileToggle && mobileMenu) {
+            mobileToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('open');
+                const icon = mobileToggle.querySelector('i');
+                if (icon) {
+                    if (mobileMenu.classList.contains('open')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                }
+            });
+        }
+
+        // --- 3. Filter Pills Logic ---
+        const filterPills = document.querySelectorAll('.filter-pill');
+        const packageCards = document.querySelectorAll('.package-card');
+        const packageCountText = document.getElementById('packageCountText');
+        const noResultsBox = document.getElementById('noResultsBox');
+
+        function applyFilter(category) {
+            let visibleCount = 0;
+            const targetCat = category.trim().toLowerCase();
+
+            packageCards.forEach(card => {
+                const cardCategories = (card.getAttribute('data-category') || '').toLowerCase().split(' ');
+                const isMatch = (targetCat === 'all' || cardCategories.includes(targetCat));
+
+                if (isMatch) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                    requestAnimationFrame(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    });
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(10px)';
+                    card.style.display = 'none';
+                }
+            });
+
+            // Update active pill button
+            filterPills.forEach(pill => {
+                const pillCat = pill.getAttribute('data-category').toLowerCase();
+                if (pillCat === targetCat) {
+                    pill.classList.add('active');
+                    pill.setAttribute('aria-selected', 'true');
+                } else {
+                    pill.classList.remove('active');
+                    pill.setAttribute('aria-selected', 'false');
+                }
+            });
+
+            // Count text display
+            if (packageCountText) {
+                const catLabel = targetCat === 'all' ? 'All' : targetCat.charAt(0).toUpperCase() + targetCat.slice(1);
+                packageCountText.innerHTML = `Showing <strong>${visibleCount}</strong> ${visibleCount === 1 ? 'Package' : 'Packages'} (${catLabel})`;
+            }
+
+            // Fallback if no packages match
+            if (noResultsBox) {
+                noResultsBox.style.display = visibleCount === 0 ? 'block' : 'none';
+            }
+        }
+
+        filterPills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                const cat = pill.getAttribute('data-category');
+                applyFilter(cat);
+            });
+        });
+
+        // Check URL params e.g. packages.html?cat=chardham
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const catParam = urlParams.get('cat');
+            if (catParam) {
+                applyFilter(catParam);
+            }
+        });
+
+        // --- 4. Custom Quote Mini Form Submission ---
+        function handleCustomQuoteSubmit(e) {
+            e.preventDefault();
+            const form = document.getElementById('customQuoteForm');
+            const successBox = document.getElementById('quoteSuccessBox');
+            
+            // Collect entered values
+            const name = document.getElementById('custName').value.trim();
+            const phone = document.getElementById('custPhone').value.trim();
+            const dest = document.getElementById('custDest').value.trim();
+            const pax = document.getElementById('custPax').value;
+            const budget = document.getElementById('custBudget').value;
+
+            // Hide form and show success message
+            form.style.display = 'none';
+            successBox.style.display = 'block';
+
+            showToast(`Namaste ${name}! We have received your custom yatra request.`);
+        }
+
+        // --- 5. Package Itineraries Data Store ---
+        const packageDetailsData = {
+            'south-circuit': {
+                title: 'South India Temple Circuit',
+                duration: '7 Days / 6 Nights',
+                route: 'Chennai → Madurai → Rameswaram → Thanjavur',
+                price: '₹18,500 / person',
+                itinerary: [
+                    'Day 1: Arrival Chennai & Kapaleeshwarar Temple evening aarti',
+                    'Day 2: Kanchipuram silk weavers & Kailasanathar Temple, transfer to Madurai',
+                    'Day 3: Meenakshi Amman Temple morning VIP darshan & Thirumalai Nayakkar Palace',
+                    'Day 4: Scenic drive over Pamban Bridge to Rameswaram, Agni Theertham snanam',
+                    'Day 5: Ramanathaswamy Temple 22 holy wells & Dhanushkodi ghost town visit',
+                    'Day 6: Thanjavur Brihadeeswarar Temple UNESCO study & Saraswathi Mahal',
+                    'Day 7: Trichy Rockfort Temple & return departure from Chennai/Trichy'
+                ]
+            },
+            'chardham-yatra': {
+                title: 'Char Dham Yatra',
+                duration: '12 Days / 11 Nights',
+                route: 'Haridwar → Yamunotri → Gangotri → Kedarnath → Badrinath',
+                price: '₹42,000 / person',
+                itinerary: [
+                    'Day 1: Arrival Haridwar, Ganga Aarti at Har Ki Pauri',
+                    'Day 2-3: Drive to Barkot & sacred Yamunotri Dham darshan via Janki Chatti',
+                    'Day 4-5: Uttarkashi to Gangotri Dham along Bhagirathi river, holy dip',
+                    'Day 6-7: Guptkashi & Kedarnath trek/helicopter flight, evening Shiva aarti',
+                    'Day 8: Kedarnath early morning darshan & descent back to Guptkashi',
+                    'Day 9-10: Drive to Badrinath Dham, Tapt Kund snanam, Mana village border walk',
+                    'Day 11: Rudraprayag / Rishikesh scenic descent & Ram Jhula visit',
+                    'Day 12: Departure from Haridwar / Dehradun Airport with blessed prasadam'
+                ]
+            },
+            'odisha-trail': {
+                title: 'Odisha Heritage Trail',
+                duration: '5 Days / 4 Nights',
+                route: 'Bhubaneswar → Puri → Konark',
+                price: '₹14,500 / person',
+                itinerary: [
+                    'Day 1: Arrival Bhubaneswar, Lingaraj Temple & Mukteswarar gems',
+                    'Day 2: Dhauli Shanti Stupa, Pipili applique village, transfer to Puri',
+                    'Day 3: Sri Jagannath Temple VIP Mahaprasad anandabazar darshan',
+                    'Day 4: Konark Sun Temple UNESCO architectural sunrise walk & Chandrabhaga beach',
+                    'Day 5: Chilika Lake dolphin boating & return departure from Bhubaneswar'
+                ]
+            },
+            'khajuraho-trail': {
+                title: 'Khajuraho & Central India',
+                duration: '4 Days / 3 Nights',
+                route: 'Delhi → Khajuraho → Orchha',
+                price: '₹16,800 / person',
+                itinerary: [
+                    'Day 1: Arrival Khajuraho, check-in & Western Group Temples sunset walk',
+                    'Day 2: Kandariya Mahadeva Temple, Eastern Jain group & Sound & Light Show',
+                    'Day 3: Scenic drive to Orchha, Ram Raja Temple & Chattris on Betwa River',
+                    'Day 4: Orchha Fort complex exploration & return train/flight transfer'
+                ]
+            },
+            'kerala-circuit': {
+                title: 'Kerala Temple Circuit',
+                duration: '6 Days / 5 Nights',
+                route: 'Kochi → Thrissur → Guruvayur → Trivandrum',
+                price: '₹21,500 / person',
+                itinerary: [
+                    'Day 1: Arrival Kochi, Chottanikkara Bhagavathy Temple evening thalapoli',
+                    'Day 2: Thrissur Vadakkunnathan Temple ancient murals & elephant sanctuary',
+                    'Day 3: Guruvayur Sri Krishna Temple morning Nirmalyam darshan & Mammiyoor',
+                    'Day 4: Drive via backwaters to Trivandrum, Kovalam beach sunset',
+                    'Day 5: Sree Padmanabhaswamy Temple traditional mundu darshan & Attukal shrine',
+                    'Day 6: Suchindram Temple visit & return transfer from Trivandrum'
+                ]
+            },
+            'tamil-express': {
+                title: 'Tamil Nadu Express',
+                duration: '3 Days / 2 Nights',
+                route: 'Chennai → Kanchipuram → Tirupati',
+                price: '₹9,500 / person',
+                itinerary: [
+                    'Day 1: Chennai Kapaleeshwarar Temple & Parthasarathy Temple darshan',
+                    'Day 2: Kanchipuram Kamakshi Amman & Ekambareswarar 1000 pillars, drive to Tirupati',
+                    'Day 3: Tirumala Venkateswara Balaji early morning Sheegra Darshan, laddu prasadam & return'
+                ]
+            }
+        };
+
+        // --- 6. View Details Modal ---
+        const detailsModal = document.getElementById('detailsModal');
+        const modalPkgTitle = document.getElementById('modalPkgTitle');
+        const modalPkgDuration = document.getElementById('modalPkgDuration');
+        const modalPkgRoute = document.getElementById('modalPkgRoute');
+        const modalPkgPrice = document.getElementById('modalPkgPrice');
+        const modalItineraryList = document.getElementById('modalItineraryList');
+        const modalBookBtn = document.getElementById('modalBookBtn');
+
+        function openDetailsModal(pkgId) {
+            const data = packageDetailsData[pkgId];
+            if (!data) return;
+
+            modalPkgTitle.textContent = data.title;
+            modalPkgDuration.textContent = data.duration;
+            modalPkgRoute.textContent = data.route;
+            modalPkgPrice.textContent = 'From ' + data.price;
+
+            // Populate itinerary
+            modalItineraryList.innerHTML = '';
+            data.itinerary.forEach(day => {
+                const li = document.createElement('li');
+                li.className = 'modal-itinerary-item';
+                li.innerHTML = `<i class="fas fa-sun" style="color:var(--gold); margin-top:3px;"></i> <span>${day}</span>`;
+                modalItineraryList.appendChild(li);
+            });
+
+            // Set up Book button inside details modal
+            modalBookBtn.onclick = () => {
+                closeDetailsModal();
+                openBookingModal(data.title, data.price);
+            };
+
+            detailsModal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDetailsModal() {
+            detailsModal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        // --- 7. Booking Modal ---
+        const bookingModal = document.getElementById('bookingModal');
+        const bookingPkgName = document.getElementById('bookingPkgName');
+        const bookingPkgPriceText = document.getElementById('bookingPkgPriceText');
+
+        function openBookingModal(pkgName, price) {
+            bookingPkgName.textContent = pkgName;
+            bookingPkgPriceText.textContent = price;
+            
+            // Set min date to tomorrow
+            const dateInput = document.getElementById('bookDate');
+            if (dateInput) {
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                dateInput.min = tomorrow.toISOString().split('T')[0];
+                dateInput.value = tomorrow.toISOString().split('T')[0];
+            }
+
+            bookingModal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBookingModal() {
+            bookingModal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        function handleBookingSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('bookName').value.trim();
+            const pkg = bookingPkgName.textContent;
+            
+            closeBookingModal();
+            showToast(`Blessed! Booking confirmed for ${name} (${pkg}). Voucher dispatched to WhatsApp!`);
+            document.getElementById('bookingForm').reset();
+        }
+
+        // Close modals on clicking outside card
+        [detailsModal, bookingModal].forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('open');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        // --- 8. Toast Notification Utility ---
+        const toastNotice = document.getElementById('toastNotice');
+        const toastMessage = document.getElementById('toastMessage');
+        let toastTimeout;
+
+        function showToast(msg) {
+            if (toastNotice && toastMessage) {
+                toastMessage.textContent = msg;
+                toastNotice.classList.add('show');
+                clearTimeout(toastTimeout);
+                toastTimeout = setTimeout(() => {
+                    toastNotice.classList.remove('show');
+                }, 4000);
+            }
+        }
+    </script>
+</body>
+</html>

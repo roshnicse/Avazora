@@ -50,7 +50,9 @@ class RangeRequestHandler(BaseHTTPRequestHandler):
         # Resolve URL path → filesystem path
         url_path = self.path.split("?", 1)[0]          # strip query string
         url_path = url_path.lstrip("/") or "index.html"
-        fs_path  = FRONTEND_DIR / Path(url_path)
+        fs_path  = BASE_DIR / Path(url_path)
+        if not fs_path.exists():
+            fs_path = FRONTEND_DIR / Path(url_path)
 
         # Directory → serve index.html
         if fs_path.is_dir():
