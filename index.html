@@ -163,13 +163,15 @@
         position: relative; height: 88vh; min-height: 560px;
         overflow: hidden; display: flex; align-items: center;
     }
-    .hero-img {
+    .hero-img, .hero-video {
         position: absolute; inset: 0;
         width: 100%; height: 100%; object-fit: cover; object-position: center top;
+        z-index: 1;
     }
     .hero-overlay {
         position: absolute; inset: 0;
         background: linear-gradient(105deg, rgba(12,30,19,0.82) 40%, rgba(12,30,19,0.30) 100%);
+        z-index: 2;
     }
     .hero-content {
         position: relative; z-index: 2;
@@ -289,6 +291,143 @@
         transition: 0.2s; border-bottom: 1px solid transparent;
     }
     .view-all:hover { border-bottom-color: var(--gold); }
+
+    /* ─────────────────────────────
+       MOST POPULAR TEMPLES (TOP 3 SHOWCASE)
+    ───────────────────────────── */
+    .most-popular-showcase {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-bottom: 36px;
+    }
+    .pop-card {
+        background: var(--white);
+        border: 1.5px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: 0 6px 24px rgba(18,56,43,0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+    .pop-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 16px 40px rgba(18,56,43,0.16);
+        border-color: var(--gold);
+    }
+    .pop-card-img-wrap {
+        position: relative;
+        height: 240px;
+        overflow: hidden;
+    }
+    .pop-card-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    .pop-card:hover .pop-card-img-wrap img {
+        transform: scale(1.06);
+    }
+    .pop-badge {
+        position: absolute;
+        top: 14px;
+        left: 14px;
+        background: linear-gradient(135deg, #0B2119, #12382B);
+        color: var(--gold-bright);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        padding: 5px 12px;
+        border-radius: 20px;
+        border: 1px solid var(--gold);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+    .pop-rank {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        background: var(--gold);
+        color: var(--green);
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 13px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .pop-body {
+        padding: 20px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    .pop-title {
+        font-family: 'Cinzel', serif;
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--green);
+        margin: 0 0 6px;
+    }
+    .pop-meta {
+        font-size: 13px;
+        color: var(--text-soft);
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+    .pop-desc {
+        font-size: 13.5px;
+        color: var(--text);
+        line-height: 1.55;
+        margin-bottom: 16px;
+        flex: 1;
+    }
+    .pop-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 14px;
+        border-top: 1px solid var(--border);
+    }
+    .pop-rating {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--green);
+    }
+    .pop-btn {
+        background: var(--green-pale);
+        color: var(--green);
+        padding: 7px 16px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 700;
+        border: 1px solid var(--border);
+        transition: 0.2s;
+        text-decoration: none;
+    }
+    .pop-btn:hover {
+        background: var(--gold);
+        color: var(--green);
+        border-color: var(--gold);
+    }
+
+    @media (max-width: 900px) {
+        .most-popular-showcase { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+        .most-popular-showcase { grid-template-columns: 1fr; }
+    }
 
     /* ─────────────────────────────
        TEMPLE GRID
@@ -627,7 +766,10 @@
          HERO
     ═══════════════════════════════════════════ -->
     <section class="hero" id="home">
-        <img src="images/brihadeeswarar.jpg" alt="Brihadeeswarar Temple" class="hero-img" onerror="this.src='images/meenakshi.jpg'">
+        <video autoplay muted loop playsinline poster="images/brihadeeswarar.jpg" class="hero-video" id="heroVideo">
+            <source src="images/hero_video.mp4" type="video/mp4">
+            <img src="images/brihadeeswarar.jpg" alt="Brihadeeswarar Temple" class="hero-img">
+        </video>
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <p class="hero-tagline">Your Sacred Journey, Perfectly Planned</p>
@@ -735,8 +877,71 @@
                     <span class="eyebrow">TOP DESTINATIONS</span>
                     <h2>Popular Temples to Explore</h2>
                 </div>
-                <a href="#temples" class="view-all">VIEW ALL DESTINATIONS →</a>
+                <a href="destinations.html" class="view-all">VIEW ALL DESTINATIONS →</a>
             </div>
+
+            <!-- Top 3 Most Popular Temples Showcase (3 Images) -->
+            <div class="most-popular-showcase">
+                <!-- Card 1 -->
+                <div class="pop-card">
+                    <div class="pop-card-img-wrap">
+                        <img src="images/meenakshi.jpg" alt="Meenakshi Amman Temple" loading="lazy">
+                        <span class="pop-badge">👑 #1 Most Visited</span>
+                        <span class="pop-rank">01</span>
+                    </div>
+                    <div class="pop-body">
+                        <h3 class="pop-title">Meenakshi Amman Temple</h3>
+                        <div class="pop-meta">📍 Madurai, Tamil Nadu · Dravidian Style</div>
+                        <p class="pop-desc">Living sacred heritage with 14 soaring gopurams, the thousand-pillar hall, and unbroken ritual traditions celebrating Goddess Meenakshi.</p>
+                        <div class="pop-footer">
+                            <div class="pop-rating">⭐ 5.0 <span style="font-size:12px;color:var(--text-soft);font-weight:400;">(12,400+ Yatris)</span></div>
+                            <a href="destinations.html?state=Tamil Nadu" class="pop-btn">Explore Temple →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="pop-card">
+                    <div class="pop-card-img-wrap">
+                        <img src="images/brihadeeswarar.jpg" alt="Brihadeeswarar Temple" loading="lazy">
+                        <span class="pop-badge">🏛️ UNESCO World Heritage</span>
+                        <span class="pop-rank">02</span>
+                    </div>
+                    <div class="pop-body">
+                        <h3 class="pop-title">Brihadeeswarar Temple</h3>
+                        <div class="pop-meta">📍 Thanjavur, Tamil Nadu · Chola Architecture</div>
+                        <p class="pop-desc">A 1,000-year-old architectural marvel engineered entirely from granite, crowned by an 80-tonne monolithic Shikhara dome.</p>
+                        <div class="pop-footer">
+                            <div class="pop-rating">⭐ 4.9 <span style="font-size:12px;color:var(--text-soft);font-weight:400;">(9,800+ Yatris)</span></div>
+                            <a href="destinations.html?state=Tamil Nadu" class="pop-btn">Explore Temple →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="pop-card">
+                    <div class="pop-card-img-wrap">
+                        <img src="images/kedarnath.jpg" alt="Kedarnath Temple" loading="lazy">
+                        <span class="pop-badge">🏔️ Char Dham Jyotirlinga</span>
+                        <span class="pop-rank">03</span>
+                    </div>
+                    <div class="pop-body">
+                        <h3 class="pop-title">Kedarnath Temple</h3>
+                        <div class="pop-meta">📍 Rudraprayag, Uttarakhand · Himalayan Nagara</div>
+                        <p class="pop-desc">Sacred high-altitude Jyotirlinga shrine resting at 3,583m in the Garhwal Himalayas, embodying supreme spiritual devotion.</p>
+                        <div class="pop-footer">
+                            <div class="pop-rating">⭐ 4.9 <span style="font-size:12px;color:var(--text-soft);font-weight:400;">(8,600+ Yatris)</span></div>
+                            <a href="destinations.html?state=Uttarakhand" class="pop-btn">Explore Temple →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin: 36px 0 18px; display:flex; justify-content:space-between; align-items:center;">
+                <h3 style="font-family:'Cinzel',serif; font-size:20px; color:var(--green); margin:0;">All Sacred Shrines &amp; Yatras</h3>
+                <span style="font-size:13px; color:var(--text-soft); font-weight:500;">15 Shrines Across India</span>
+            </div>
+
             <!-- Rendered by main.js into .temple-grid-w -->
             <div class="temple-grid-w" id="templeGrid"></div>
         </div>
