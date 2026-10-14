@@ -40,6 +40,9 @@ const FALLBACK_TEMPLES = [
   { name: "Guruvayur Sri Krishna Temple", local: "ഗുരുവായൂർ ക്ഷേത്രം", city: "Guruvayur", state: "Kerala", deity: "Vishnu (Krishna)", style: "Kerala", period: "Ancient · Bhakti Period", badge: "Living Heritage Shrine", image: "images/guruvayur.jpg" },
   { name: "Sree Padmanabhaswamy Temple", local: "ശ്രീ പദ്മനാഭസ്വാമി ക്ഷേത്രം", city: "Thiruvananthapuram", state: "Kerala", deity: "Vishnu (Padmanabha)", style: "Kerala-Dravidian", period: "8th century · Travancore Kingdom", badge: "UNESCO Tentative List", image: "images/padmanabhaswamy.jpg" },
   { name: "Vadakkunnathan Temple", local: "വടക്കുംനാഥ ക്ഷേത്രം", city: "Thrissur", state: "Kerala", deity: "Shiva", style: "Kerala", period: "Ancient · Perumal Era", badge: "Living Heritage Shrine", image: "images/vadakkunnathan.jpg" },
+  { name: "Palani Murugan Temple", local: "பழனி தண்டாயுதபாணி", city: "Palani", state: "Tamil Nadu", deity: "Murugan (Dhandayuthapani)", style: "Dravidian", period: "Ancient · Chera / Pandya", badge: "Arupadai Veedu", image: "images/palani.jpg" },
+  { name: "Thiruchendur Murugan Temple", local: "திருச்செந்தூர் சுப்பிரமணியர்", city: "Tiruchendur", state: "Tamil Nadu", deity: "Murugan (Subrahmanya)", style: "Dravidian", period: "Ancient · Coastal Shrine", badge: "Arupadai Veedu", image: "images/thiruchendur.jpg" },
+  { name: "Perur Pateeswarar Temple (Kovai)", local: "பேரூர் பட்டீஸ்வரர் (கோவை)", city: "Coimbatore", state: "Tamil Nadu", deity: "Shiva (Pateeswarar)", style: "Dravidian", period: "2nd century · Karikala Chola", badge: "Historic Kovai Heritage", image: "images/kovai.jpg" },
   { name: "Sabarimala Sree Dharma Sastha Temple", local: "ശബരിമല അയ്യപ്പൻ", city: "Pathanamthitta", state: "Kerala", deity: "Ayyappa (Dharma Sastha)", style: "Kerala", period: "Ancient · Pandalam Dynasty", badge: "Major Pilgrimage Site", image: "images/sabarimala.jpg" }
 ];
 
